@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-// import router from './router';
+import {router} from './router';
 
 mongoose.set('strictQuery', false);
 mongoose.connect('mongodb://127.0.0.1:27017')
@@ -19,7 +19,7 @@ mongoose.connect('mongodb://127.0.0.1:27017')
     });
 
     app.use(express.json());
-    // app.use(router);
+    app.use(router);
 
 
     app.listen(port, ()=> console.log(`server is running on: https://localhost:${port}`));
