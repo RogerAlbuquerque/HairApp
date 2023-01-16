@@ -21,7 +21,7 @@ mongoose.connect('mongodb://127.0.0.1:27017')
     app.use(express.json());
     // app.use(router);
 
-    app.get('/', (req,res) => res.send('FALA  MEUS MAAAAANNOS E TRUTENS'));
+
     app.listen(port, ()=> console.log(`server is running on: https://localhost:${port}`));
   })
   .catch((error) => console.log('Error to connect on mongoDB: \n ', error));
