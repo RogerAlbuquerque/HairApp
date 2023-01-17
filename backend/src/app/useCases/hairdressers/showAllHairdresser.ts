@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Hairdresser } from '../../models/Hairdresser';
 
 
-export async function showHairdresser(req: Request, res:Response){
+export async function showAllHairdresser(req: Request, res:Response){
 
   try{
 

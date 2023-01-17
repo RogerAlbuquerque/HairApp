@@ -10,7 +10,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
   hairdName:{
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
 
   address:{
@@ -21,7 +21,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
   email:{
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
 
   hairdPassword:{
@@ -49,7 +49,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
       enum:['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB', 'DOM'],
       required:true,
       unique: false,
-      dropDups: true
+      sparse:true
 
     }
   ],

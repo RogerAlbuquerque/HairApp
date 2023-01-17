@@ -15,7 +15,7 @@ export async function createHairdresser(req: Request, res:Response){
         bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
 
           hairdresserData.hairdPassword = hash;
-          hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-').toLowerCase();
+          hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
 
           const hairdresser = await Hairdresser.create(hairdresserData);
           res.status(201).json(hairdresser);
