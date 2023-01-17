@@ -13,7 +13,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
     unique: true
   },
 
-  adress:{
+  address:{
     type: String,
     required: true
   },
@@ -36,7 +36,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
         type:Number,
         required:true,
       },
-      bearPrice:{
+      beardPrice:{
         type:Number,
         required:true,
       }

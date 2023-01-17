@@ -5,7 +5,10 @@ import { deleteClient } from './app/useCases/clients/deleteClient';
 import { showClient } from './app/useCases/clients/showClients';
 import { createHairdresser } from './app/useCases/hairdressers/createHairdresser';
 import { deleteHairdresser } from './app/useCases/hairdressers/deleteHairdresser';
+import { searchHairdresser } from './app/useCases/hairdressers/searchHairdresser';
 import { showHairdresser } from './app/useCases/hairdressers/showHairdresser';
+
+
 
 
 
@@ -22,4 +25,8 @@ router.post('/hairdresser', createHairdresser);
 
 router.get('/hairdresser', showHairdresser);
 
+router.get('/hairdresser/:info', searchHairdresser);
+
 router.delete('/hairdresser/:id', deleteHairdresser);
+
+
