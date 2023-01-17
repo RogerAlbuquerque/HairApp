@@ -37,7 +37,8 @@ export const SchedClient = model('SchedClient', new Schema({
   status:{
     type: String,
     enum:['PENDING', 'CONFIRMED', 'CANCELED'],
-    required:true
+    required:true,
+    default: 'PENDING'
   },
 
 

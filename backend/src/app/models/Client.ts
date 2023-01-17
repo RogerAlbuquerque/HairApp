@@ -14,7 +14,8 @@ export const Client = model('Client', new Schema({
 
   clientPassword:{
     type: String,
-    required:true
+    required:true,
+    minlength: 8
   },
 
   userImage:{
