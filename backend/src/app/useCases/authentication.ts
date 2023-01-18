@@ -19,12 +19,12 @@ export async function authentication(req: Request, res:Response){
         res.status(200).json(clientExist);
       }
       else {
-        res.status(500).json({error:'erro no client'});
+        res.status(500).json({error:'user or password is not exist'});
       }
     });
   }else{
     if(!hairdExist){
-      res.status(500).json({error:'erro no haird'});
+      res.status(500).json({error:'user or password is not exist'});
     }else{
       bcrypt.compare(password, hairdExist.hairdPassword, (error, batem)=>{
         if(batem){
