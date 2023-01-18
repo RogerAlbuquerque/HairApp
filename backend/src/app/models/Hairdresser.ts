@@ -34,6 +34,11 @@ export const Hairdresser = model('Hairdresser', new Schema({
     select:false,
   },
 
+  expireTimeToken:{
+    type: String,
+    select: false
+  },
+
   prices:{
     required:true,
     type:[{

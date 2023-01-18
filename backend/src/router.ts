@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { authentication } from './app/useCases/authentication';
+import { authentication } from './app/useCases/auth/authentication';
 
 import { createClient } from './app/useCases/clients/createClient';
 import { deleteClient } from './app/useCases/clients/deleteClient';
@@ -9,7 +9,7 @@ import { createHairdresser } from './app/useCases/hairdressers/createHairdresser
 import { deleteHairdresser } from './app/useCases/hairdressers/deleteHairdresser';
 import { searchHairdresser } from './app/useCases/hairdressers/searchHairdresser';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
-import { passwordRecovery } from './app/useCases/passwordRecovery';
+import { passwordRecovery } from './app/useCases/auth/passwordRecovery';
 
 
 
@@ -42,8 +42,11 @@ router.delete('/hairdresser/:id', deleteHairdresser);
 router.post('/auth', authentication);
 
 //RECUPERAÇÃO DE SENHA
-router.post('/enviarEmail', passwordRecovery);
+router.post('/verifyEmail', passwordRecovery);
 
-router.post('/AtualizarASenha', authentication);
+// router.post('/passwordRecovery', authentication);
+
+
+
 
 

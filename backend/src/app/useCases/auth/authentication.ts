@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { Hairdresser } from '../models/Hairdresser';
-import { Client } from '../models/Client';
+import { Hairdresser } from '../../models/Hairdresser';
+import { Client } from '../../models/Client';
 import bcrypt from 'bcryptjs';
 
 

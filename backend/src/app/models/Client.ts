@@ -23,6 +23,10 @@ export const Client = model('Client', new Schema({
     select:false,
   },
 
+  expireTimeToken:{
+    type: String,
+    select: false
+  },
   userImage:{
     type: String,
     required:false,
