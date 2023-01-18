@@ -18,6 +18,11 @@ export const Client = model('Client', new Schema({
     minlength: 8
   },
 
+  passwordResetToken:{
+    type: String,
+    select:false,
+  },
+
   userImage:{
     type: String,
     required:false,

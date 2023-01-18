@@ -29,6 +29,11 @@ export const Hairdresser = model('Hairdresser', new Schema({
     required: true
   },
 
+  passwordResetToken:{
+    type: String,
+    select:false,
+  },
+
   prices:{
     required:true,
     type:[{
