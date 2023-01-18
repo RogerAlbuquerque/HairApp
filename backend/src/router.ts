@@ -1,4 +1,5 @@
 import {Router} from 'express';
+import { authentication } from './app/useCases/authentication';
 
 import { createClient } from './app/useCases/clients/createClient';
 import { deleteClient } from './app/useCases/clients/deleteClient';
@@ -35,5 +36,8 @@ router.get('/hairdresser', showAllHairdresser);
 router.get('/hairdresser/:info', searchHairdresser);
 
 router.delete('/hairdresser/:id', deleteHairdresser);
+
+//AUTENTICAÇÃO
+router.post('/auth', authentication);
 
 

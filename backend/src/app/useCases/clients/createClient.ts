@@ -8,6 +8,7 @@ export async function createClient(req: Request, res:Response){
     bcrypt.genSalt(10, (error, salt) => {
       bcrypt.hash(clientData.clientPassword, salt, async (error, hash) => {
         clientData.clientPassword = hash;
+        clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
         try{
           const client = await Client.create(clientData);
           res.status(201).json(client);
