@@ -41,9 +41,7 @@ export async function passwordRecovery(req: Request, res:Response){
     <p>Copie esse token e use ele no espaço requisitado dentro do link abaixo: </p>
     <h4> ${token} </h4>
     http://localhost:3001/password_recovery/${clientEmail.email}
-    `,
-    context: {token}
-  };
+    `};
 
 
   if(clientExist){
