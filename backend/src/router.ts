@@ -9,6 +9,7 @@ import { createHairdresser } from './app/useCases/hairdressers/createHairdresser
 import { deleteHairdresser } from './app/useCases/hairdressers/deleteHairdresser';
 import { searchHairdresser } from './app/useCases/hairdressers/searchHairdresser';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
+import { passwordRecovery } from './app/useCases/passwordRecovery';
 
 
 
@@ -39,5 +40,10 @@ router.delete('/hairdresser/:id', deleteHairdresser);
 
 //AUTENTICAÇÃO
 router.post('/auth', authentication);
+
+//RECUPERAÇÃO DE SENHA
+router.post('/enviarEmail', passwordRecovery);
+
+router.post('/AtualizarASenha', authentication);
 
 
