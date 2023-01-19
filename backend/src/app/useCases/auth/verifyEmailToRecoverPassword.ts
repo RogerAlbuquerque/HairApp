@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-export async function passwordRecovery(req: Request, res:Response){
+export async function verifyEmailToRecoverPassword(req: Request, res:Response){
   const clientEmail = req.body;
 
   const clientExist = await Client.findOne().where('email').equals(clientEmail.email);
