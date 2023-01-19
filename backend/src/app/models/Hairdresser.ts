@@ -35,7 +35,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
   },
 
   expireTimeToken:{
-    type: String,
+    type: Date,
     select: false
   },
 
