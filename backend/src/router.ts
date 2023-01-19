@@ -10,6 +10,7 @@ import { deleteHairdresser } from './app/useCases/hairdressers/deleteHairdresser
 import { searchHairdresser } from './app/useCases/hairdressers/searchHairdresser';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
 import { verifyEmailToRecoverPassword } from './app/useCases/auth/verifyEmailToRecoverPassword';
+import { passwordRecovery } from './app/useCases/auth/passwordRecovery';
 
 
 
@@ -44,7 +45,7 @@ router.post('/auth', authentication);
 //PASSWORD RECOVERY
 router.post('/verifyEmail', verifyEmailToRecoverPassword);
 
-router.post('/passwordRecovery', authentication);
+router.post('/passwordRecovery/:token/:email', passwordRecovery);
 
 
 
