@@ -68,7 +68,7 @@ export async function verifyEmailToRecoverPassword(req: Request, res:Response){
           res.status(500).json(erro);
         }
         else{
-          res.status(201).json('Mensagem enviada, cheque sua caixa de email \n TOKEN: ' + token + '\nToken expira em:  ' + tokenExpire );
+          res.status(201).json(`Mensagem enviada, cheque sua caixa de email: ${clientEmail.email}`);
         }
       });
 
