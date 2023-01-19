@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-export async function passwordRecovery(req: Request, res:Response){
+export async function verifyEmailToRecoverPassword(req: Request, res:Response){
   const clientEmail = req.body;
 
   const clientExist = await Client.findOne().where('email').equals(clientEmail.email);
@@ -41,9 +41,7 @@ export async function passwordRecovery(req: Request, res:Response){
     <p>Copie esse token e use ele no espaço requisitado dentro do link abaixo: </p>
     <h4> ${token} </h4>
     http://localhost:3001/password_recovery/${clientEmail.email}
-    `,
-    context: {token}
-  };
+    `};
 
 
   if(clientExist){

@@ -9,7 +9,7 @@ import { createHairdresser } from './app/useCases/hairdressers/createHairdresser
 import { deleteHairdresser } from './app/useCases/hairdressers/deleteHairdresser';
 import { searchHairdresser } from './app/useCases/hairdressers/searchHairdresser';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
-import { passwordRecovery } from './app/useCases/auth/passwordRecovery';
+import { verifyEmailToRecoverPassword } from './app/useCases/auth/verifyEmailToRecoverPassword';
 
 
 
@@ -38,13 +38,13 @@ router.get('/hairdresser/:info', searchHairdresser);
 
 router.delete('/hairdresser/:id', deleteHairdresser);
 
-//AUTENTICAÇÃO
+//AUTHENTICATION
 router.post('/auth', authentication);
 
-//RECUPERAÇÃO DE SENHA
-router.post('/verifyEmail', passwordRecovery);
+//PASSWORD RECOVERY
+router.post('/verifyEmail', verifyEmailToRecoverPassword);
 
-// router.post('/passwordRecovery', authentication);
+router.post('/passwordRecovery', authentication);
 
 
 
