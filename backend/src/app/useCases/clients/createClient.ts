@@ -15,12 +15,13 @@ export async function createClient(req: Request, res:Response){
       res.status(500).json({error:'user or email is already in use'});
     }else{
       bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(clientData.hairdPassword, salt, async (error, hash) => {
+        bcrypt.hash(clientData.clientPassword, salt, async (error, hash) => {
 
           clientData.clientPassword = hash;
           clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
 
           const client = await Client.create(clientData);
+
           res.status(201).json(client);
         });
       });
