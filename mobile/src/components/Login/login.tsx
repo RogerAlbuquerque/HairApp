@@ -1,34 +1,30 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import {useFonts} from 'expo-font';
+import React, { useState } from 'react';
+import { View, TextInput } from 'react-native';
+
+import style from './style';
+
+
+
 
 export default function Login(){
 
-  const [isFontLoaded] = useFonts({
-    'GeneralSans-400': require('./src/assets/fonts/GeneralSans-Regular.otf'),
-    'GeneralSans-600': require('./src/assets/fonts/GeneralSans-Semibold.otf'),
-    'GeneralSans-700': require('./src/assets/fonts/GeneralSans-Bold.otf'),
-  });
 
-  if (!isFontLoaded){
-    return null;
-  }
 
-  return (
-    <>
-      <StatusBar style="dark" />
-      <Main />
-    </>
-  );
-}
+
 
   return (
     <View>
-      <Text>Usuario/Email</Text>
+      <TextInput
+        placeholder="Usuario/Email"
+        autoCapitalize="none"
+        defaultValue={text}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry={true}
+        passwordRules="true"
+      />
+
     </View>
   );
 }
-function useFonts(arg0: { 'GeneralSans-400': any; 'GeneralSans-600': any; 'GeneralSans-700': any; }): [any] {
-  throw new Error('Function not implemented.');
-}
-

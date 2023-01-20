@@ -1,7 +1,8 @@
-import { styled } from 'styled-components/native';
+import  styled  from 'styled-components/native';
 
 
-const TextInput = styled.TextInput`font-size: 1.5em;
+export const View = styled.View`
+font-size: 1.5em;
 text-align: center;
 color: palevioletred;
 `;
