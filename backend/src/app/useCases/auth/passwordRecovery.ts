@@ -11,25 +11,27 @@ export async function passwordRecovery(req: Request, res:Response){
   const now = new Date();
   now.setHours(now.getHours());
 
-
-  await Client.findOne({email:email, passwordResetToken:token}).then(async (clientData)=>{
+  console.log(now);
+  await Client.findOne({email:email, passwordResetToken:token, expireTimeToken:{$gt:now}}).then(async (clientData)=>{
     if(clientData){
-      console.log('TEM CLIENTE');
+      console.log(clientData);
     }else {
 
-      await Hairdresser.findOne({email:email, passwordResetToken:token}).then(async (hairdData)=>{
+      await Hairdresser.findOne({email:email, passwordResetToken:token, expireTimeToken:{$gt:now}}).then(async (hairdData)=>{
         if(hairdData){
-          console.log('TEM Cabeleireiro');
+          console.log(hairdData);
         }else {
-          console.log('BUSCA CABELO');
+          res.status(500).json({error:'token or email does not exist'});
         }
       }).catch(err => {
-        console.log('TA TUDO VAZIO AQUI, NÃO TEM NADA NÃOCABELO');
+        console.log(err);
+        res.status(500).json({error:'Internal server error!'});
       });
 
     }
   }).catch(err => {
-    console.log('TA TUDO VAZIO AQUI, NÃO TEM CLIENTE');
+    console.log(err);
+    res.status(500).json({error:'Internal server error!'});
   });
 
 }
