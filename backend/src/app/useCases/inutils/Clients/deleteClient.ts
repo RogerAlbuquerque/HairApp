@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {Client} from '../../models/Client';
+import {Client} from '../../../models/Client';
 
 
 export async function deleteClient(req: Request, res:Response){
