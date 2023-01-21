@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput, Image, View} from 'react-native';
+import { TextInput, View} from 'react-native';
 import { Text } from '../Text';
 import { Container, ContLogin, Footer} from './style';
 
@@ -10,9 +10,7 @@ export default function Login(){
   return (
     <Container>
       <View>
-        <Image
-          source={require('../../imgs/333332.png')}
-        />
+
       </View>
       <ContLogin>
         <TextInput
@@ -30,13 +28,8 @@ export default function Login(){
 
         />
         <Footer>
-          <View>
-            <Text>Entrar</Text>
-          </View>
-
-          <View>
-            <Text>Não tem conta?<Text>Cadastre-se</Text></Text>
-          </View>
+          <Text>Entrar</Text>
+          <Text>Não tem conta?<Text>Cadastre-se</Text></Text>
         </Footer>
       </ContLogin>
 
