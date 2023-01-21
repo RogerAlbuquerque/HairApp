@@ -19,7 +19,6 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "no-undef": "off",
         "indent": [
             "error",
             2
