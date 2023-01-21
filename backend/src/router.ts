@@ -12,6 +12,8 @@ import { createHairdresser } from './app/useCases/hairdressers/createHairdresser
 // import { deleteClient } from './app/useCases/clients/deleteClient';
 // import { searchClient } from './app/useCases/clients/searchClient';
 import { showClient } from './app/useCases/inutils/Clients/showClients';
+import { updateHairdresserInfo } from './app/useCases/hairdressers/updateHairdresserInfo';
+import { showAllHairdresser } from './app/useCases/inutils/Hairdressers/showAllHairdresser';
 // import { showAllHairdresser } from './app/useCases/inutils/Hairdressers/showAllHairdresser';
 // import { deleteHairdresser } from './app/useCases/inutils/Hairdressers/deleteHairdresser';
 
@@ -27,25 +29,18 @@ export const router = Router();
 //CLIENT
 router.get('/client', showClient);
 router.post('/client', createClient);
-
 router.post('/login', login);
 
 // router.get('/hairdresser/:info', searchClient);
-
-
-
 // router.delete('/client/:id', deleteClient);
 
 
 //HAIDRESSER
 router.post('/hairdresser', createHairdresser);
-
-// router.get('/hairdresser', showAllHairdresser);
-
-router.get('/hairdresser/:info', searchHairdresser);
-
+router.patch('/hairdresser/:user', updateHairdresserInfo);
+router.get('/hairdresser', searchHairdresser);
 // router.delete('/hairdresser/:id', deleteHairdresser);
-
+router.get('/hairdresser', showAllHairdresser);
 
 
 //AUTHENTICATION
