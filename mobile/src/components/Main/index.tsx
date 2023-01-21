@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Text } from '../Text';
-import { Container, ContainerForm, ContainerLogo } from './style';
+import { Button, Container, ContainerForm, ContainerLogo } from './style';
 
 
 
@@ -14,16 +14,16 @@ export default function Welcome(){
         <ContainerLogo>
           <Image
             source={require('../../imgs/logoo.png')}
-            style={{width: '100%'}}
+            style={{width: '90%'}}
             resizeMode="contain"
           />
         </ContainerLogo>
           <ContainerForm>
-            <Text size={20} font={'Poppins'} weight={'Bold'}>Vamos dar aquele trato no visual?</Text>
-            <Text size={16} font={'Poppins'} weight={'Bold'}>Faça o login para começar</Text>
-            <TouchableOpacity>
-              <Text size={48} font={'Imbue'} weight={'Medium'}>Acessar</Text>
-            </TouchableOpacity>
+            <Text size={21} font={'Poppins'} weight={'Bold'}>Vamos dar aquele trato no visual?</Text>
+            <Text size={16} font={'Poppins'} weight={'Regular'} color={'#a1a1a1'}>Acesse sua conta!</Text>
+            <Button>
+              <Text size={60} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Acessar</Text>
+            </Button>
           </ContainerForm>
       </Container>
     </ImageBackground>

@@ -11,7 +11,8 @@ interface TextProps {
 
 export const Text = styled.Text<TextProps>`
   font-family: ${({ weight, font }) => weight ? `${font}-${weight}` : 'Poppins-Regular'};
-  color: ${({ color }) => color || '#fff'};
+  color: ${({ color }) => color || '#fff' || '#a1a1a1' || '#F6C33E'};
   font-size: ${({ size }) => size ? `${size}px` : '16px'};
   opacity: ${({ opacity }) => opacity || 1};
+
 `;
