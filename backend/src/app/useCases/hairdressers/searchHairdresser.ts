@@ -4,8 +4,9 @@ import { Hairdresser } from '../../models/Hairdresser';
 
 export async function searchHairdresser(req: Request, res:Response){
 
-  const infoUser = req.params.hairdresser.replace(/\s+/g, '-');
+  const infoUser = req.body.info;
   try{
+
     const hairdresser = await Hairdresser.findOne({hairdName: infoUser});
     res.status(200).json(hairdresser);
 
