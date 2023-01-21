@@ -1,12 +1,16 @@
 import  styled  from 'styled-components/native';
 
-export const Container = styled.View ``;
+
+export const Container = styled.View `
+  flex: 1;
+`;
 
 
 export const ContainerLogo = styled.View `
-  padding-top: 21px;
-  padding-left: 18px;
+  padding-top: 8px;
+  padding: 0;
   margin: 0;
+  position: relative;
 `;
 
 
@@ -14,10 +18,4 @@ export const ContainerForm = styled.View`
 
 `;
 
-export const Title = styled.Text`
 
-`;
-
-export const Txt = styled.Text`
-
-`;
