@@ -7,8 +7,19 @@ export const Container = styled.SafeAreaView`
   margin-top: ${isAndroid? `${StatusBar.currentHeight}pc`: '0'};
 `;
 
-export const LoginContainer = styled.View`
- height: 78px;
- background: gray;
- margin-top: 36px;
+
+export const ContLogin = styled.View`
+    background: #fff;
+    flex:1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
 `;
+
+export const Footer = styled.View`
+  position: absolute;
+  text-align: center;
+  min-height: 110px;
+`;
+
