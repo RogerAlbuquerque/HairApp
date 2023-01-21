@@ -1,7 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './src/routes';
 
 export default function App() {
 
@@ -17,9 +18,10 @@ export default function App() {
   }
   return (
 
-    <View>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StatusBar backgroundColor="#000" barStyle="light-content"/>
+      <Routes/>
+    </NavigationContainer>
   );
 }
 
