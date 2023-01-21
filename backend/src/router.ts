@@ -37,7 +37,7 @@ router.post('/login', login);
 
 //HAIDRESSER
 router.post('/hairdresser', createHairdresser);
-router.patch('/hairdresser/:user', updateHairdresserInfo);
+router.put('/hairdresser/:user', updateHairdresserInfo);
 router.get('/hairdresser', searchHairdresser);
 // router.delete('/hairdresser/:id', deleteHairdresser);
 router.get('/hairdresser', showAllHairdresser);

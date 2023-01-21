@@ -27,9 +27,12 @@ export async function updateHairdresserInfo(req: Request, res:Response){
 
   const username = req.params.user.replace(/\s+/g, '-');
   const infos:userInfo = req.body;
+  infos.hairdName = infos.hairdName?.replace(/\s+/g, '-');
+
   try{
 
-    const hairdresser = await Hairdresser.findOneAndUpdate({hairdName: username},{$set:{infos}});
+    await Hairdresser.findOneAndUpdate({hairdName: username}, infos);
+
     res.status(200).json(infos);
 
   }catch(error){
