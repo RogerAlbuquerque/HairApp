@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput, View} from 'react-native';
+import { TextInput} from 'react-native';
 import { Text } from '../Text';
 import { Container, ContLogin, Footer} from './style';
 
@@ -9,9 +9,8 @@ export default function Login(){
 
   return (
     <Container>
-      <View>
-
-      </View>
+      {/* <View>
+      </View> */}
       <ContLogin>
         <TextInput
           placeholder='Usuario/Email'
