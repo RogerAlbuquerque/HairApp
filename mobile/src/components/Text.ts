@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
 
+
 interface TextProps {
-  weight?: '400' | '600' | '700';
+  weight?: 'Bold' | 'Medium' | 'Regular' ;
   color?: string;
   size?: number;
   opacity?: number;

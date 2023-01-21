@@ -1,7 +1,8 @@
 import React from 'react';
-import { View,Image, TouchableOpacity, ImageBackground } from 'react-native';
+import {Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Text } from '../Text';
 import { Container, ContainerForm, ContainerLogo } from './style';
+
 
 
 export default function Welcome(){
@@ -18,10 +19,10 @@ export default function Welcome(){
           />
         </ContainerLogo>
           <ContainerForm>
-            <Text size={20}>Vamos dar aquele trato no visual?</Text>
-            <Text size={14} font={'Poppins'}>Faça o login para começar</Text>
+            <Text size={20} font={'Poppins'} weight={'Bold'}>Vamos dar aquele trato no visual?</Text>
+            <Text size={16} font={'Poppins'} weight={'Bold'}>Faça o login para começar</Text>
             <TouchableOpacity>
-              <Text>Acessar</Text>
+              <Text size={48} font={'Imbue'} weight={'Medium'}>Acessar</Text>
             </TouchableOpacity>
           </ContainerForm>
       </Container>
