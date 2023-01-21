@@ -15,7 +15,7 @@ interface userInfo{
       hour?:number,
       minute?:number
     },
-    closse?:{
+    close?:{
       hour?:number,
       minute?:number
     }
@@ -29,8 +29,8 @@ export async function updateHairdresserInfo(req: Request, res:Response){
   const infos:userInfo = req.body;
   try{
 
-    const hairdresser = await Hairdresser.findOneAndUpdate({hairdName: username},{infos});
-    res.status(200).json(hairdresser);
+    const hairdresser = await Hairdresser.findOneAndUpdate({hairdName: username},{$set:{infos}});
+    res.status(200).json(infos);
 
   }catch(error){
 
