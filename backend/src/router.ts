@@ -20,6 +20,7 @@ import { createHairdresser } from './app/useCases/hairdressers/createHairdresser
 
 import { updateHairdresserInfo } from './app/useCases/hairdressers/updateHairdresserInfo';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
+import { scheduling } from './app/useCases/SchedClients/Scheduling';
 // import { deleteHairdresser } from './app/useCases/inutils/Hairdressers/deleteHairdresser';
 
 
@@ -51,8 +52,9 @@ router.get('/allHairdresser', showAllHairdresser);
 // router.delete('/hairdresser/:id', deleteHairdresser);
 
 
+//SCHEDULE CLIENTS
 
-
+router.post('/scheduling', scheduling);
 
 //AUTHENTICATION
 router.post('/auth', authentication);

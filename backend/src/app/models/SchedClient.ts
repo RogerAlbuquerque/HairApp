@@ -2,9 +2,9 @@ import {model, Schema} from 'mongoose';
 
 export const SchedClient = model('SchedClient', new Schema({
 
-  hairdresserID:{
+  hairdresserId:{
     type:Schema.Types.ObjectId,
-    required:false,
+    required:true,
     ref:'Hairdresser',
   },
 
@@ -16,7 +16,7 @@ export const SchedClient = model('SchedClient', new Schema({
 
   day:{
     type: String,
-    enum:['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'],
+    enum:['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB', 'DOM'],
     required:true
   },
 
