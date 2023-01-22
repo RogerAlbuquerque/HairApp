@@ -5,7 +5,10 @@ import { SchedClient } from '../../models/SchedClient';
 export async function deleteScheduleClient(req: Request, res:Response){
   try{
 
-    const Schedclient = await SchedClient.findByIdAndDelete(req.params.schedClient);
+    const Schedclient = await SchedClient.findByIdAndDelete(req.params.schedId).populate({
+      path:'clientId',
+      select:'clientName email',
+    });
     res.status(200).json(Schedclient);
 
   }catch(error){

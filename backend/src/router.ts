@@ -63,7 +63,7 @@ router.get('/allHairdresser', showAllHairdresser);
 router.post('/scheduling', scheduling);
 router.get('/scheduling/:haird/myClients', showMyScheduleClients);
 router.put('/scheduling/update', updateScheduling);
-router.delete('/scheduling/:haird/:schedClient/delete', deleteScheduleClient);
+router.delete('/scheduling/:haird/:schedId/delete', deleteScheduleClient);
 
 //AUTHENTICATION
 router.post('/auth', authentication);
