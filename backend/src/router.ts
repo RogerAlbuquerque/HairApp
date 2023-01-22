@@ -56,6 +56,7 @@ router.get('/allHairdresser', showAllHairdresser);
 //SCHEDULE CLIENTS
 
 router.post('/scheduling', scheduling);
+router.get('/scheduling/:haird/myClients');
 router.put('/scheduling/update', updateScheduling);
 
 //AUTHENTICATION
