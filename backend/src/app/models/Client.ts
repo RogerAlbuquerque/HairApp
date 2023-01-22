@@ -27,11 +27,11 @@ export const Client = model('Client', new Schema({
     type: String,
     select: false
   },
-  userImage:{
-    type: String,
-    required:false,
-    default: 'defaultImage.png',
-  },
+  // userImage:{
+  //   type: String,
+  //   required:false,
+  //   default: 'defaultImage.png',
+  // },
 
   hairdressers:{
     required:false,
