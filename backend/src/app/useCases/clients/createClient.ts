@@ -3,8 +3,13 @@ import {Client} from '../../models/Client';
 import { Hairdresser } from '../../models/Hairdresser';
 import bcrypt from 'bcryptjs';
 
+interface clientInfo{
+  clientName:string,
+  email:string,
+  clientPassword:string,
+}
 export async function createClient(req: Request, res:Response){
-  const clientData = req.body;
+  const clientData:clientInfo = req.body;
 
   const hairdExist = await Hairdresser.findOne({$or:[{ clientName: clientData.clientName},{email:clientData.email}]});
   const clientExist = await Client.findOne({$or:[{ clientName: clientData.clientName},{email:clientData.email}]});
