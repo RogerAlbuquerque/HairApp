@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { SchedClient } from '../../models/SchedClient';
-import { Hairdresser } from '../../models/Hairdresser';
 
 interface scheduleInfo {
   _id: string;
@@ -33,7 +32,7 @@ export async function updateScheduling(req: Request, res:Response){
 
     }
   }else{
-    res.status(200).json('Cliente não existe ');
+    res.status(200).json('Unscheduled Client');
   }
 
 }
