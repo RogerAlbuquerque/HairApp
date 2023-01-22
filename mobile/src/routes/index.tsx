@@ -18,7 +18,7 @@ export default function Routes(){
 
       <Stack.Screen
         name="SignIn"
-        component={Main}
+        component={SignIn}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

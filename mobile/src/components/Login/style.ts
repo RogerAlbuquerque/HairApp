@@ -8,8 +8,6 @@ export const Container = styled.SafeAreaView`
 `;
 
 
-export const ContLogin = styled.View`
 
-`;
 
 
