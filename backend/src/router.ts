@@ -39,7 +39,7 @@ export const router = Router();
 //CLIENT
 router.get('/client', showClient);
 router.post('/client', createClient);
-router.put('/client/update', updateClientInfo);
+router.put('/client/:clientName/update', updateClientInfo);
 // router.put('/client/addHairdresser', addHairdresser);
 
 

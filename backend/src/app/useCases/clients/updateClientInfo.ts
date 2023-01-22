@@ -6,12 +6,11 @@ interface userInfo{
   clientName?: string,
   email?:string,
   clientPassword?:string
-
 }
 
 export async function updateClientInfo(req: Request, res:Response){
 
-  const username = req.params.user.replace(/\s+/g, '-');
+  const username = req.params.clientName.replace(/\s+/g, '-');
   const infos:userInfo = req.body;
   infos.clientName = infos.clientName?.replace(/\s+/g, '-');
 
@@ -22,8 +21,8 @@ export async function updateClientInfo(req: Request, res:Response){
 
           infos.clientPassword= hash;
 
-          await Client.findOneAndUpdate({clientName: username}, infos).then((data)=>{
-            res.status(201).json(data);
+          await Client.findOneAndUpdate({clientName: username}, infos).then(()=>{
+            res.status(200).json(infos);
           }).catch((err)=>{
             console.log(err);
             res.status(500).json({error:'Internal Server Error!'});
@@ -31,14 +30,10 @@ export async function updateClientInfo(req: Request, res:Response){
         });
       });
     }else{
-      await Client.findOneAndUpdate({clientName: username}, infos).then((data)=>{
-        res.status(201).json(data);
-      }).catch((err)=>{
-        console.log(err);
-        res.status(500).json({error:'Internal Server Error!'});
-      });
+      await Client.findOneAndUpdate({clientName: username}, infos).then(()=>{
+        res.status(200).json(infos);
+      }).catch(err => res.status(500).json({error:'Internal Server Error!'}));
 
-      res.status(200).json(infos);
     }
 
   }catch(error){
