@@ -21,6 +21,7 @@ import { createHairdresser } from './app/useCases/hairdressers/createHairdresser
 import { updateHairdresserInfo } from './app/useCases/hairdressers/updateHairdresserInfo';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
 import { scheduling } from './app/useCases/SchedClients/Scheduling';
+import { updateScheduling } from './app/useCases/SchedClients/updateScheduling';
 // import { deleteHairdresser } from './app/useCases/inutils/Hairdressers/deleteHairdresser';
 
 
@@ -55,6 +56,7 @@ router.get('/allHairdresser', showAllHairdresser);
 //SCHEDULE CLIENTS
 
 router.post('/scheduling', scheduling);
+router.put('/scheduling/update', updateScheduling);
 
 //AUTHENTICATION
 router.post('/auth', authentication);

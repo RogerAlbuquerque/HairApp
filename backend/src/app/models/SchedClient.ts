@@ -2,6 +2,7 @@ import {model, Schema} from 'mongoose';
 
 export const SchedClient = model('SchedClient', new Schema({
 
+
   hairdresserId:{
     type:Schema.Types.ObjectId,
     required:true,
