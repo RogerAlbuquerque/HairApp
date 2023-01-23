@@ -10,8 +10,9 @@ interface clientInfo{
 }
 export async function createClient(req: Request, res:Response){
   const clientData:clientInfo = req.body;
+  clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
 
-  const hairdExist = await Hairdresser.findOne({$or:[{ clientName: clientData.clientName},{email:clientData.email}]});
+  const hairdExist = await Hairdresser.findOne({$or:[{ hairdName: clientData.clientName},{email:clientData.email}]});
   const clientExist = await Client.findOne({$or:[{ clientName: clientData.clientName},{email:clientData.email}]});
 
 

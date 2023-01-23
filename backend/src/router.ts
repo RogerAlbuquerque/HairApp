@@ -40,7 +40,7 @@ export const router = Router();
 
 //CLIENT
 router.get('/client', showClient);
-router.post('/client', createClient);
+router.post('/client/create', createClient);
 router.put('/client/:clientName/update', updateClientInfo);
 router.put('/client/:clientId/addHairdresser', myHairdList);
 // router.put('/client/addHairdresser', addHairdresser);
@@ -54,16 +54,16 @@ router.put('/client/:clientId/addHairdresser', myHairdList);
 
 
 //HAIDRESSER
-router.post('/hairdresser', createHairdresser);
+router.post('/hairdresser/create', createHairdresser);
 router.put('/hairdresser/:user', updateHairdresserInfo);
-router.get('/allHairdresser', showAllHairdresser);
+router.get('/hairdresser/all', showAllHairdresser);
 // router.delete('/hairdresser/:id', deleteHairdresser);
 
 
 //SCHEDULE CLIENTS
 
 router.post('/scheduling', scheduling);
-router.get('/scheduling/:haird/myClients', showMyScheduleClients);
+router.get('/scheduling/:hairdId/myClients', showMyScheduleClients);
 router.put('/scheduling/update', updateScheduling);
 router.delete('/scheduling/:haird/:schedId/delete', deleteScheduleClient);
 

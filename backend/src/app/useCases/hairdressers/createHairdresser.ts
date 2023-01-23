@@ -26,24 +26,26 @@ interface userInfo{
 
 export async function createHairdresser(req: Request, res:Response){
   const hairdresserData:userInfo = req.body;
-  const hairdExist = await Hairdresser.findOne({$or:[{hairdName: hairdresserData.hairdName },{ email:hairdresserData.email}]});
-  const clientExist = await Client.findOne({$or:[{hairdName: hairdresserData.hairdName },{email:hairdresserData.email}]});
+  hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
+  const hairdExist = await Hairdresser.findOne({$or: [ {hairdName: hairdresserData.hairdName },{ email:hairdresserData.email } ] });
+  const clientExist = await Client.findOne({$or:[{clientName: hairdresserData.hairdName },{email:hairdresserData.email}]});
 
 
   try{
     if(clientExist || hairdExist){
       res.status(500).json({error:'user or email is already in use'});
     }else{
-      bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
+      // bcrypt.genSalt(10, (error, salt) => {
+      //   bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
 
-          hairdresserData.hairdPassword = hash;
-          hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
+      //     hairdresserData.hairdPassword = hash;
+      //     hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
 
-          const hairdresser = await Hairdresser.create(hairdresserData);
-          res.status(201).json(hairdresser);
-        });
-      });
+      //     const hairdresser = await Hairdresser.create(hairdresserData);
+      //     res.status(201).json(hairdresser);
+      //   });
+      // });
+      console.log(hairdExist);
     }
 
   }catch(error){
