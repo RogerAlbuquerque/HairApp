@@ -11,12 +11,13 @@ import { passwordRecovery } from './app/useCases/auth/passwordRecovery';
 //CLIENT
 import { createClient } from './app/useCases/clients/createClient';
 import { showClient } from './app/useCases/inutils/Clients/showClients';
+// import { deleteClient } from './app/useCases/clients/deleteClient';
+
 
 //HAIRDRESSER
-import { searchHairdresser } from './app/useCases/hairdressers/searchHairdresser';
 import { createHairdresser } from './app/useCases/hairdressers/createHairdresser';
 
-// import { deleteClient } from './app/useCases/clients/deleteClient';
+
 
 import { updateHairdresserInfo } from './app/useCases/hairdressers/updateHairdresserInfo';
 import { showAllHairdresser } from './app/useCases/hairdressers/showAllHairdresser';
@@ -25,6 +26,7 @@ import { updateScheduling } from './app/useCases/SchedClients/updateScheduling';
 import { showMyScheduleClients } from './app/useCases/SchedClients/showMyScheduleClients';
 import { deleteScheduleClient } from './app/useCases/SchedClients/deleteScheduleClient';
 import { updateClientInfo } from './app/useCases/clients/updateClientInfo';
+import { myHairdList } from './app/useCases/clients/myHairdListAdd';
 // import { deleteHairdresser } from './app/useCases/inutils/Hairdressers/deleteHairdresser';
 
 
@@ -40,6 +42,7 @@ export const router = Router();
 router.get('/client', showClient);
 router.post('/client', createClient);
 router.put('/client/:clientName/update', updateClientInfo);
+router.put('/client/:clientId/addHairdresser', myHairdList);
 // router.put('/client/addHairdresser', addHairdresser);
 
 
@@ -53,7 +56,6 @@ router.put('/client/:clientName/update', updateClientInfo);
 //HAIDRESSER
 router.post('/hairdresser', createHairdresser);
 router.put('/hairdresser/:user', updateHairdresserInfo);
-router.get('/hairdresser', searchHairdresser);
 router.get('/allHairdresser', showAllHairdresser);
 // router.delete('/hairdresser/:id', deleteHairdresser);
 

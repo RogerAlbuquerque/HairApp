@@ -24,6 +24,8 @@ export async function login(req: Request, res:Response){
           res.status(200).json(clientExist);
         }else if(error) {
           console.log(error);
+        }else{
+          res.status(500).json({error:'Wrong or does not exist email/user or password'});
         }
       });
 
