@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, View} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo, ForgotDad, ForgotPassword, Input} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, Input} from './style';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 
@@ -54,9 +54,16 @@ export default function SignIn(){
             </ForgotPassword>
           </ForgotDad>
             <Button>
-              <Text size={60} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
+              <Text size={49} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
             </Button>
-
+            <Footer>
+                <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
+                   Não tem conta?
+                  <Create>
+                    <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
+                  </Create>
+                </Text>
+            </Footer>
         </ContainerForm>
 
       </ImageBackground>
