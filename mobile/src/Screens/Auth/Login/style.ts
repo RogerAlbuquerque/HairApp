@@ -2,42 +2,22 @@ import  styled  from 'styled-components/native';
 
 export const Container = styled.View `
   flex: 1;
-  width: 100%;
-  height: 100%;
 `;
 
 export const OverlayKeyboard = styled.KeyboardAvoidingView`
-  justify-content: center;
-    align-items: center;
-    margin-bottom: 200%;
-    /* flex: 1; */
-    width: 100%;
-    margin-top: 50px;
+/* margin-bottom: 40px; */
 `;
 
 export const ContainerLogo = styled.View `
-  padding-left: 42px;
-  padding-bottom: 70px;
-  /* margin-top: -40px; */
+  align-items: center;
+  height: 60%;
+  border: 1px solid red;
 `;
 
 
 export const ContainerForm = styled.View`
-
-`;
-
-export const Input = styled.TextInput`
-  width: 323.76px;
-  height: 44.1px;
-  align-items: center;
-  text-align: center;
-  border-radius: 8px;
-  background-color: #fff;
-  margin-bottom: 28px;
-  font-size: 28px;
-  line-height: 38px;
-  font-family: 'Imbue-Medium';
-  border: 2px solid #222;
+    justify-content: center;
+    align-items: center;
 `;
 
 

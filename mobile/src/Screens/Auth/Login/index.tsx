@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { ImageBackground, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, Input,OverlayKeyboard} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, OverlayKeyboard} from './style';
+import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 
@@ -13,34 +14,34 @@ export default function SignIn(){
   return (
     <Container>
       <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
-      style={{flex: 1}}resizeMode="cover">
+      style={{flex: 1}} resizeMode="cover">
 
-        <ContainerLogo>
-          <Animatable.Image
-            animation="flipInY"
-            source={require('../../../assets/imgs/logoo.png')}
-            style={{width: '90%'}}
-            resizeMode="contain"
-          />
-        </ContainerLogo>
+        <OverlayKeyboard
+          behavior='height'
+        >
+          <ContainerLogo>
+            <Animatable.Image
+              animation="flipInY"
+              source={require('../../../assets/imgs/logoo.png')}
+              style={{width: '90%'}}
+              resizeMode="contain"
+            />
+          </ContainerLogo>
+
+        </OverlayKeyboard>
 
         <ContainerForm>
-          <OverlayKeyboard
-            behavior='height'
-          >
 
-            <Input
+
+           <InputText
               placeholder='Usuario/Email'
-              maxLength={60}
-              autoCorrect={false}
-              onChangeText={() => {}}
+              // onChangeText={() => {}}
             />
-              <Input
+              <InputText
               placeholder='Senha'
-              autoCorrect={false}
-              secureTextEntry
-              onChangeText={() => {}}
+              // onChangeText={() => {}}
             />
+
             <ForgotDad>
               <Check>
                 <Checkbox
@@ -68,7 +69,7 @@ export default function SignIn(){
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
                 </Create>
             </Footer>
-          </OverlayKeyboard>
+
         </ContainerForm>
 
 
