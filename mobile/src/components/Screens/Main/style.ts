@@ -1,29 +1,31 @@
 import  styled  from 'styled-components/native';
 
-
 export const Container = styled.View `
   flex: 1;
 `;
 
-export const Button = styled.TouchableOpacity`
-  justify-content: center;
+export const Buttons = styled.View`
+  justify-content: space-around;
   align-items: center;
-  padding-top: 90px;
+  width: 100%;
   color: #F6C33E;
 `;
 
+export const ButtonLogin = styled.TouchableOpacity`
+  margin-bottom: 20px;
+`;
+
+export const ButtonRegister = styled.TouchableOpacity`
+`;
+
 export const ContainerLogo = styled.View `
-  padding-left: 42px;
-  padding-bottom: 0;
-  margin-top: -33px;
+  align-items:center;
 `;
 
 
 export const ContainerForm = styled.View`
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 9px;
+    padding-bottom: 40px;
     flex: 1;
 `;
-
-
