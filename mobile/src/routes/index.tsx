@@ -1,10 +1,12 @@
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+
 import Main from '../components/Main';
 import SignIn from '../components/Login';
+import { propsNavigationStack } from '../utils/routeProps';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<propsNavigationStack>();
 
 
 export default function Routes(){
