@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, View} from 'react-native';
+import { ImageBackground, StyleSheet} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Text } from '../../Text';
+import { Text } from '../../../utils/Text';
 import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, Input} from './style';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
@@ -12,13 +12,13 @@ export default function SignIn(){
 
   return (
     <Container>
-      <ImageBackground source={require('../../../imgs/bkg.jpg')}
+      <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
       style={{flex: 1}}resizeMode="cover">
 
         <ContainerLogo>
           <Animatable.Image
             animation="flipInY"
-            source={require('../../../imgs/logoo.png')}
+            source={require('../../../assets/imgs/logoo.png')}
             style={{width: '90%'}}
             resizeMode="contain"
           />
@@ -62,7 +62,7 @@ export default function SignIn(){
                 </Text>
                 <Create>
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
-                  </Create>
+                </Create>
             </Footer>
         </ContainerForm>
 
