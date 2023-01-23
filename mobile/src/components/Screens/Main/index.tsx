@@ -1,23 +1,23 @@
 import React from 'react';
 import {Image, TouchableOpacity, ImageBackground } from 'react-native';
-import { Text } from '../Text';
+import { Text } from '../../Text';
 import { Button, Container, ContainerForm, ContainerLogo } from './style';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
-import { propsStack } from '../../utils/routeProps';
+import { propsStack } from '../../../utils/routeProps';
 
 
 export default function Main(){
   const navigation = useNavigation<propsStack>();
   return (
-    <ImageBackground source={require('../../imgs/bkg.jpg')}
+    <ImageBackground source={require('../../../imgs/bkg.jpg')}
       style={{flex: 1}}resizeMode="cover">
 
       <Container>
         <ContainerLogo>
           <Animatable.Image
             animation="flipInY"
-            source={require('../../imgs/logoo.png')}
+            source={require('../../../imgs/logoo.png')}
             style={{width: '90%'}}
             resizeMode="contain"
           />
