@@ -54,7 +54,7 @@ export default function SignIn(){
             </ForgotPassword>
           </ForgotDad>
             <Button>
-              <Text size={49} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
+              <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
             </Button>
             <Footer>
                 <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>

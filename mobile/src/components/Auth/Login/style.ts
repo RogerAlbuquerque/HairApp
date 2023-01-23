@@ -1,7 +1,4 @@
-
-import { Platform, StatusBar, TextInput } from 'react-native';
 import  styled  from 'styled-components/native';
-import { Text } from '../Text';
 
 export const Container = styled.View `
   flex: 1;
@@ -12,8 +9,8 @@ export const Container = styled.View `
 
 export const ContainerLogo = styled.View `
   padding-left: 42px;
-  padding-bottom: 46px;
-  margin-top: -40px;
+  padding-bottom: 70px;
+  /* margin-top: -40px; */
 `;
 
 
@@ -32,10 +29,9 @@ export const Input = styled.TextInput`
   align-items: center;
   text-align: center;
   border-radius: 8px;
-  color: #D5CBCB;
   background-color: #fff;
   margin-bottom: 28px;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 38px;
   font-family: 'Imbue-Medium';
   border: 2px solid #222;
@@ -50,37 +46,34 @@ export const Check = styled.View`
 `;
 
 export const ForgotPassword = styled.TouchableOpacity`
- width: 100px;
+ width: 150px;
  height: 22px;
- padding: 0;
- margin: 0 38px 1px 10px;
+
 `;
 
 export const ForgotDad = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-
 `;
 
 
 export const Button = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  padding: 48px 2px 8px 2px;
-  margin: 2px;
-  width: 144px;
-  height: 114px;
+  margin-top: 50px;
+  width: 140px;
+  height: 60px;
 
 `;
 
 export const Footer = styled.View`
   justify-content: center;
   align-items: center;
-  width: 126px;
-  height: 82px;
+  height: 40px;
   flex-direction: row;
-  padding-top: 3px;
+  padding-top: 10px;
+  /* border: 1px solid red; */
 `;
 
 export const Create = styled.TouchableOpacity`
