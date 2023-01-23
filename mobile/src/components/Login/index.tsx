@@ -1,10 +1,15 @@
-import React from 'react';
-import { ImageBackground, TextInput, View} from 'react-native';
+import React, { useState } from 'react';
+import { ImageBackground, StyleSheet, View} from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../Text';
-import { Container, ContainerForm, ContainerLogo, Input} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo, ForgotDad, ForgotPassword, Input} from './style';
 import * as Animatable from 'react-native-animatable';
+import Checkbox from 'expo-checkbox';
 
 export default function SignIn(){
+
+  const [isChecked,setChecked]=useState(false);
+
   return (
     <Container>
       <ImageBackground source={require('../../imgs/bkg.jpg')}
@@ -22,21 +27,44 @@ export default function SignIn(){
         <ContainerForm>
 
           <Input
-            placeholder='Usuario/ Email'
-            autoComplete='email'
+            placeholder='Usuario/Email'
             maxLength={60}
             autoCorrect={false}
             onChangeText={() => {}}
           />
             <Input
             placeholder='Senha'
-            autoComplete='password'
             autoCorrect={false}
+            secureTextEntry
             onChangeText={() => {}}
           />
+          <ForgotDad>
+            <Check>
+              <Checkbox
+                style={styles.checkbox}
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? '#004bec' : undefined}
+              />
+              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
+
+            </Check>
+            <ForgotPassword>
+              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
+            </ForgotPassword>
+          </ForgotDad>
+            <Button>
+              <Text size={60} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
+            </Button>
+
         </ContainerForm>
 
       </ImageBackground>
     </Container>
   );
 }
+const styles = StyleSheet.create({
+  checkbox: {
+    backgroundColor: '#fff',
+  },
+});
