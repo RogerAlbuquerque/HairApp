@@ -6,6 +6,14 @@ export const Container = styled.View `
   height: 100%;
 `;
 
+export const OverlayKeyboard = styled.KeyboardAvoidingView`
+  justify-content: center;
+    align-items: center;
+    margin-bottom: 200%;
+    /* flex: 1; */
+    width: 100%;
+    margin-top: 50px;
+`;
 
 export const ContainerLogo = styled.View `
   padding-left: 42px;
@@ -15,12 +23,7 @@ export const ContainerLogo = styled.View `
 
 
 export const ContainerForm = styled.View`
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 200%;
-    /* flex: 1; */
-    width: 100%;
-    margin-top: 50px;
+
 `;
 
 export const Input = styled.TextInput`

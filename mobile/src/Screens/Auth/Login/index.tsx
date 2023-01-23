@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet} from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, StyleSheet} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, Input} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, Input,OverlayKeyboard} from './style';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 
@@ -25,46 +25,52 @@ export default function SignIn(){
         </ContainerLogo>
 
         <ContainerForm>
+          <OverlayKeyboard
+            behavior='height'
+          >
 
-          <Input
-            placeholder='Usuario/Email'
-            maxLength={60}
-            autoCorrect={false}
-            onChangeText={() => {}}
-          />
             <Input
-            placeholder='Senha'
-            autoCorrect={false}
-            secureTextEntry
-            onChangeText={() => {}}
-          />
-          <ForgotDad>
-            <Check>
-              <Checkbox
-                style={styles.checkbox}
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? '#004bec' : undefined}
-              />
-              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
+              placeholder='Usuario/Email'
+              maxLength={60}
+              autoCorrect={false}
+              onChangeText={() => {}}
+            />
+              <Input
+              placeholder='Senha'
+              autoCorrect={false}
+              secureTextEntry
+              onChangeText={() => {}}
+            />
+            <ForgotDad>
+              <Check>
+                <Checkbox
+                  style={styles.checkbox}
+                  value={isChecked}
+                  onValueChange={setChecked}
+                  color={isChecked ? '#004bec' : undefined}
+                />
+                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
 
-            </Check>
-            <ForgotPassword>
-              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
-            </ForgotPassword>
-          </ForgotDad>
+              </Check>
+              <ForgotPassword>
+                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
+              </ForgotPassword>
+            </ForgotDad>
+
             <Button>
               <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
             </Button>
             <Footer>
                 <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
-                   Não tem conta?
+                  Não tem conta?
                 </Text>
                 <Create>
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
                 </Create>
             </Footer>
+          </OverlayKeyboard>
         </ContainerForm>
+
 
       </ImageBackground>
     </Container>
