@@ -5,13 +5,14 @@ import { Text } from '../Text';
 
 export const Container = styled.View `
   flex: 1;
-
+  width: 100%;
+  height: 100%;
 `;
 
 
 export const ContainerLogo = styled.View `
   padding-left: 42px;
-  padding-bottom: 49px;
+  padding-bottom: 46px;
   margin-top: -40px;
 `;
 
@@ -19,10 +20,10 @@ export const ContainerLogo = styled.View `
 export const ContainerForm = styled.View`
     justify-content: center;
     align-items: center;
-    margin-bottom: 725px;
-    flex: 1;
+    margin-bottom: 200%;
+    /* flex: 1; */
     width: 100%;
-    margin-top: 48px;
+    margin-top: 50px;
 `;
 
 export const Input = styled.TextInput`
@@ -30,12 +31,11 @@ export const Input = styled.TextInput`
   height: 44.1px;
   align-items: center;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #D5CBCB;
   background-color: #fff;
   margin-bottom: 28px;
   font-size: 32px;
-  font-weight: 500;
   line-height: 38px;
   font-family: 'Imbue-Medium';
   border: 2px solid #222;
@@ -75,14 +75,15 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const Footer = styled.View`
-  border: 1px solid red;
   justify-content: center;
   align-items: center;
   width: 126px;
   height: 82px;
+  flex-direction: row;
+  padding-top: 3px;
 `;
 
 export const Create = styled.TouchableOpacity`
-  padding-left: 10px;
-  border: 1px solid red;
+  padding-left: 8px;
+  padding-bottom: -12px;
 `;

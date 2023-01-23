@@ -59,10 +59,10 @@ export default function SignIn(){
             <Footer>
                 <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
                    Não tem conta?
-                  <Create>
+                </Text>
+                <Create>
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
                   </Create>
-                </Text>
             </Footer>
         </ContainerForm>
 
