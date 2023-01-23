@@ -73,7 +73,7 @@ router.post('/login', login);
 
 //PASSWORD RECOVERY
 router.post('/verifyEmail', verifyEmailToRecoverPassword);
-router.post('/passwordRecovery/:token/:email', passwordRecovery);
+router.put('/passwordRecovery/:token/:email', passwordRecovery);
 
 
 
