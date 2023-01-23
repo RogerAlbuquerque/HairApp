@@ -6,7 +6,9 @@ export async function showClient(req: Request, res:Response){
 
   try{
 
-    const client = await Client.find();
+    const client = await Client.find().populate({path:'hairdressers',
+      select: 'hairdName address email prices workDaysWeek workingTime'
+    });
     res.status(200).json(client);
 
   }catch(error){
