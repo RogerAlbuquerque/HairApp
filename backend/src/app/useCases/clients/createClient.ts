@@ -17,7 +17,7 @@ export async function createClient(req: Request, res:Response){
 
 
   try{
-    if(hairdExist || clientExist){
+    if(hairdExist || clientExist || !clientData.clientName || clientData.clientPassword){
       res.status(500).json({error:'user or email is already in use'});
     }else{
       bcrypt.genSalt(10, (error, salt) => {

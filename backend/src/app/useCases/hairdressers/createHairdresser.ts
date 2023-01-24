@@ -32,7 +32,7 @@ export async function createHairdresser(req: Request, res:Response){
 
 
   try{
-    if(clientExist || hairdExist){
+    if(clientExist || hairdExist || !hairdresserData.hairdName || !hairdresserData.hairdPassword){
       res.status(500).json({error:'user or email is already in use'});
     }else{
       // bcrypt.genSalt(10, (error, salt) => {
