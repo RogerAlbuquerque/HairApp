@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
@@ -54,13 +54,15 @@ export default function Registration(){
                 onValueChange={setChecked}
                 color={isChecked ? '#004bec' : undefined}
               />
-              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}> Li e aceito os termos de uso!</Text>
+              <Term>
+                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Li e aceito os termos de uso!</Text>
+              </Term>
             </Check>
           </ForgotDad>
 
           <Footer>
             <Button>
-              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Cadastrar </Text>
+              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Cadastrar </Text>
             </Button>
           </Footer>
       </Container>
