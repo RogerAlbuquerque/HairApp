@@ -28,11 +28,13 @@ padding-left: 11%;
 
 export const Button = styled.TouchableOpacity`
   align-items: center;
-
 `;
 
 export const Footer = styled.View`
   padding-top: 10%;
 `;
 
-
+export const Term = styled.TouchableOpacity`
+  align-items: center;
+  padding-left: 8px;
+`;
