@@ -4,9 +4,6 @@ export const Container = styled.ScrollView `
   /* flex: 1; */
 `;
 
-export const OverlayKeyboard = styled.KeyboardAvoidingView`
-/* margin-bottom: 40px; */
-`;
 
 export const ContainerLogo = styled.View `
   align-items: center;
