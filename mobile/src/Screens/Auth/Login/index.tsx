@@ -16,9 +16,7 @@ export default function SignIn(){
       <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
       style={{flex: 1}} resizeMode="cover">
 
-        <OverlayKeyboard
-          behavior='height'
-        >
+
           <ContainerLogo>
             <Animatable.Image
               animation="flipInY"
@@ -28,17 +26,15 @@ export default function SignIn(){
             />
           </ContainerLogo>
 
-        </OverlayKeyboard>
 
         <ContainerForm>
-
-
            <InputText
               placeholder='Usuario/Email'
               // onChangeText={() => {}}
             />
               <InputText
               placeholder='Senha'
+              isPassword={true}
               // onChangeText={() => {}}
             />
 
@@ -69,7 +65,6 @@ export default function SignIn(){
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
                 </Create>
             </Footer>
-
         </ContainerForm>
 
 

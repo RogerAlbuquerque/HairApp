@@ -1,7 +1,7 @@
 import  styled  from 'styled-components/native';
 
-export const Container = styled.View `
-  flex: 1;
+export const Container = styled.ScrollView `
+  /* flex: 1; */
 `;
 
 export const OverlayKeyboard = styled.KeyboardAvoidingView`
@@ -11,7 +11,6 @@ export const OverlayKeyboard = styled.KeyboardAvoidingView`
 export const ContainerLogo = styled.View `
   align-items: center;
   height: 60%;
-  border: 1px solid red;
 `;
 
 
@@ -53,10 +52,9 @@ export const Button = styled.TouchableOpacity`
 export const Footer = styled.View`
   justify-content: center;
   align-items: center;
-  height: 40px;
+  flex: 1;
   flex-direction: row;
-  padding-top: 10px;
-  /* border: 1px solid red; */
+
 `;
 
 export const Create = styled.TouchableOpacity`
