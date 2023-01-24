@@ -6,8 +6,11 @@ import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Foote
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../../utils/routeProps';
 
 export default function SignIn(){
+  const navigation = useNavigation<propsStack>();
 
   const [isChecked,setChecked]=useState(false);
 
@@ -61,7 +64,7 @@ export default function SignIn(){
                 <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
                   Não tem conta?
                 </Text>
-                <Create>
+                <Create onPress={()=>navigation.navigate('Registration')}>
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
                 </Create>
             </Footer>
