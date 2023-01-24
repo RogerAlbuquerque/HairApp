@@ -12,63 +12,59 @@ export default function Registration(){
   const [isChecked,setChecked]=useState(false);
 
   return (
-    <Container>
-      <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
-      style={{flex: 1}} resizeMode="cover">
-
+    <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
+    resizeMode="cover" style={{flex:1}}>
+      <Container>
 
           <ContainerLogo>
             <Animatable.Image
               animation="flipInY"
               source={require('../../../assets/imgs/logoo.png')}
-              style={{ flex: 1}}
+              style={{ width:'60%', height:400}}
               resizeMode="contain"
             />
           </ContainerLogo>
 
 
-        <ContainerForm>
-           <InputText
-              placeholder='Usuario'
-              // onChangeText={() => {}}
-            />
+          <ContainerForm>
             <InputText
-              placeholder='E-mail'
-              // onChangeText={() => {}}
-            />
+                placeholder='Usuario'
+                // onChangeText={() => {}}
+              />
               <InputText
-              placeholder='Senha'
-              isPassword={true}
-              // onChangeText={() => {}}
-            />
-            <InputText
-              placeholder='Confirmar Senha'
-              isPassword={true}
-              // onChangeText={() => {}}
-            />
-            <ForgotDad>
-              <Check>
-                <Checkbox
-                  style={styles.checkbox}
-                  value={isChecked}
-                  onValueChange={setChecked}
-                  color={isChecked ? '#004bec' : undefined}
-                />
-                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}> Li e aceito os termos de uso!</Text>
-              </Check>
-            </ForgotDad>
-        </ContainerForm>
-        <Footer>
-              <Button>
-                <Text size={45} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Cadastrar </Text>
-              </Button>
-            </Footer>
-      </ImageBackground>
-    </Container>
+                placeholder='E-mail'
+                // onChangeText={() => {}}
+              />
+                <InputText
+                placeholder='Senha'
+                isPassword={true}
+                // onChangeText={() => {}}
+              />
+              <InputText
+                placeholder='Confirmar Senha'
+                isPassword={true}
+                // onChangeText={() => {}}
+              />
+          </ContainerForm>
+          <ForgotDad>
+            <Check>
+              <Checkbox
+                style={{backgroundColor:'#fff'}}
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? '#004bec' : undefined}
+              />
+              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}> Li e aceito os termos de uso!</Text>
+            </Check>
+          </ForgotDad>
+
+          <Footer>
+            <Button>
+              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Cadastrar </Text>
+            </Button>
+          </Footer>
+      </Container>
+    </ImageBackground>
   );
 }
-const styles = StyleSheet.create({
-  checkbox: {
-    backgroundColor: '#fff',
-  },
-});
+

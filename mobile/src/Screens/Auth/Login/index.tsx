@@ -6,7 +6,6 @@ import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Foote
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
-import { propsStack } from '../../../utils/routeProps';
 import ToRegisterModal from '../../../components/Modal';
 
 export default function SignIn(){
@@ -33,6 +32,7 @@ export default function SignIn(){
               source={require('../../../assets/imgs/logoo.png')}
               style={{width: '90%'}}
               resizeMode="contain"
+
             />
           </ContainerLogo>
 
