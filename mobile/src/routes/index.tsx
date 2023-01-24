@@ -2,7 +2,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SignIn from '../Screens/Auth/Login';
-import Registration from '../Screens/Auth/Registration';
+import RegisterClient from '../Screens/Auth/RegisterClient';
 import { propsNavigationStack } from '../utils/routeProps';
 
 const Stack = createNativeStackNavigator<propsNavigationStack>();
@@ -18,8 +18,8 @@ export default function Routes(){
       />
 
       <Stack.Screen
-        name="Registration"
-        component={Registration}
+        name="RegisterClient"
+        component={RegisterClient}
         options={{headerShown: false}}
       />
 

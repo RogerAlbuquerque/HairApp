@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword, OverlayKeyboard} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad} from './style';
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
@@ -21,7 +21,7 @@ export default function Registration(){
             <Animatable.Image
               animation="flipInY"
               source={require('../../../assets/imgs/logoo.png')}
-              style={{width: '90%'}}
+              style={{ flex: 1}}
               resizeMode="contain"
             />
           </ContainerLogo>
@@ -29,7 +29,11 @@ export default function Registration(){
 
         <ContainerForm>
            <InputText
-              placeholder='Usuario/Email'
+              placeholder='Usuario'
+              // onChangeText={() => {}}
+            />
+            <InputText
+              placeholder='E-mail'
               // onChangeText={() => {}}
             />
               <InputText
@@ -37,7 +41,11 @@ export default function Registration(){
               isPassword={true}
               // onChangeText={() => {}}
             />
-
+            <InputText
+              placeholder='Confirmar Senha'
+              isPassword={true}
+              // onChangeText={() => {}}
+            />
             <ForgotDad>
               <Check>
                 <Checkbox
@@ -46,28 +54,15 @@ export default function Registration(){
                   onValueChange={setChecked}
                   color={isChecked ? '#004bec' : undefined}
                 />
-                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
-
+                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}> Li e aceito os termos de uso!</Text>
               </Check>
-              <ForgotPassword>
-                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
-              </ForgotPassword>
             </ForgotDad>
-
-            <Button>
-              <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
-            </Button>
-            <Footer>
-                <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
-                  Não tem conta?
-                </Text>
-                <Create>
-                    <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
-                </Create>
-            </Footer>
         </ContainerForm>
-
-
+        <Footer>
+              <Button>
+                <Text size={45} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Cadastrar </Text>
+              </Button>
+            </Footer>
       </ImageBackground>
     </Container>
   );

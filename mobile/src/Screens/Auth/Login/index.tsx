@@ -6,13 +6,10 @@ import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Foote
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
-import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../../utils/routeProps';
 import ToRegisterModal from '../../../components/Modal';
 
 export default function SignIn(){
-  const navigation = useNavigation<propsStack>();
-
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

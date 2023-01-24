@@ -31,7 +31,7 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
             <Button
               name={'Como cliente'}
               backColor='#C10000'
-              onPress={()=>navigation.navigate('SignIn')}
+              onPress={()=>navigation.navigate('RegisterClient')}
             />
 
             <Button

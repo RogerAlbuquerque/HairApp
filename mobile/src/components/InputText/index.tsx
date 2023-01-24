@@ -22,3 +22,4 @@ export default function InputText({placeholder,value,onChange,isPassword}: input
 
   );
 }
+
