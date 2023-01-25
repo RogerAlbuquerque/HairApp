@@ -8,12 +8,12 @@ import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/Modal';
 import { useNavigation } from "@react-navigation/native";
-
+import { propsStack } from '../../../utils/routeProps';
 
 export default function SignIn(){
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<propsStack>();
 
   function setModalValue(){
     setIsModalVisible(!isModalVisible);
