@@ -29,19 +29,27 @@ export default function Registration(){
           <ContainerForm>
             <InputText
                 placeholder='Usuario'
+                font='Imbue-Medium'
+                fontSize={28}
                 // onChangeText={() => {}}
               />
               <InputText
                 placeholder='E-mail'
+                font='Imbue-Medium'
+                fontSize={28}
                 // onChangeText={() => {}}
               />
                 <InputText
                 placeholder='Senha'
+                font='Imbue-Medium'
+                fontSize={28}
                 isPassword={true}
                 // onChangeText={() => {}}
               />
               <InputText
                 placeholder='Confirmar Senha'
+                font='Imbue-Medium'
+                fontSize={28}
                 isPassword={true}
                 // onChangeText={() => {}}
               />

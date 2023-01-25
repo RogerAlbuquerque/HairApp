@@ -1,6 +1,8 @@
 import { ImageBackground } from "react-native";
+import Button from "../../components/Button";
 import HeaderComponent from '../../components/Header'
-import { Header, SearcHairdInput, SearchButton, HairdList } from "./styles";
+import InputText from "../../components/InputText";
+import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
 
 export default function Home(){
   return(
@@ -10,16 +12,30 @@ export default function Home(){
         <HeaderComponent />
       </Header>
       <SearcHairdInput>
-
+        <InputText
+          placeholder='Nome do cabeleireiro'
+          font="Poppins-Bold"
+          fontSize={20}
+        />
       </SearcHairdInput>
 
       <SearchButton>
-
+        <Button
+          name="Buscar"
+          backColor="#424242"
+          size={22}
+          width={130}
+          height={60}
+        />
       </SearchButton>
+
+      <LineContainer>
+        <Line></Line>
+      </LineContainer>
 
       <HairdList>
 
       </HairdList>
-      </ImageBackground>
+    </ImageBackground>
   );
 }

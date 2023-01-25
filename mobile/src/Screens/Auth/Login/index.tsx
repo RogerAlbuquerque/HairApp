@@ -40,10 +40,14 @@ export default function SignIn(){
         <ContainerForm>
            <InputText
               placeholder='Usuario/Email'
+              font='Imbue-Medium'
+              fontSize={28}
               // onChangeText={() => {}}
             />
               <InputText
               placeholder='Senha'
+              font='Imbue-Medium'
+              fontSize={28}
               isPassword={true}
               // onChangeText={() => {}}
             />

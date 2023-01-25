@@ -8,8 +8,5 @@ export const InputStyle = styled.TextInput`
   border-radius: 8px;
   background-color: #fff;
   margin-bottom: 28px;
-  font-size: 28px;
   line-height: 38px;
-  font-family: 'Imbue-Medium';
-  border: 2px solid #222;
 `;

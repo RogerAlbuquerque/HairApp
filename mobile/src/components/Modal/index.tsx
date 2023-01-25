@@ -31,12 +31,18 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
             <Button
               name={'Como cliente'}
               backColor='#C10000'
+              width={220}
+              padding={20}
+              size={15}
               onPress={()=>navigation.navigate('RegisterClient')}
             />
 
             <Button
               name={'Como cabeleireiro'}
               backColor='#C10000'
+              width={220}
+              padding={20}
+              size={15}
               onPress={()=>navigation.navigate('SignIn')}
 
             />
