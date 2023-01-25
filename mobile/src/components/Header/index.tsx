@@ -1,8 +1,10 @@
-import { Image } from 'react-native';
+import { useState } from 'react';
+import { Image, TouchableOpacity } from 'react-native';
 import { Text } from '../../utils/Text';
-import { ContainerLogo, ProfileImage,Container, Config, Menu } from './style';
+import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
 export default function Home(){
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
   return(
     <Container>
       <ContainerLogo>
@@ -10,15 +12,27 @@ export default function Home(){
       </ContainerLogo>
 
       <Config>
-        <Menu>
-          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'} style={{paddingBottom:10}}>Alterar dados</Text>
-          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>Sair</Text>
-        </Menu>
-        <ProfileImage>
-          <Image source={require('../../assets/imgs/defaultImage.png')} style={{width:80, height:90}}/>
-          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>Nome do usuário</Text>
-        </ProfileImage>
+        <UserData style={{justifyContent: isMenuVisible? 'center': 'flex-end'}}>
+          {isMenuVisible &&
+          <Menu>
+              <TouchableOpacity>
+                <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'} style={{paddingBottom:10}}>Alterar dados</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>Sair</Text>
+              </TouchableOpacity>
+          </Menu>
+          }
+          <ProfileImage style={{justifyContent:'center'}} onPress={() => setIsMenuVisible(!isMenuVisible)}>
+            <Image source={require('../../assets/imgs/defaultImage.png')} style={{width:80, height:90}}/>
+          </ProfileImage>
+        </UserData>
+        <UserName>
+          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>Washington Ferreira</Text>
+        </UserName>
+
       </Config>
+
 
     </Container>
   );
