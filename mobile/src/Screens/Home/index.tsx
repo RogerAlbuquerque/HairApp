@@ -1,5 +1,6 @@
 import { ImageBackground } from "react-native";
 import Button from "../../components/Button";
+import HairdCard from "../../components/HairdCard";
 import HeaderComponent from '../../components/Header'
 import InputText from "../../components/InputText";
 import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
@@ -7,7 +8,7 @@ import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } 
 export default function Home(){
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
-    style={{flex: 1}} resizeMode="cover">
+    style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
       <Header>
         <HeaderComponent />
       </Header>
@@ -34,7 +35,11 @@ export default function Home(){
       </LineContainer>
 
       <HairdList>
-
+        <HairdCard />
+        <HairdCard />
+        <HairdCard />
+        <HairdCard />
+        <HairdCard />
       </HairdList>
     </ImageBackground>
   );

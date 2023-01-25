@@ -1,7 +1,7 @@
 import  styled  from 'styled-components/native';
 
 export const Container = styled.View`
-padding: 20px;
+padding: 20px 0px;
 flex-direction: row;
 justify-content: space-between;
 `;

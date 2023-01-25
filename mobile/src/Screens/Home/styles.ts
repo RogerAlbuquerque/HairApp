@@ -5,27 +5,30 @@ export const Header = styled.View`
 `;
 
 export const SearcHairdInput = styled.View`
-margin-top: 50px;
-align-items: center;
+  margin-top: 50px;
+  align-items: center;
 `;
 
 export const SearchButton = styled.View`
-align-items: center;
+  align-items: center;
 `;
 
 export const LineContainer = styled.View`
-align-items: center;
+  align-items: center;
 `;
 
 export const Line = styled.View`
-border: 0.4px solid #fff;
-width: 80%;
-align-items: center;
+  border: 0.4px solid #fff;
+  width: 80%;
+  align-items: center;
 `;
 
 
 export const HairdList = styled.View`
-
+  padding-top: 20px;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 
