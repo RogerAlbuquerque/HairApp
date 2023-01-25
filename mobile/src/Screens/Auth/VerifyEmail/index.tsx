@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, View} from 'react-native';
+import React from 'react';
+import { ImageBackground} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
+import { Button, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad} from './style';
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 
