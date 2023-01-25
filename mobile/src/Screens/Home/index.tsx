@@ -35,11 +35,18 @@ export default function Home(){
       </LineContainer>
 
       <HairdList>
-        <HairdCard />
-        <HairdCard />
-        <HairdCard />
-        <HairdCard />
-        <HairdCard />
+        <HairdCard
+        />
+        <HairdCard
+          status={'PENDING'}
+        />
+        <HairdCard
+          status={'CONFIRMED'}
+        />
+        <HairdCard
+        />
+        <HairdCard
+        />
       </HairdList>
     </ImageBackground>
   );

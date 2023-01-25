@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
-  background-color: rgba(0, 0, 0 ,0.4);
   border-radius: 3px;
   align-items: center;
   margin-bottom: 10px;
