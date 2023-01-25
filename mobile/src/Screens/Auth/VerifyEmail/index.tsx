@@ -6,7 +6,7 @@ import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  Forgot
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 
-export default function Recover(){
+export default function VerifyEmail(){
 
 
   return (
@@ -31,7 +31,7 @@ export default function Recover(){
                 fontSize={28}
                 // onChangeText={() => {}}
               />
-                <InputText
+                {/* <InputText
                 placeholder='Nova Senha'
                 font='Imbue-Medium'
                 fontSize={28}
@@ -44,15 +44,17 @@ export default function Recover(){
                 fontSize={28}
                 isPassword={true}
                 // onChangeText={() => {}}
-              />
+              /> */}
           </ContainerForm>
-          <ForgotDad>
-
+          <ForgotDad style={{marginTop:-20}}>
+            <Text size={12} font={'Imbue'} weight={'Medium'} color={'red'}>
+              Será enviado um link nesse email para alterar sua senha!
+            </Text>
           </ForgotDad>
 
           <Footer>
             <Button>
-              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Alterar senha</Text>
+              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Recuperar senha</Text>
             </Button>
           </Footer>
       </Container>

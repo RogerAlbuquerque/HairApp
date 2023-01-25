@@ -2,7 +2,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SignIn from '../Screens/Auth/Login';
-import Recover from '../Screens/Auth/Recover';
+import VerifyEmail from '../Screens/Auth/VerifyEmail';
 import RegisterClient from '../Screens/Auth/RegisterClient';
 import Home from '../Screens/Home'
 import { propsNavigationStack } from '../utils/routeProps';
@@ -32,8 +32,8 @@ export default function Routes(){
       />
 
       <Stack.Screen
-        name="Recover"
-        component={Recover}
+        name="VerifyEmail"
+        component={VerifyEmail}
         options={{headerShown: false}}
       />
 

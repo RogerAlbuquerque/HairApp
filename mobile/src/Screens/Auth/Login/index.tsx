@@ -66,7 +66,7 @@ export default function SignIn(){
                 <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
 
               </Check>
-              <ForgotPassword onPress={()=>navigation.navigate('Recover')}>
+              <ForgotPassword onPress={()=>navigation.navigate('VerifyEmail')}>
                 <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
               </ForgotPassword>
             </ForgotDad>
