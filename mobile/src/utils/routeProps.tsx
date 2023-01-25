@@ -4,6 +4,7 @@ export type propsNavigationStack = {
   SignIn: undefined;
   RegisterClient: undefined;
   Home:undefined;
+  Recover: undefined;
 }
 
 

@@ -2,6 +2,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SignIn from '../Screens/Auth/Login';
+import Recover from '../Screens/Auth/Recover';
 import RegisterClient from '../Screens/Auth/RegisterClient';
 import Home from '../Screens/Home'
 import { propsNavigationStack } from '../utils/routeProps';
@@ -11,7 +12,7 @@ const Stack = createNativeStackNavigator<propsNavigationStack>();
 
 export default function Routes(){
   return(
-    <Stack.Navigator initialRouteName='Home'>
+    <Stack.Navigator initialRouteName='SignIn'>
       <Stack.Screen
         name="SignIn"
         component={SignIn}
@@ -27,6 +28,12 @@ export default function Routes(){
       <Stack.Screen
         name="Home"
         component={Home}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="Recover"
+        component={Recover}
         options={{headerShown: false}}
       />
 

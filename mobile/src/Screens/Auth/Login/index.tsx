@@ -7,10 +7,13 @@ import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/Modal';
+import { useNavigation } from "@react-navigation/native";
+
 
 export default function SignIn(){
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const navigation = useNavigation();
 
   function setModalValue(){
     setIsModalVisible(!isModalVisible);
@@ -63,7 +66,7 @@ export default function SignIn(){
                 <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
 
               </Check>
-              <ForgotPassword>
+              <ForgotPassword onPress={()=>navigation.navigate('Recover')}>
                 <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
               </ForgotPassword>
             </ForgotDad>
