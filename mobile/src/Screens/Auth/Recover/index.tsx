@@ -52,7 +52,7 @@ export default function Recover(){
 
           <Footer>
             <Button>
-              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Recuparar</Text>
+              <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Recuperar</Text>
             </Button>
           </Footer>
       </Container>
