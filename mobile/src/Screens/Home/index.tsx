@@ -1,7 +1,7 @@
 import { ImageBackground } from "react-native";
 import Button from "../../components/Button";
 import HairdCard from "../../components/HairdCard";
-import HeaderComponent from '../../components/Header'
+import HeaderComponent from '../../components/HeaderComponent'
 import InputText from "../../components/InputText";
 import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
 

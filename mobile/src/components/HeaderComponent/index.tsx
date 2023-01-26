@@ -3,7 +3,7 @@ import { Image, TouchableOpacity } from 'react-native';
 import { Text } from '../../utils/Text';
 import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
-export default function Home(){
+export default function HeaderComponent(){
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   return(
     <Container>
