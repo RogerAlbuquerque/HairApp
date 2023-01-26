@@ -1,3 +1,5 @@
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useState } from 'react';
 import { Image, ImageBackground } from "react-native";
 import Button from "../../components/Button";
 import HeaderComponent from "../../components/HeaderComponent";
@@ -5,7 +7,21 @@ import { Text } from "../../utils/Text";
 import { Header, HairdInfo, ProfileImage, HairdData, DaysWeek, ButtonToSched, Schedules, Day, Container } from "./style";
 
 
+
+
 export default function SchedClient(){
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [isClocVisible, setIsClockVisible] = useState(false);
+
+  const openDatePicker = () => {
+    setIsClockVisible(!isClocVisible);
+};
+
+  const setSched = (date:any) => {
+
+    setIsClockVisible(!isClocVisible);
+    setDate(date)
+  }
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -63,7 +79,27 @@ export default function SchedClient(){
           </Day>
         </DaysWeek>
 
-        <Schedules>
+        <Schedules >
+
+        {isClocVisible && (
+            <DateTimePicker
+              value={date}
+              mode="time"
+              is24Hour={true}
+              display="spinner"
+              onChange={(e, date:any) => setSched}
+
+            />
+          )}
+
+          <Button
+            name='MOSTRAR'
+            backColor="#5A5A5A"
+            size={22}
+            width={150}
+            height={90}
+            onPress={openDatePicker}
+          />
 
         </Schedules>
 
@@ -76,6 +112,7 @@ export default function SchedClient(){
             height={90}
           />
         </ButtonToSched>
+
       </Container>
 
     </ImageBackground>
