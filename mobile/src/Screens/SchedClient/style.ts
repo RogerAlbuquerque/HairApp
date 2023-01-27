@@ -27,7 +27,7 @@ flex-direction: row;
 margin-top: 50px;
 `;
 
-export const Day = styled.TouchableHighlight`
+export const Day = styled.TouchableOpacity`
 flex: 1;
 margin: 4px;
 height: 45px;

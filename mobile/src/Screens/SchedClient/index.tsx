@@ -4,13 +4,32 @@ import { Image, ImageBackground } from "react-native";
 import Button from "../../components/Button";
 import HeaderComponent from "../../components/HeaderComponent";
 import { Text } from "../../utils/Text";
-import { Header, HairdInfo, ProfileImage, HairdData, DaysWeek, ButtonToSched, Schedules, Day, Container,PickHour, HourInput,MinuteInput } from "./style";
+import {
+  Header,
+  HairdInfo,
+  ProfileImage,
+  HairdData,
+  DaysWeek,
+  ButtonToSched,
+  Schedules,
+  Day,
+  Container,
+  PickHour,
+  HourInput,
+  MinuteInput
+} from "./style";
 
 export default function SchedClient(){
 
 
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
+
+  const [schedDay, setSchedDay] = useState('')
+
+    function teste(dia:string){
+      // setWorkingDays();
+    }
 
   // MANIPULATE DATAPICKER
   const openDatePicker = () => {
@@ -51,31 +70,31 @@ export default function SchedClient(){
         </HairdInfo>
 
         <DaysWeek>
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'SEG' ? setSchedDay('SEG') : setSchedDay('')} style={{backgroundColor: schedDay == 'SEG' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SEG</Text>
           </Day>
 
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'TER' ? setSchedDay('TER') : setSchedDay('')} style={{backgroundColor: schedDay == 'TER' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>TER</Text>
           </Day>
 
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'QUA' ? setSchedDay('QUA') : setSchedDay('')} style={{backgroundColor: schedDay == 'QUA' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>QUA</Text>
           </Day>
 
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'QUI' ? setSchedDay('QUI') : setSchedDay('')} style={{backgroundColor: schedDay == 'QUI' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>QUI</Text>
           </Day>
 
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'SEX' ? setSchedDay('SEX') : setSchedDay('')} style={{backgroundColor: schedDay == 'SEX' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SEX</Text>
           </Day>
 
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'SAB' ? setSchedDay('SAB') : setSchedDay('')} style={{backgroundColor: schedDay == 'SAB' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SAB</Text>
           </Day>
 
-          <Day style={{backgroundColor: 'white'}}>
+          <Day onPress={()=> schedDay != 'DOM' ? setSchedDay('DOM') : setSchedDay('')} style={{backgroundColor: schedDay == 'DOM' ? '#3FC500' : 'white'}}>
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>DOM</Text>
           </Day>
         </DaysWeek>
