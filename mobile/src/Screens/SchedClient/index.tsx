@@ -1,5 +1,4 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
-import DateTimePickerstyle from 'react-native-modal-datetime-picker';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
 import { Image, ImageBackground } from "react-native";
 import Button from "../../components/Button";
@@ -90,7 +89,7 @@ export default function SchedClient(){
         <Schedules >
 
 
-            <DateTimePickerstyle
+            <DateTimePicker
               mode="time"
               isVisible={isClocVisible}
               onConfirm={(date)=>setSched(date)}
