@@ -22,9 +22,9 @@ export const HairdData = styled.View`
   flex: 1;
 `;
 
-export const DaysWeek = styled.View`
-flex-direction: row;
-margin-top: 50px;
+export const DaySelect = styled.View`
+/* flex-direction: row;
+margin-top: 50px; */
 `;
 
 export const Day = styled.TouchableOpacity`
@@ -70,8 +70,9 @@ background-color: white;
 `;
 
 export const ButtonToSched = styled.TouchableOpacity`
+flex-direction: row;
 align-items: center;
-justify-content: flex-end;
+justify-content: center;
 flex: 1;
 `;
 

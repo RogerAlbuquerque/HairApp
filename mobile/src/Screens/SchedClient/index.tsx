@@ -9,15 +9,15 @@ import {
   HairdInfo,
   ProfileImage,
   HairdData,
-  DaysWeek,
+  DaySelect,
   ButtonToSched,
   Schedules,
-  Day,
   Container,
   PickHour,
   HourInput,
   MinuteInput
 } from "./style";
+import DaysOfWeek from '../../components/DaysOfWeek';
 
 export default function SchedClient(){
 
@@ -26,6 +26,7 @@ export default function SchedClient(){
   const [isClocVisible, setIsClockVisible] = useState(false);
 
   const [schedDay, setSchedDay] = useState('')
+
 
     function teste(dia:string){
       // setWorkingDays();
@@ -69,46 +70,20 @@ export default function SchedClient(){
           </HairdData>
         </HairdInfo>
 
-        <DaysWeek>
-          <Day onPress={()=> schedDay != 'SEG' ? setSchedDay('SEG') : setSchedDay('')} style={{backgroundColor: schedDay == 'SEG' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SEG</Text>
-          </Day>
-
-          <Day onPress={()=> schedDay != 'TER' ? setSchedDay('TER') : setSchedDay('')} style={{backgroundColor: schedDay == 'TER' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>TER</Text>
-          </Day>
-
-          <Day onPress={()=> schedDay != 'QUA' ? setSchedDay('QUA') : setSchedDay('')} style={{backgroundColor: schedDay == 'QUA' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>QUA</Text>
-          </Day>
-
-          <Day onPress={()=> schedDay != 'QUI' ? setSchedDay('QUI') : setSchedDay('')} style={{backgroundColor: schedDay == 'QUI' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>QUI</Text>
-          </Day>
-
-          <Day onPress={()=> schedDay != 'SEX' ? setSchedDay('SEX') : setSchedDay('')} style={{backgroundColor: schedDay == 'SEX' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SEX</Text>
-          </Day>
-
-          <Day onPress={()=> schedDay != 'SAB' ? setSchedDay('SAB') : setSchedDay('')} style={{backgroundColor: schedDay == 'SAB' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SAB</Text>
-          </Day>
-
-          <Day onPress={()=> schedDay != 'DOM' ? setSchedDay('DOM') : setSchedDay('')} style={{backgroundColor: schedDay == 'DOM' ? '#3FC500' : 'white'}}>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>DOM</Text>
-          </Day>
-        </DaysWeek>
+        <DaySelect>
+          <DaysOfWeek
+            schedDay={schedDay}
+            setSchedDay={setSchedDay}
+          />
+        </DaySelect>
 
         <Schedules >
-
-
             <DateTimePicker
               mode="time"
               isVisible={isClocVisible}
               onConfirm={(date)=>setSched(date)}
               onCancel={()=>setIsClockVisible(!isClocVisible)}
             />
-
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'white'}>Marcar horários disponiveis</Text>
           <PickHour onPress={openDatePicker}>
             <HourInput>
@@ -119,18 +94,25 @@ export default function SchedClient(){
                <Text size={30} font={'Poppins'} weight={'Bold'} color={'black'}>{date.getMinutes().toLocaleString().padStart(2, '0')}</Text>
             </MinuteInput>
           </PickHour>
-
-
         </Schedules>
 
-        <ButtonToSched>
+        <ButtonToSched style={{justifyContent:schedDay != '' ? 'space-between' : 'center' }}>
           <Button
-            name='Marcar Horário'
+            name='Marcar horário'
             backColor="#5A5A5A"
             size={22}
             width={150}
             height={90}
           />
+          {schedDay != '' &&
+             <Button
+             name='Cancelar horário'
+             backColor="#C10000"
+             size={22}
+             width={150}
+             height={90}
+           />
+          }
         </ButtonToSched>
 
       </Container>

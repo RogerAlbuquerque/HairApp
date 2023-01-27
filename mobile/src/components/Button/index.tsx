@@ -14,7 +14,7 @@ interface buttonProps{
 export default function Button({name, backColor,size,width, padding,height, onPress}:buttonProps){
   return(
     <ButtonRegister style={{backgroundColor: backColor, width:width, height:height, padding:padding}} onPress={onPress}>
-       <Text size={size} font={'Poppins'} weight={'Bold'} color={'#fff'}>{name}</Text>
+       <Text style={{textAlign:'center'}} size={size} font={'Poppins'} weight={'Bold'} color={'#fff'}>{name}</Text>
     </ButtonRegister>
   );
 }
