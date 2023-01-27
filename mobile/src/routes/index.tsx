@@ -8,13 +8,14 @@ import RegisterClient from '../Screens/Auth/RegisterClient';
 import Home from '../Screens/Home'
 import SchedClient from '../Screens/SchedClient'
 import { propsNavigationStack } from '../utils/routeProps';
+import ClientListForHairdresser from '../Screens/ClientListForHairdresser';
 
 const Stack = createNativeStackNavigator<propsNavigationStack>();
 
 
 export default function Routes(){
   return(
-    <Stack.Navigator initialRouteName='SchedClient'>
+    <Stack.Navigator initialRouteName='ListOfClients'>
       <Stack.Screen
         name="SignIn"
         component={SignIn}
@@ -48,6 +49,12 @@ export default function Routes(){
       <Stack.Screen
         name="SchedClient"
         component={SchedClient}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="ListOfClients"
+        component={ClientListForHairdresser}
         options={{headerShown: false}}
       />
 

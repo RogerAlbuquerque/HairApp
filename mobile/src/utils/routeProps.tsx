@@ -9,7 +9,8 @@ export type propsNavigationStack = {
     email: string;
   }
   Home: undefined;
-  SchedClient: undefined
+  SchedClient: undefined;
+  ListOfClients:undefined;
 
 }
 
