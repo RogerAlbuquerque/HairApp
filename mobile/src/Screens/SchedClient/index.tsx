@@ -6,15 +6,13 @@ import HeaderComponent from "../../components/HeaderComponent";
 import { Text } from "../../utils/Text";
 import { Header, HairdInfo, ProfileImage, HairdData, DaysWeek, ButtonToSched, Schedules, Day, Container,PickHour, HourInput,MinuteInput } from "./style";
 
-
-
-
 export default function SchedClient(){
 
 
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
 
+  // MANIPULATE DATAPICKER
   const openDatePicker = () => {
     setIsClockVisible(!isClocVisible);
 
@@ -24,11 +22,7 @@ export default function SchedClient(){
     setIsClockVisible(!isClocVisible);
     setDate(date)
   }
-
-
-
-
-
+  // MANIPULATE DATAPICKER
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
