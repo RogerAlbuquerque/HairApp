@@ -1,27 +1,35 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerstyle from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
 import { Image, ImageBackground } from "react-native";
 import Button from "../../components/Button";
 import HeaderComponent from "../../components/HeaderComponent";
 import { Text } from "../../utils/Text";
-import { Header, HairdInfo, ProfileImage, HairdData, DaysWeek, ButtonToSched, Schedules, Day, Container } from "./style";
+import { Header, HairdInfo, ProfileImage, HairdData, DaysWeek, ButtonToSched, Schedules, Day, Container,PickHour, HourInput,MinuteInput } from "./style";
 
 
 
 
 export default function SchedClient(){
-  const [date, setDate] = useState(new Date(1598051730000));
+
+
+  const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
 
   const openDatePicker = () => {
     setIsClockVisible(!isClocVisible);
-};
 
-  const setSched = (date:any) => {
+  };
 
+  function setSched (date:any){
     setIsClockVisible(!isClocVisible);
     setDate(date)
   }
+
+
+
+
+
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -81,25 +89,25 @@ export default function SchedClient(){
 
         <Schedules >
 
-        {isClocVisible && (
-            <DateTimePicker
-              value={date}
+
+            <DateTimePickerstyle
               mode="time"
-              is24Hour={true}
-              display="spinner"
-              onChange={(e, date:any) => setSched}
-
+              isVisible={isClocVisible}
+              onConfirm={(date)=>setSched(date)}
+              onCancel={()=>setIsClockVisible(!isClocVisible)}
             />
-          )}
 
-          <Button
-            name='MOSTRAR'
-            backColor="#5A5A5A"
-            size={22}
-            width={150}
-            height={90}
-            onPress={openDatePicker}
-          />
+            <Text size={14} font={'Poppins'} weight={'Bold'} color={'white'}>Marcar horários disponiveis</Text>
+          <PickHour onPress={openDatePicker}>
+            <HourInput>
+               <Text size={30} font={'Poppins'} weight={'Bold'} color={'black'}>{date.getHours().toLocaleString().padStart(2, '0')}</Text>
+            </HourInput>
+            <Text size={30} font={'Poppins'} weight={'Bold'} color={'white'}>:</Text>
+            <MinuteInput>
+               <Text size={30} font={'Poppins'} weight={'Bold'} color={'black'}>{date.getMinutes().toLocaleString().padStart(2, '0')}</Text>
+            </MinuteInput>
+          </PickHour>
+
 
         </Schedules>
 

@@ -38,8 +38,35 @@ border-radius: 3px;
 
 
 export const Schedules = styled.View`
-width: 20px;
-height: 100px;
+flex: 1;
+justify-content: center;
+align-items: center;
+
+`;
+
+
+export const PickHour = styled.TouchableOpacity`
+flex-direction: row;
+align-items: center;
+`;
+
+
+export const HourInput = styled.View`
+width: 80px;
+height: 50px;
+background-color: white;
+align-items: center;
+justify-content: center;
+`;
+
+
+export const MinuteInput = styled.View`
+/* margin-top: 50px; */
+width: 80px;
+height: 50px;
+align-items: center;
+justify-content: center;
+background-color: white;
 `;
 
 export const ButtonToSched = styled.TouchableOpacity`
