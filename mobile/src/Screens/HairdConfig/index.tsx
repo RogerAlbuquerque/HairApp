@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Image, ImageBackground } from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../components/Button";
+import InputText from "../../components/InputText";
 import { Text } from "../../utils/Text";
 import { ProfileAndHour, InfoUserForms, Prices, WorkingDays, ProfileImage, WorkingHours, PickHour, HourInput, MinuteInput, Schedules, OpeningHour,ClosingdHour} from "./style";
 
@@ -89,10 +90,11 @@ export default function HairdConfig(){
               </ClosingdHour>
             </Schedules>
           </WorkingHours>
-
       </ProfileAndHour>
-      <InfoUserForms>
 
+      <InfoUserForms>
+        <InputText
+        />
       </InfoUserForms>
 
       <Prices>

@@ -21,7 +21,7 @@ export const Check = styled.View`
   flex-direction: row;
   width: 140px;
   height: 22px;
-  margin: 0 42px;
+  margin-left:42px;
 `;
 
 export const ForgotPassword = styled.TouchableOpacity`
@@ -40,7 +40,6 @@ export const ForgotDad = styled.View`
 export const Button = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
   width: 140px;
   height: 60px;
 
@@ -49,12 +48,19 @@ export const Button = styled.TouchableOpacity`
 export const Footer = styled.View`
   justify-content: center;
   align-items: center;
-  flex: 1;
-  flex-direction: row;
-
+margin-top: 20px;
+  /* flex: 1; */
 `;
+
+export const AccessButton = styled.TouchableOpacity`
+`;
+
+export const CreateAccount = styled.TouchableOpacity`
+flex-direction: row;
+`;
+
+
 
 export const Create = styled.TouchableOpacity`
   padding-left: 8px;
-  padding-bottom: -12px;
 `;

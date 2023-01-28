@@ -1,16 +1,18 @@
 import { InputStyle } from "./style";
 
 interface inputProps {
-  placeholder: string,
+  placeholder?: string,
   value?: string
-  fontSize:number
-  font:string
+  fontSize?:number
+  font?:string
+  width?:number | string,
+  height?:number | string,
   isPassword?:boolean
   onChange?:()=> void;
 
 }
 
-export default function InputText({placeholder,value,onChange,isPassword,font, fontSize}: inputProps){
+export default function InputText({placeholder,value,onChange,isPassword,font, fontSize, width, height}: inputProps){
   return(
     <InputStyle
       placeholder={placeholder}
@@ -19,7 +21,7 @@ export default function InputText({placeholder,value,onChange,isPassword,font, f
       autoCorrect={false}
       secureTextEntry={isPassword ? isPassword : false}
       onChangeText={onChange}
-      style={{fontFamily:font, fontSize:fontSize}}
+      style={{fontFamily:font, fontSize:fontSize, width:width, height:height}}
 
     />
 

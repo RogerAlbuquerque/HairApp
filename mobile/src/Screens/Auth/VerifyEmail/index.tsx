@@ -29,22 +29,10 @@ export default function VerifyEmail(){
                 placeholder='E-mail'
                 font='Imbue-Medium'
                 fontSize={28}
+                width={'80%'}
+                height= {40}
                 // onChangeText={() => {}}
               />
-                {/* <InputText
-                placeholder='Nova Senha'
-                font='Imbue-Medium'
-                fontSize={28}
-                isPassword={true}
-                // onChangeText={() => {}}
-              />
-              <InputText
-                placeholder='Confirmar Senha'
-                font='Imbue-Medium'
-                fontSize={28}
-                isPassword={true}
-                // onChangeText={() => {}}
-              /> */}
           </ContainerForm>
           <ForgotDad style={{marginTop:-20}}>
             <Text size={12} font={'Imbue'} weight={'Medium'} color={'red'}>

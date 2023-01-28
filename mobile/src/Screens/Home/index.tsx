@@ -17,6 +17,8 @@ export default function Home(){
           placeholder='Nome do cabeleireiro'
           font="Poppins-Bold"
           fontSize={20}
+          width={'100%'}
+          height= {50}
         />
       </SearcHairdInput>
 

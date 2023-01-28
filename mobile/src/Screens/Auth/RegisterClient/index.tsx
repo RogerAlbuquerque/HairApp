@@ -31,12 +31,17 @@ export default function Registration(){
                 placeholder='Usuario'
                 font='Imbue-Medium'
                 fontSize={28}
+                width={'80%'}
+                height= {40}
                 // onChangeText={() => {}}
               />
               <InputText
                 placeholder='E-mail'
                 font='Imbue-Medium'
                 fontSize={28}
+                width={'80%'}
+                height= {40}
+
                 // onChangeText={() => {}}
               />
                 <InputText
@@ -44,6 +49,8 @@ export default function Registration(){
                 font='Imbue-Medium'
                 fontSize={28}
                 isPassword={true}
+                width={'80%'}
+                height= {40}
                 // onChangeText={() => {}}
               />
               <InputText
@@ -51,6 +58,8 @@ export default function Registration(){
                 font='Imbue-Medium'
                 fontSize={28}
                 isPassword={true}
+                width={'80%'}
+                height= {40}
                 // onChangeText={() => {}}
               />
           </ContainerForm>

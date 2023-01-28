@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  Footer,  ForgotDad, ForgotPassword} from './style';
+import { AccessButton, Button, Check, Container, ContainerForm, ContainerLogo,  Create,  CreateAccount,  Footer,  ForgotDad, ForgotPassword} from './style';
 import InputText from '../../../components/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
@@ -19,14 +19,15 @@ export default function SignIn(){
     setIsModalVisible(!isModalVisible);
   }
   return (
+    <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
+      style={{flex: 1}} resizeMode="cover">
+
     <Container>
       <ToRegisterModal
         isModalVisible={isModalVisible}
         setModalValue={setModalValue}
       />
 
-      <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
-      style={{flex: 1}} resizeMode="cover">
 
 
           <ContainerLogo>
@@ -45,6 +46,8 @@ export default function SignIn(){
               placeholder='Usuario/Email'
               font='Imbue-Medium'
               fontSize={28}
+              width={'80%'}
+              height= {'10%'}
               // onChangeText={() => {}}
             />
               <InputText
@@ -52,6 +55,8 @@ export default function SignIn(){
               font='Imbue-Medium'
               fontSize={28}
               isPassword={true}
+              width={'80%'}
+              height= {'10%'}
               // onChangeText={() => {}}
             />
 
@@ -71,22 +76,28 @@ export default function SignIn(){
               </ForgotPassword>
             </ForgotDad>
 
-            <Button>
-              <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
-            </Button>
+
             <Footer>
+               <AccessButton>
+                <Button>
+                  <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
+                </Button>
+               </AccessButton>
+               <CreateAccount>
                 <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
-                  Não tem conta?
-                </Text>
-                <Create onPress={()=> setModalValue()}>
-                    <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
-                </Create>
+                    Não tem conta?
+                  </Text>
+                  <Create onPress={()=> setModalValue()}>
+                      <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
+                  </Create>
+               </CreateAccount>
             </Footer>
         </ContainerForm>
 
 
-      </ImageBackground>
+
     </Container>
+    </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
