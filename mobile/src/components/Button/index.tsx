@@ -3,7 +3,7 @@ import { ButtonRegister } from "./style";
 
 interface buttonProps{
   name:string;
-  backColor:string
+  backColor?:string
   size:number
   width?:number
   height?:number

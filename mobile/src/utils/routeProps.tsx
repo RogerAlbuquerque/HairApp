@@ -11,6 +11,7 @@ export type propsNavigationStack = {
   Home: undefined;
   SchedClient: undefined;
   ListOfClients:undefined;
+  HairdConfig:undefined
 
 }
 
