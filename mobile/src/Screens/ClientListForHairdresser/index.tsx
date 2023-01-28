@@ -37,7 +37,7 @@ export default function ClientListForHairdresser(){
             size={12}
             width={160}
             height={40}
-            isActivate={buttonPendingClient}
+            notActivate={buttonPendingClient}
             onPress={() => handleButtons('PENDINGBUTTON')}
           />
 
@@ -47,7 +47,7 @@ export default function ClientListForHairdresser(){
           size={12}
           width={160}
           height={40}
-          isActivate={buttonConfirmedClient}
+          notActivate={buttonConfirmedClient}
           onPress={() => handleButtons('CONFIRMEDBUTTON')}
         />
         </ButtonsForTypeClients>

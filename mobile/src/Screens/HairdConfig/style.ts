@@ -34,7 +34,7 @@ export const ClosingdHour = styled.TouchableOpacity`
 
 export const HourInput = styled.View`
 width: 40px;
-height: 40px;
+height: 35px;
 background-color: white;
 align-items: center;
 justify-content: center;
@@ -44,7 +44,7 @@ justify-content: center;
 export const MinuteInput = styled.View`
 /* margin-top: 50px; */
 width: 40px;
-height: 40px;
+height: 35px;
 align-items: center;
 justify-content: center;
 background-color: white;
