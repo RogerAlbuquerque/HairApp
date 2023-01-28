@@ -107,7 +107,7 @@ export default function HairdConfig(){
 
       <InfoUserForms>
 
-        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Nome do cabeleireiro</Text>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Nome do cabeleireiro ou salão</Text>
         <InputText font="Poppins-Bold"/>
 
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Endereço do salão</Text>
@@ -116,8 +116,8 @@ export default function HairdConfig(){
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Email</Text>
         <InputText font="Poppins-Bold"/>
 
-        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Senha</Text>
-        <InputText font="Poppins-Bold"/>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Alterar senha</Text>
+        <InputText font="Poppins-Bold" isPassword={true}/>
 
       </InfoUserForms>
 
@@ -153,7 +153,7 @@ export default function HairdConfig(){
       </WorkingDays>
 
       <Button
-        name="Salvar"
+        name="Atualizar"
         size={40}
         letterCollor={'#F6C33E'}
       />
