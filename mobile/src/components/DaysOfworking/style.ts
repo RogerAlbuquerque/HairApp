@@ -2,7 +2,7 @@ import  styled  from 'styled-components/native';
 
 export const DaysWeek = styled.View`
 flex-direction: row;
-margin-top: 50px;
+margin-top: 10px;
 `;
 
 export const Day = styled.TouchableOpacity`
@@ -12,4 +12,5 @@ height: 45px;
 align-items: center;
 justify-content: center;
 border-radius: 3px;
+background-color: white;
 `;

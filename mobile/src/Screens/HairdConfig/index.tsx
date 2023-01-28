@@ -3,6 +3,7 @@ import { Image, ImageBackground, TextInput } from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../components/Button";
 import { DaysWeek } from "../../components/DaysOfWeek/style";
+import DaysOfWorking from "../../components/DaysOfworking";
 import InputText from "../../components/InputText";
 import { Text } from "../../utils/Text";
 import { ProfileAndHour, InfoUserForms, Prices, WorkingDays, ProfileImage, WorkingHours, PickHour, HourInput, MinuteInput, Schedules, OpeningHour,ClosingdHour, HairCutInfo, BeardInfo, HairPrice, BeardPrice, InputPrice} from "./style";
@@ -13,6 +14,7 @@ export default function HairdConfig(){
   const [closingTime, setClosingTime] = useState(new Date());
   const [isOpenClocVisible, setIsOpenClockVisible] = useState(false);
   const [isCloseClocVisible, setIsCloseClockVisible] = useState(false);
+
 
   const showOpeningClockDatePicker = () => {
     setIsOpenClockVisible(!isOpenClocVisible);
@@ -105,16 +107,16 @@ export default function HairdConfig(){
 
       <InfoUserForms>
 
-        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Nome do cabeleireiro</Text>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Nome do cabeleireiro</Text>
         <InputText font="Poppins-Bold"/>
 
-        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Endereço do salão</Text>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Endereço do salão</Text>
         <InputText font="Poppins-Bold"/>
 
-        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Email</Text>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Email</Text>
         <InputText font="Poppins-Bold"/>
 
-        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Senha</Text>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Senha</Text>
         <InputText font="Poppins-Bold"/>
 
       </InfoUserForms>
@@ -145,14 +147,16 @@ export default function HairdConfig(){
       </Prices>
 
       <WorkingDays>
-        <DaysWeek/>
+        <Text size={15} font={'Poppins'} weight={'Bold'} color={'white'} >Dias que o salão funciona:</Text>
+        <DaysOfWorking
+        />
       </WorkingDays>
 
       <Button
         name="Salvar"
-        size={22}
+        size={40}
+        letterCollor={'#F6C33E'}
       />
-
 
     </ImageBackground>
   );

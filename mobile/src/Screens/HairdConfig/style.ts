@@ -2,7 +2,8 @@ import styled from 'styled-components/native';
 
 export const ProfileAndHour = styled.View`
 flex-direction: row;
-height: 250px;
+margin-bottom: 20px;
+/* flex: 1; */
 `;
 
 export const ProfileImage = styled.View`
@@ -77,13 +78,15 @@ export const InputPrice = styled.TextInput`
   background-color: white;
   width: 60px;
   height: 35px;
+  text-align: center;
   font-size: 25px;
   border-radius: 3px;
-  padding-left: 10px;
   margin-left: 10px;
 `;
 
 export const WorkingDays = styled.View`
+margin-top: 20px;
+margin-bottom: 10px;
 `;
 
 
