@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Image, ImageBackground } from "react-native"
+import { Image, ImageBackground, TextInput } from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../components/Button";
+import { DaysWeek } from "../../components/DaysOfWeek/style";
 import InputText from "../../components/InputText";
 import { Text } from "../../utils/Text";
-import { ProfileAndHour, InfoUserForms, Prices, WorkingDays, ProfileImage, WorkingHours, PickHour, HourInput, MinuteInput, Schedules, OpeningHour,ClosingdHour} from "./style";
+import { ProfileAndHour, InfoUserForms, Prices, WorkingDays, ProfileImage, WorkingHours, PickHour, HourInput, MinuteInput, Schedules, OpeningHour,ClosingdHour, HairCutInfo, BeardInfo, HairPrice, BeardPrice, InputPrice} from "./style";
 
 
 export default function HairdConfig(){
@@ -47,8 +48,13 @@ export default function HairdConfig(){
           </ProfileImage>
 
           <WorkingHours>
-            <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center', paddingLeft:15}}>Horários do salão</Text>
-            <Schedules >
+
+            <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center', paddingLeft:15}}>
+              Horários do salão
+            </Text>
+
+            <Schedules>
+
               <DateTimePicker
                 mode="time"
                 isVisible={isOpenClocVisible}
@@ -77,7 +83,9 @@ export default function HairdConfig(){
               </OpeningHour>
 
               <ClosingdHour>
+
                 <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'}style={{textAlign:'center'}} >Fecha</Text>
+
                 <PickHour onPress={showClosingClockDatePicker}>
                   <HourInput>
                     <Text size={20} font={'Poppins'} weight={'Bold'} color={'black'}>{closingTime.getHours().toLocaleString().padStart(2, '0')}</Text>
@@ -87,22 +95,57 @@ export default function HairdConfig(){
                     <Text size={20} font={'Poppins'} weight={'Bold'} color={'black'}>{closingTime.getMinutes().toLocaleString().padStart(2, '0')}</Text>
                   </MinuteInput>
                 </PickHour>
+
               </ClosingdHour>
+
             </Schedules>
           </WorkingHours>
       </ProfileAndHour>
 
+
       <InfoUserForms>
-        <InputText
-        />
+
+        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Nome do cabeleireiro</Text>
+        <InputText font="Poppins-Bold"/>
+
+        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Endereço do salão</Text>
+        <InputText font="Poppins-Bold"/>
+
+        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Email</Text>
+        <InputText font="Poppins-Bold"/>
+
+        <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Senha</Text>
+        <InputText font="Poppins-Bold"/>
+
       </InfoUserForms>
 
       <Prices>
+        <HairCutInfo>
+          <Text size={15} font={'Poppins'} weight={'Bold'} color={'white'} style={{textAlign:'center'}}>Valor do corte: </Text>
+          <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'} style={{textAlign:'center'}}>R$</Text>
+          <HairPrice>
+            <InputPrice
+              keyboardType="numeric"
+              placeholder="20"
+            />
+          </HairPrice>
+        </HairCutInfo>
 
+        <BeardInfo>
+          <Text size={15} font={'Poppins'} weight={'Bold'} color={'white'} style={{textAlign:'center'}}>Valor da barba: </Text>
+          <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'} style={{textAlign:'center'}}>R$</Text>
+          <BeardPrice>
+            <InputPrice
+              keyboardType="numeric"
+              placeholder="20"
+              style={{marginLeft:2}}
+            />
+          </BeardPrice>
+        </BeardInfo>
       </Prices>
 
       <WorkingDays>
-
+        <DaysWeek/>
       </WorkingDays>
 
       <Button

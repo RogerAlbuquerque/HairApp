@@ -27,7 +27,6 @@ margin: 0px 35px 0px 10px;
 `;
 
 export const ClosingdHour = styled.TouchableOpacity`
-
 `;
 
 
@@ -54,6 +53,34 @@ export const InfoUserForms = styled.View`
 `;
 
 export const Prices = styled.View`
+
+`;
+
+export const HairCutInfo = styled.View`
+align-items:center;
+flex-direction: row;
+margin-bottom: 10px;
+`;
+export const HairPrice = styled.View`
+`;
+
+
+export const BeardInfo = styled.View`
+align-items:center;
+flex-direction:row;
+`;
+export const BeardPrice = styled.View`
+
+`;
+
+export const InputPrice = styled.TextInput`
+  background-color: white;
+  width: 60px;
+  height: 35px;
+  font-size: 25px;
+  border-radius: 3px;
+  padding-left: 10px;
+  margin-left: 10px;
 `;
 
 export const WorkingDays = styled.View`
