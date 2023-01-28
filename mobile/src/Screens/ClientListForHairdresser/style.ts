@@ -4,7 +4,7 @@ export const Header = styled.View`
 
 `;
 
-export const ButtonsForTypeClients = styled.TouchableOpacity`
+export const ButtonsForTypeClients = styled.View`
 flex-direction: row;
 justify-content: space-between;
 `;
