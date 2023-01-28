@@ -57,12 +57,14 @@ export default function ClientConfig(){
           <UserInfo>
            <Text size={20} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Alterar senha:</Text>
            <InputText
+            isPassword={true}
            />
           </UserInfo>
 
           <UserInfo>
            <Text size={20} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Confirmar nova senha:</Text>
            <InputText
+            isPassword={true}
            />
           </UserInfo>
 
