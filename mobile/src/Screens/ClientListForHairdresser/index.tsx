@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import Button from '../../components/Button';
+import ClientCardForHaders from '../../components/ClientCardForHaders';
 import HairdCard from '../../components/HairdCard';
 import HeaderComponent from '../../components/HeaderComponent';
 import {Header, ButtonsForTypeClients, LineContainer, Line, ClientList} from './style';
@@ -56,12 +57,12 @@ export default function ClientListForHairdresser(){
       </LineContainer>
 
       <ClientList>
-        <HairdCard status='CONFIRMED'/>
-        <HairdCard/>
-        <HairdCard/>
-        <HairdCard status='PENDING' />
-        <HairdCard/>
-        <HairdCard/>
+        <ClientCardForHaders status='CONFIRMED'/>
+        <ClientCardForHaders status='PENDING'/>
+        <ClientCardForHaders status='PENDING'/>
+        <ClientCardForHaders status='PENDING' />
+        <ClientCardForHaders status='CONFIRMED'/>
+        <ClientCardForHaders status='CONFIRMED'/>
       </ClientList>
     </ImageBackground>
   );
