@@ -38,12 +38,12 @@ useEffect(()=>{
 
         {status == 'PENDING' &&
           <ApproveButton >
-            <Image source={require('../../assets/imgs/acceptIcon.png')} style={{width:20, height:25}}/>
+            <Image source={require('../../../assets/imgs/acceptIcon.png')} style={{width:20, height:25}}/>
           </ApproveButton>
         }
       <HairdImage>
         <ProfileImage style={{justifyContent:'center'}} >
-          <Image source={require('../../assets/imgs/defaultImage.png')} style={{width:70, height:80}}/>
+          <Image source={require('../../../assets/imgs/defaultImage.png')} style={{width:70, height:80}}/>
         </ProfileImage>
       </HairdImage>
 

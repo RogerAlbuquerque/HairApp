@@ -4,6 +4,8 @@ import { Image, ImageBackground } from "react-native";
 import Button from "../../components/UtilsComponents/Button";
 import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
 import { Text } from "../../utils/Text";
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../utils/routeProps';
 import {
   Header,
   HairdInfo,
@@ -21,7 +23,7 @@ import DaysOfWeek from '../../components/ClientComponents/DaysOfWeek';
 
 export default function SchedClient(){
 
-
+  const navigation = useNavigation<propsStack>();
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
 
@@ -49,7 +51,9 @@ export default function SchedClient(){
 
       <Container>
         <Header>
-          <HeaderComponent />
+          <HeaderComponent
+             onPressFunctionNavigate={ ()=>navigation.navigate('ClientConfig')}
+          />
         </Header>
 
         <HairdInfo>

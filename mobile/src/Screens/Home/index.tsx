@@ -4,13 +4,18 @@ import HairdCard from "../../components/HairdComponents/HairdCard";
 import HeaderComponent from '../../components/UtilsComponents/HeaderComponent'
 import InputText from "../../components/UtilsComponents/InputText";
 import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../utils/routeProps';
 
 export default function Home(){
+  const navigation = useNavigation<propsStack>();
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
       <Header>
-        <HeaderComponent />
+        <HeaderComponent
+          onPressFunctionNavigate={ ()=>navigation.navigate('ClientConfig')}
+        />
       </Header>
       <SearcHairdInput>
         <InputText

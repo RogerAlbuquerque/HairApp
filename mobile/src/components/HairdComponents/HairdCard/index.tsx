@@ -34,7 +34,7 @@ useEffect(()=>{
         </CloseButton>
       <HairdImage>
         <ProfileImage style={{justifyContent:'center'}} >
-          <Image source={require('../../assets/imgs/defaultImage.png')} style={{width:70, height:80}}/>
+          <Image source={require('../../../assets/imgs/defaultImage.png')} style={{width:70, height:80}}/>
         </ProfileImage>
       </HairdImage>
 

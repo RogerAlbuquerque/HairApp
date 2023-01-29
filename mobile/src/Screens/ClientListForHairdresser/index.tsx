@@ -5,8 +5,12 @@ import CancelClientModal from '../../components/HairdComponents/CancelClientModa
 import ClientCardForHaders from '../../components/HairdComponents/ClientCardForHaders';
 import HeaderComponent from '../../components/UtilsComponents/HeaderComponent';
 import {Header, ButtonsForTypeClients, LineContainer, Line, ClientList} from './style';
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../utils/routeProps';
+
 
 export default function ClientListForHairdresser(){
+  const navigation = useNavigation<propsStack>();
   const [buttonPendingClient,setButtonPendingClient] = useState(true);
   const [buttonConfirmedClient,setButtonConfirmedClient] = useState(true);
 
@@ -38,7 +42,9 @@ export default function ClientListForHairdresser(){
       />
 
       <Header>
-        <HeaderComponent />
+        <HeaderComponent
+          onPressFunctionNavigate={ ()=>navigation.navigate('HairdConfig')}
+        />
       </Header>
 
       <ButtonsForTypeClients style={{justifyContent:'space-between'}}>

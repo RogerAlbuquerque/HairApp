@@ -40,13 +40,13 @@ export default function HairdRegister(){
 
 
   return(
-    <ImageBackground source={require('../../assets/imgs/bkg.jpg')}
+    <ImageBackground source={require('../../../../assets/imgs/bkg.jpg')}
     style={{flex: 1, paddingHorizontal:20, paddingVertical:20}} resizeMode="cover">
 
       <ProfileAndHour>
 
           <ProfileImage>
-            <Image source={require('../../assets/imgs/defaultImage.png')} style={{width:150, height:160}}/>
+            <Image source={require('../../../../assets/imgs/defaultImage.png')} style={{width:150, height:160}}/>
           </ProfileImage>
 
           <WorkingHours>
