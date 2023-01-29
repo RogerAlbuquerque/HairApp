@@ -14,6 +14,7 @@ export type propsNavigationStack = {
   HairdConfig:undefined
   ClientConfig:undefined
   HairdRegister:undefined
+  CreditCardRegister:undefined
 
 }
 

@@ -8,3 +8,11 @@ export const HairdDataForm = styled.View`
 
 export const BuyResume = styled.View`
 `;
+
+export const UserInfo = styled.View`
+`;
+
+export const ValidateNCvv = styled.View`
+flex-direction: row;
+justify-content: space-between;
+`;

@@ -12,13 +12,14 @@ import ClientListForHairdresser from '../Screens/ClientListForHairdresser';
 import HairdConfig from '../Screens/HairdConfig';
 import ClientConfig from '../Screens/ClientConfig';
 import HairdRegister from '../Screens/Auth/RegisterHairdresser/HairdRegister';
+import CreditCardRegister from '../Screens/Auth/RegisterHairdresser/CreditCardRegister';
 
 const Stack = createNativeStackNavigator<propsNavigationStack>();
 
 
 export default function Routes(){
   return(
-    <Stack.Navigator initialRouteName='ListOfClients'>
+    <Stack.Navigator initialRouteName='CreditCardRegister'>
       <Stack.Screen
         name="SignIn"
         component={SignIn}
@@ -51,6 +52,11 @@ export default function Routes(){
       />
 
       <Stack.Screen
+        name="CreditCardRegister"
+        component={CreditCardRegister}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="Home"
         component={Home}
         options={{headerShown: false}}
@@ -79,6 +85,7 @@ export default function Routes(){
         component={ClientConfig}
         options={{headerShown: false}}
       />
+
 
 
 

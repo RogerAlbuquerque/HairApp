@@ -4,7 +4,7 @@ import { Text } from '../../../utils/Text';
 import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
 interface HeaderComponentProps{
-  onPressFunctionNavigate:()=>void
+  onPressFunctionNavigate?:()=>void
 }
 
 export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponentProps){

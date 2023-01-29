@@ -7,12 +7,13 @@ interface inputProps {
   font?:string
   width?:number | string,
   height?:number | string,
-  isPassword?:boolean
+  isPassword?:boolean;
+  isNumeric?:boolean;
   onChange?:()=> void;
 
 }
 
-export default function InputText({placeholder,value,onChange,isPassword,font, fontSize, width, height}: inputProps){
+export default function InputText({placeholder,value,onChange,isPassword,isNumeric,font, fontSize, width, height}: inputProps){
   return(
     <InputStyle
       placeholder={placeholder}
@@ -20,6 +21,7 @@ export default function InputText({placeholder,value,onChange,isPassword,font, f
       maxLength={60}
       autoCorrect={false}
       secureTextEntry={isPassword ? isPassword : false}
+      keyboardType={isNumeric ? 'numeric' : 'default'}
       onChangeText={onChange}
       style={{fontFamily:font, fontSize:fontSize, width:width, height:height}}
 
