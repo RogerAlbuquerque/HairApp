@@ -1,4 +1,4 @@
-import { Text } from "../../utils/Text";
+import { Text } from "../../../utils/Text";
 import { ButtonRegister } from "./style";
 
 interface buttonProps{

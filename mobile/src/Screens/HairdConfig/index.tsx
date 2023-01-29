@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Image, ImageBackground, TextInput } from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../components/UtilsComponents/Button";
-import { DaysWeek } from "../../components/ClientComponents/DaysOfWeek/style";
 import DaysOfWorking from "../../components/HairdComponents/DaysOfworking";
 import InputText from "../../components/UtilsComponents/InputText";
 import { Text } from "../../utils/Text";

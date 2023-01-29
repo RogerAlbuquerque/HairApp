@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text } from "../../utils/Text";
+import { Text } from "../../../utils/Text";
 import { Day, DaysWeek } from "./style";
 
 interface DaysOfWeekProps{

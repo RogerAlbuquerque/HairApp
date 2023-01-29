@@ -1,6 +1,4 @@
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import { useState } from 'react';
-import { Image, ImageBackground, View } from "react-native";
+import { Image, ImageBackground } from "react-native";
 import Button from "../../components/UtilsComponents/Button";
 import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
 import { Text } from "../../utils/Text";
@@ -9,7 +7,6 @@ import {
   ProfileImage,
   ClientInfo,
   ClientData,
-  Container,
   InfoUserForms,
   UserInfo
 } from "./style";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Image } from "react-native";
-import { Text } from "../../utils/Text";
+import { Text } from "../../../utils/Text";
 
 import { Container, HairdImage, HairdName, Info, ProfileImage,CancelButton, ApproveButton, InfosText } from "./style";
 

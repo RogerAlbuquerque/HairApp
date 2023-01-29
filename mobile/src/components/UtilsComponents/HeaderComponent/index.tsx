@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
-import { Text } from '../../utils/Text';
+import { Text } from '../../../utils/Text';
 import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
 export default function HeaderComponent(){

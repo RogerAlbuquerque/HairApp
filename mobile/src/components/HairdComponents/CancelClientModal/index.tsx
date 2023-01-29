@@ -1,8 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
 import { Modal } from "react-native";
-import { propsStack } from "../../utils/routeProps";
-import { Text } from "../../utils/Text";
-import Button from "../Button";
+import { Text } from "../../../utils/Text";
+import Button from "../../UtilsComponents/Button";
 import { Buttons, CloseButton, Header, ModalBody, Overlay } from "./style";
 
 interface modalProps{
@@ -11,13 +9,10 @@ interface modalProps{
 }
 export default function CancelClientModal({isModalVisible, setModalValue}:modalProps){
 
-  // function navigationTo(where:string){
-  //   navigation.navigate('SignIn')
-  // }
+
   return(
     <Modal transparent animationType='fade' visible={isModalVisible}>
       <Overlay>
-
         <ModalBody >
           <CloseButton onPress={setModalValue}>
             <Text size={25} font={'Poppins'} weight={'Bold'} color={'red'}>X</Text>
@@ -39,7 +34,6 @@ export default function CancelClientModal({isModalVisible, setModalValue}:modalP
               size={15}
               // onPress={}
             />
-
           </Buttons>
         </ModalBody>
       </Overlay>
