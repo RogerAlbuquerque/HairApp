@@ -13,6 +13,7 @@ export type propsNavigationStack = {
   ListOfClients:undefined;
   HairdConfig:undefined
   ClientConfig:undefined
+  HairdRegister:undefined
 
 }
 

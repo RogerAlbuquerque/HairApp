@@ -11,6 +11,7 @@ import { propsNavigationStack } from '../utils/routeProps';
 import ClientListForHairdresser from '../Screens/ClientListForHairdresser';
 import HairdConfig from '../Screens/HairdConfig';
 import ClientConfig from '../Screens/ClientConfig';
+import HairdRegister from '../Screens/Auth/RegisterHairdresser/HairdRegister';
 
 const Stack = createNativeStackNavigator<propsNavigationStack>();
 
@@ -39,6 +40,13 @@ export default function Routes(){
       <Stack.Screen
         name="RegisterClient"
         component={RegisterClient}
+        options={{headerShown: false}}
+      />
+
+
+      <Stack.Screen
+        name="HairdRegister"
+        component={HairdRegister}
         options={{headerShown: false}}
       />
 
