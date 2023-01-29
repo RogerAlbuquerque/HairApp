@@ -6,9 +6,10 @@ import { Container, HairdImage, HairdName, Info, ProfileImage,CancelButton, Appr
 
 interface HairdCardProps{
   status?:'PENDING' | 'CONFIRMED'
+  onPressCancelButton?:()=>void;
 }
 
-export default function ClientCardForHaders({status}:HairdCardProps){
+export default function ClientCardForHaders({status, onPressCancelButton}:HairdCardProps){
 
   const [colorCard, setColorCard] = useState ('');
   const [lineOfColorCard, setLineOfColorCard] = useState ('');
@@ -30,8 +31,9 @@ useEffect(()=>{
 
   return(
     <Container style={{backgroundColor:colorCard}}>
-       <CancelButton >
-          <Text size={20} font={'Imbue'} weight={'Regular'} color={'red'}>X</Text>
+
+       <CancelButton onPress={onPressCancelButton}>
+          <Text size={20} font={'Poppins'} weight={'Bold'} color={'red'}>X</Text>
         </CancelButton>
 
         {status == 'PENDING' &&

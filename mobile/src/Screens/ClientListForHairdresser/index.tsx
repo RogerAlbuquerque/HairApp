@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import Button from '../../components/Button';
+import CancelClientModal from '../../components/CancelClientModal';
 import ClientCardForHaders from '../../components/ClientCardForHaders';
-import HairdCard from '../../components/HairdCard';
 import HeaderComponent from '../../components/HeaderComponent';
 import {Header, ButtonsForTypeClients, LineContainer, Line, ClientList} from './style';
 
@@ -10,7 +10,9 @@ export default function ClientListForHairdresser(){
   const [buttonPendingClient,setButtonPendingClient] = useState(true);
   const [buttonConfirmedClient,setButtonConfirmedClient] = useState(true);
 
-  function handleButtons(whichButton:string){
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  function handleButtonsStatusClients(whichButton:string){
     if(whichButton == 'PENDINGBUTTON'){
       buttonConfirmedClient && setButtonConfirmedClient(false);
       setButtonPendingClient(!buttonPendingClient)
@@ -22,9 +24,18 @@ export default function ClientListForHairdresser(){
     }
   }
 
+  function showModalToConfirmCancelClient(){
+    setIsModalVisible(!isModalVisible);
+  }
+
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
+
+      <CancelClientModal
+        isModalVisible={isModalVisible}
+        setModalValue={showModalToConfirmCancelClient}
+      />
 
       <Header>
         <HeaderComponent />
@@ -38,7 +49,7 @@ export default function ClientListForHairdresser(){
             width={160}
             height={40}
             notActivate={buttonPendingClient}
-            onPress={() => handleButtons('PENDINGBUTTON')}
+            onPress={() => handleButtonsStatusClients('PENDINGBUTTON')}
           />
 
           <Button
@@ -48,7 +59,7 @@ export default function ClientListForHairdresser(){
           width={160}
           height={40}
           notActivate={buttonConfirmedClient}
-          onPress={() => handleButtons('CONFIRMEDBUTTON')}
+          onPress={() => handleButtonsStatusClients('CONFIRMEDBUTTON')}
         />
         </ButtonsForTypeClients>
 
@@ -57,12 +68,12 @@ export default function ClientListForHairdresser(){
       </LineContainer>
 
       <ClientList>
-        <ClientCardForHaders status='CONFIRMED'/>
-        <ClientCardForHaders status='PENDING'/>
-        <ClientCardForHaders status='PENDING'/>
-        <ClientCardForHaders status='PENDING' />
-        <ClientCardForHaders status='CONFIRMED'/>
-        <ClientCardForHaders status='CONFIRMED'/>
+        <ClientCardForHaders status='CONFIRMED'onPressCancelButton={showModalToConfirmCancelClient}/>
+        <ClientCardForHaders status='PENDING'onPressCancelButton={showModalToConfirmCancelClient}/>
+        <ClientCardForHaders status='PENDING'onPressCancelButton={showModalToConfirmCancelClient}/>
+        <ClientCardForHaders status='PENDING' onPressCancelButton={showModalToConfirmCancelClient}/>
+        <ClientCardForHaders status='CONFIRMED'onPressCancelButton={showModalToConfirmCancelClient}/>
+        <ClientCardForHaders status='CONFIRMED'onPressCancelButton={showModalToConfirmCancelClient}/>
       </ClientList>
     </ImageBackground>
   );
