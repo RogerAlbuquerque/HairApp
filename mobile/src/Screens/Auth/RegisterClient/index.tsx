@@ -3,7 +3,7 @@ import { ImageBackground, KeyboardAvoidingView, StyleSheet, View} from 'react-na
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
 import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
-import InputText from '../../../components/InputText';
+import InputText from '../../../components/UtilsComponents/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 

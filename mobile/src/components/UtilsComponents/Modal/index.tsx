@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Modal } from "react-native";
-import { propsStack } from "../../utils/routeProps";
-import { Text } from "../../utils/Text";
+import { propsStack } from "../../../utils/routeProps";
+import { Text } from "../../../utils/Text";
 import Button from "../Button";
 import { Buttons, CloseButton, Header, ModalBody, Overlay } from "./style";
 
@@ -12,9 +12,6 @@ interface modalProps{
 export default function AuthModal({isModalVisible, setModalValue}:modalProps){
   const navigation = useNavigation<propsStack>();
 
-  // function navigationTo(where:string){
-  //   navigation.navigate('SignIn')
-  // }
   return(
     <Modal transparent animationType='fade' visible={isModalVisible}>
       <Overlay>
@@ -36,7 +33,6 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
               size={15}
               onPress={()=>navigation.navigate('RegisterClient')}
             />
-
             <Button
               name={'Como cabeleireiro'}
               backColor='#C10000'
@@ -44,12 +40,10 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
               padding={20}
               size={15}
               onPress={()=>navigation.navigate('SignIn')}
-
             />
           </Buttons>
         </ModalBody>
       </Overlay>
-
     </Modal>
   )
 }

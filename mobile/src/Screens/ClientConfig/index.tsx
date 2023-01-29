@@ -1,8 +1,8 @@
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
 import { Image, ImageBackground, View } from "react-native";
-import Button from "../../components/Button";
-import HeaderComponent from "../../components/HeaderComponent";
+import Button from "../../components/UtilsComponents/Button";
+import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
 import { Text } from "../../utils/Text";
 import {
   Header,
@@ -13,7 +13,7 @@ import {
   InfoUserForms,
   UserInfo
 } from "./style";
-import InputText from '../../components/InputText';
+import InputText from '../../components/UtilsComponents/InputText';
 
 export default function ClientConfig(){
 

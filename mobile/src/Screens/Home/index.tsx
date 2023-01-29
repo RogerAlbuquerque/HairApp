@@ -1,8 +1,8 @@
 import { ImageBackground } from "react-native";
-import Button from "../../components/Button";
-import HairdCard from "../../components/HairdCard";
-import HeaderComponent from '../../components/HeaderComponent'
-import InputText from "../../components/InputText";
+import Button from "../../components/UtilsComponents/Button";
+import HairdCard from "../../components/HairdComponents/HairdCard";
+import HeaderComponent from '../../components/UtilsComponents/HeaderComponent'
+import InputText from "../../components/UtilsComponents/InputText";
 import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
 
 export default function Home(){

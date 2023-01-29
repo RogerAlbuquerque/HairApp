@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { ImageBackground } from 'react-native';
-import Button from '../../components/Button';
-import CancelClientModal from '../../components/CancelClientModal';
-import ClientCardForHaders from '../../components/ClientCardForHaders';
-import HeaderComponent from '../../components/HeaderComponent';
+import Button from '../../components/UtilsComponents/Button';
+import CancelClientModal from '../../components/HairdComponents/CancelClientModal';
+import ClientCardForHaders from '../../components/HairdComponents/ClientCardForHaders';
+import HeaderComponent from '../../components/UtilsComponents/HeaderComponent';
 import {Header, ButtonsForTypeClients, LineContainer, Line, ClientList} from './style';
 
 export default function ClientListForHairdresser(){

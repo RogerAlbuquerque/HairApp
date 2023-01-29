@@ -3,10 +3,10 @@ import { ImageBackground, StyleSheet} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
 import { AccessButton, Button, Check, Container, ContainerForm, ContainerLogo,  Create,  CreateAccount,  Footer,  ForgotDad, ForgotPassword} from './style';
-import InputText from '../../../components/InputText';
+import InputText from '../../../components/UtilsComponents/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
-import ToRegisterModal from '../../../components/Modal';
+import ToRegisterModal from '../../../components/UtilsComponents/Modal';
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from '../../../utils/routeProps';
 
@@ -27,8 +27,6 @@ export default function SignIn(){
         isModalVisible={isModalVisible}
         setModalValue={setModalValue}
       />
-
-
 
           <ContainerLogo>
             <Animatable.Image

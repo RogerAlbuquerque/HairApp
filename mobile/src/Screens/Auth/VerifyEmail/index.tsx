@@ -3,7 +3,7 @@ import { ImageBackground} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
 import { Button, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad} from './style';
-import InputText from '../../../components/InputText';
+import InputText from '../../../components/UtilsComponents/InputText';
 import * as Animatable from 'react-native-animatable';
 
 export default function VerifyEmail(){
