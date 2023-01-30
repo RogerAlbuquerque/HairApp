@@ -35,17 +35,16 @@ export async function createHairdresser(req: Request, res:Response){
     if(clientExist || hairdExist || !hairdresserData.hairdName || !hairdresserData.hairdPassword){
       res.status(500).json({error:'user or email is already in use'});
     }else{
-      // bcrypt.genSalt(10, (error, salt) => {
-      //   bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
+      bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
 
-      //     hairdresserData.hairdPassword = hash;
-      //     hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
+          hairdresserData.hairdPassword = hash;
+          hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
 
-      //     const hairdresser = await Hairdresser.create(hairdresserData);
-      //     res.status(201).json(hairdresser);
-      //   });
-      // });
-      console.log(hairdExist);
+          const hairdresser = await Hairdresser.create(hairdresserData);
+          res.status(201).json(hairdresser);
+        });
+      });
     }
 
   }catch(error){
