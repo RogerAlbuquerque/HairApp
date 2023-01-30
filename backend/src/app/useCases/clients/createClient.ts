@@ -17,20 +17,28 @@ export async function createClient(req: Request, res:Response){
 
 
   try{
-    if(hairdExist || clientExist || !clientData.clientName || clientData.clientPassword){
+    if(hairdExist || clientExist){
       res.status(500).json({error:'user or email is already in use'});
+    }else if((clientData.clientName == '') || (clientData.clientPassword == '')){
+      res.status(500).json({error:'Error: user or password is empty'});
     }else{
-      bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(clientData.clientPassword, salt, async (error, hash) => {
+      try{
+        bcrypt.genSalt(10, (error, salt) => {
+          bcrypt.hash(clientData.clientPassword, salt, async (error, hash) => {
 
-          clientData.clientPassword = hash;
-          clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
+            clientData.clientPassword = hash;
+            clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
 
-          const client = await Client.create(clientData);
+            const client = await Client.create(clientData);
 
-          res.status(201).json(client);
+            res.status(201).json(client);
+          });
         });
-      });
+      }catch(error){
+        console.log(error);
+        res.status(201).json({error:'Internal Server Error!'});
+      }
+
     }
 
   }catch(error){

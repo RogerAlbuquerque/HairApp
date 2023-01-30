@@ -32,19 +32,26 @@ export async function createHairdresser(req: Request, res:Response){
 
 
   try{
-    if(clientExist || hairdExist || !hairdresserData.hairdName || !hairdresserData.hairdPassword){
+    if(clientExist || hairdExist ){
       res.status(500).json({error:'user or email is already in use'});
+    }else if((hairdresserData.hairdName == '') || (hairdresserData.hairdPassword == '')){
+      res.status(500).json({error:'Error: user or password is empty'});
     }else{
-      bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
+      try{
+        bcrypt.genSalt(10, (error, salt) => {
+          bcrypt.hash(hairdresserData.hairdPassword, salt, async (error, hash) => {
 
-          hairdresserData.hairdPassword = hash;
-          hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
+            hairdresserData.hairdPassword = hash;
+            hairdresserData.hairdName = hairdresserData.hairdName.replace(/\s+/g, '-');
 
-          const hairdresser = await Hairdresser.create(hairdresserData);
-          res.status(201).json(hairdresser);
+            const hairdresser = await Hairdresser.create(hairdresserData);
+            res.status(201).json(hairdresser);
+          });
         });
-      });
+      }catch(error){
+        console.log(error);
+        res.status(201).json({error:'Internal Server Error!'});
+      }
     }
 
   }catch(error){
