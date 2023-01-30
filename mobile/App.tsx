@@ -15,13 +15,15 @@ export default function App() {
 
   if (!isFontLoaded){
     return null;
-  }
+  }else{
   return (
 
     <NavigationContainer>
       <StatusBar backgroundColor="#000" barStyle="light-content"/>
       <Routes/>
     </NavigationContainer>
+
   );
+}
 }
 

@@ -9,7 +9,7 @@ interface inputProps {
   height?:number | string,
   isPassword?:boolean;
   isNumeric?:boolean;
-  onChange?:()=> void;
+  onChange?:(e:string)=> void;
 
 }
 

@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator<propsNavigationStack>();
 
 export default function Routes(){
   return(
-    <Stack.Navigator initialRouteName='CreditCardRegister'>
+    <Stack.Navigator initialRouteName='SignIn'>
       <Stack.Screen
         name="SignIn"
         component={SignIn}

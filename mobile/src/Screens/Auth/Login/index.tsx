@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet} from 'react-native';
+import { Image, ImageBackground, StyleSheet} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { AccessButton, Button, Check, Container, ContainerForm, ContainerLogo,  Create,  CreateAccount,  Footer,  ForgotDad, ForgotPassword} from './style';
+import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  CreateAccount,  Footer,  ForgotDad, ForgotPassword, UserInfo} from './style';
 import InputText from '../../../components/UtilsComponents/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
@@ -11,6 +11,10 @@ import { useNavigation } from "@react-navigation/native";
 import { propsStack } from '../../../utils/routeProps';
 
 export default function SignIn(){
+  const [emailInput,setEmailInput]=useState('');
+  const [passwordInput,setPasswordInput]=useState('');
+
+
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const navigation = useNavigation<propsStack>();
@@ -18,35 +22,34 @@ export default function SignIn(){
   function setModalValue(){
     setIsModalVisible(!isModalVisible);
   }
+
+  function loginUser(){
+    console.log(emailInput)
+    console.log(passwordInput)
+  }
   return (
     <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
-      style={{flex: 1}} resizeMode="cover">
-
-    <Container>
+      style={{flex: 1}}>
+    <Container behavior='position'>
       <ToRegisterModal
         isModalVisible={isModalVisible}
         setModalValue={setModalValue}
       />
 
           <ContainerLogo>
-            <Animatable.Image
-              animation="flipInY"
-              source={require('../../../assets/imgs/logoo.png')}
-              style={{width: '90%'}}
-              resizeMode="contain"
 
-            />
+            <Image source={require('../../../assets/imgs/logoo.png')} style={{width:340, height:380}}/>
           </ContainerLogo>
 
 
         <ContainerForm>
-           <InputText
+          <UserInfo>
+            <InputText
               placeholder='Usuario/Email'
               font='Imbue-Medium'
               fontSize={28}
               width={'80%'}
-              height= {'10%'}
-              // onChangeText={() => {}}
+              onChange={(value) => setEmailInput(value)}
             />
               <InputText
               placeholder='Senha'
@@ -54,43 +57,42 @@ export default function SignIn(){
               fontSize={28}
               isPassword={true}
               width={'80%'}
-              height= {'10%'}
-              // onChangeText={() => {}}
+              onChange={(value) => setPasswordInput(value)}
             />
+          </UserInfo>
 
-            <ForgotDad>
-              <Check>
-                <Checkbox
-                  style={styles.checkbox}
-                  value={isChecked}
-                  onValueChange={setChecked}
-                  color={isChecked ? '#004bec' : undefined}
-                />
-                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
+          <ForgotDad>
+            <Check>
+              <Checkbox
+                style={styles.checkbox}
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? '#004bec' : undefined}
+              />
+              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
 
-              </Check>
-              <ForgotPassword onPress={()=>navigation.navigate('VerifyEmail')}>
-                <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
-              </ForgotPassword>
-            </ForgotDad>
-
-
-            <Footer>
-               <AccessButton>
-                <Button>
-                  <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
-                </Button>
-               </AccessButton>
-               <CreateAccount>
-                <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
-                    Não tem conta?
-                  </Text>
-                  <Create onPress={()=> setModalValue()}>
-                      <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
-                  </Create>
-               </CreateAccount>
-            </Footer>
+            </Check>
+            <ForgotPassword onPress={()=>navigation.navigate('VerifyEmail')}>
+              <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
+            </ForgotPassword>
+          </ForgotDad>
         </ContainerForm>
+
+        <Footer>
+
+            <Button onPress={loginUser}>
+              <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
+            </Button>
+
+          <CreateAccount>
+          <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
+              Não tem conta?
+            </Text>
+            <Create onPress={()=> setModalValue()}>
+                <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
+            </Create>
+          </CreateAccount>
+        </Footer>
 
 
 

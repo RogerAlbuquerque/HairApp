@@ -1,59 +1,53 @@
 import  styled  from 'styled-components/native';
 
-export const Container = styled.ScrollView `
-  /* flex: 1; */
+export const Container = styled.KeyboardAvoidingView `
+  flex: 1;
 `;
 
-
-export const ContainerLogo = styled.View `
-  align-items: center;
-  height: 60%;
-`;
-
-
-export const ContainerForm = styled.View`
+export const UserInfo = styled.View `
     justify-content: center;
     align-items: center;
 `;
 
 
+
+export const ContainerLogo = styled.View `
+  align-items: center;
+  padding: 40px 0px;
+  margin-bottom: 50px;
+`;
+
+
+export const ContainerForm = styled.View`
+margin-bottom: 20px;
+`;
+
+
 export const Check = styled.View`
   flex-direction: row;
-  width: 140px;
-  height: 22px;
-  margin-left:42px;
 `;
 
 export const ForgotPassword = styled.TouchableOpacity`
- width: 150px;
- height: 22px;
 
 `;
 
 export const ForgotDad = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  padding: 0px 40px;
 `;
 
 
 export const Button = styled.TouchableOpacity`
-  justify-content: center;
-  align-items: center;
-  width: 140px;
-  height: 60px;
 
 `;
 
 export const Footer = styled.View`
   justify-content: center;
   align-items: center;
-margin-top: 20px;
   /* flex: 1; */
 `;
 
-export const AccessButton = styled.TouchableOpacity`
-`;
 
 export const CreateAccount = styled.TouchableOpacity`
 flex-direction: row;
