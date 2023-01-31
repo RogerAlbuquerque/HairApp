@@ -19,27 +19,37 @@ export async function login(req: Request, res:Response){
     const hairdExist = await Hairdresser.findOne( {$or:[{hairdName: user },{email:user}]});
 
     if(clientExist){
-      bcrypt.compare(pass, clientExist.clientPassword, (error, equal)=>{
-        if(equal){
-          res.status(200).json(clientExist);
-        }else if(error) {
-          console.log(error);
-        }else{
-          res.status(500).json({error:'Wrong or does not exist email/user or password'});
-        }
-      });
+      try{
+        bcrypt.compare(pass, clientExist.clientPassword, (error, equal)=>{
+          if(equal){
+            res.status(200).json(clientExist);
+          }else if(error) {
+            console.log(error);
+          }else{
+            res.status(500).json({error:'Wrong or does not exist email/user or password'});
+          }
+        });
+      }catch(error){
+        console.log(error);
+        res.status(500).json({error:'Internal Server Error!'});
+      }
 
     }else if(hairdExist){
-      bcrypt.compare(pass, hairdExist.hairdPassword, (error, equal)=>{
-        if(equal){
-          res.status(200).json(hairdExist);
-        }else if(error) {
-          console.log(error);
-        }else{
-          res.status(500).json({error:'Wrong or does not exist email/user or password'});
-        }
+      try{
+        bcrypt.compare(pass, hairdExist.hairdPassword, (error, equal)=>{
+          if(equal){
+            res.status(200).json(hairdExist);
+          }else if(error) {
+            console.log(error);
+          }else{
+            res.status(500).json({error:'Wrong or does not exist email/user or password'});
+          }
 
-      });
+        });
+      }catch(error){
+        console.log(error);
+        res.status(500).json({error:'Internal Server Error!'});
+      }
     }else  res.status(500).json({error:'Wrong or does not exist email/user or password'});
 
   }catch(error){

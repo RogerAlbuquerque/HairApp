@@ -2,13 +2,25 @@ import React, { useState } from 'react';
 import { Image, ImageBackground, StyleSheet} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo,  Create,  CreateAccount,  Footer,  ForgotDad, ForgotPassword, UserInfo} from './style';
 import InputText from '../../../components/UtilsComponents/InputText';
-import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/UtilsComponents/Modal';
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from '../../../utils/routeProps';
+import { api } from '../../../utils/api';
+import {
+  Button,
+  Check,
+  Container,
+  ContainerForm,
+  ContainerLogo,
+  Create,
+  CreateAccount,
+  Footer,
+  ForgotDad,
+  ForgotPassword,
+  UserInfo
+} from './style';
 
 export default function SignIn(){
   const [emailInput,setEmailInput]=useState('');
@@ -23,9 +35,13 @@ export default function SignIn(){
     setIsModalVisible(!isModalVisible);
   }
 
-  function loginUser(){
-    console.log(emailInput)
-    console.log(passwordInput)
+  async function loginUser(){
+    await api.get('/client')
+    .then(res =>{
+     return console.log(res)
+    })
+    .catch(error => console.log('Deu ruim ' + error))
+
   }
   return (
     <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
