@@ -35,10 +35,10 @@ export default function SignIn(){
     setIsModalVisible(!isModalVisible);
   }
 
-  async function loginUser(){
-    await api.get('/client')
-    .then(res =>{
-     return console.log(res)
+   function loginUser(){
+     api.post('/login',{user:emailInput, password:passwordInput})
+     .then(res =>{
+      console.log(res.data)
     })
     .catch(error => console.log('Deu ruim ' + error))
 

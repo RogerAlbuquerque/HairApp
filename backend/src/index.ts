@@ -22,7 +22,7 @@ mongoose.connect('mongodb://127.0.0.1:27017')
     app.use(router);
 
 
-    app.listen({port:port, host:'0.0.0.0'});
+    app.listen(port, ()=> console.log('Server is running on locahost, in port ' + port));
   })
   .catch((error) => console.log('Error to connect on mongoDB: \n ', error));
 
