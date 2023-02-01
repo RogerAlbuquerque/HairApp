@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
-import Routes from './src/routes';
+import Routes from './src/routes/app.routes';
 
 export default function App() {
 
@@ -17,12 +17,10 @@ export default function App() {
     return null;
   }else{
   return (
-
-    <NavigationContainer>
+    <>
       <StatusBar backgroundColor="#000" barStyle="light-content"/>
       <Routes/>
-    </NavigationContainer>
-
+    </>
   );
 }
 }
