@@ -34,12 +34,15 @@ router.get('/me/:id', showMe);
 
 //CLIENT
 router.get('/client', showClient);
+
 router.post('/client/create', createClient);
+
 router.put('/client/:clientName/update', updateClientInfo);
 router.put('/client/:clientId/addHairdresser', myHairdList);
 
 //HAIDRESSER
 router.post('/hairdresser/create', createHairdresser);
+
 router.put('/hairdresser/:user', updateHairdresserInfo);
 router.get('/hairdresser/all', showAllHairdresser);
 
