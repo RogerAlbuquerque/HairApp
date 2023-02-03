@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Client } from '../../models/Client';
 import { Hairdresser } from '../../models/Hairdresser';
 import bcrypt from 'bcryptjs';
-
+import jwt from 'jsonwebtoken';
 
 
 export async function login(req: Request, res:Response){
@@ -22,6 +22,11 @@ export async function login(req: Request, res:Response){
       try{
         bcrypt.compare(pass, clientExist.clientPassword, (error, equal)=>{
           if(equal){
+
+            // CRIAR TOKEN JWT
+
+
+
             res.status(200).json(clientExist);
           }else if(error) {
             console.log(error);
@@ -38,6 +43,12 @@ export async function login(req: Request, res:Response){
       try{
         bcrypt.compare(pass, hairdExist.hairdPassword, (error, equal)=>{
           if(equal){
+
+
+            // CRIAR TOKEN JWT
+
+
+
             res.status(200).json(hairdExist);
           }else if(error) {
             console.log(error);
