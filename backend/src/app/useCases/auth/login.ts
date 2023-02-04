@@ -30,7 +30,7 @@ export async function login(req: Request, res:Response){
             const secret = process.env.JWT_ACCESS;
             const token = jwt.sign(payload, secret!);
 
-            res.status(200).json(token);
+            res.status(200).json({userId: clientExist._id, token,});
           }else if(error) {
             console.log(error);
           }else{
@@ -51,9 +51,9 @@ export async function login(req: Request, res:Response){
             // CRIAR TOKEN JWT
             const payload = {userId: hairdExist._id};
             const secret = process.env.JWT_ACCESS;
-            const token = jwt.sign(payload, secret!);
+            const token = jwt.sign(payload, secret!,{expiresIn:'7 days'});
 
-            res.status(200).json(token);
+            res.status(200).json({userId:hairdExist._id, token,});
 
           }else if(error) {
             console.log(error);
