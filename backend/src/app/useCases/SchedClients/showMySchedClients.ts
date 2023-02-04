@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { SchedClient } from '../../models/SchedClient';
 
 
-export async function showMyScheduleClients(req: Request, res:Response){
+export async function showMySchedClients(req: Request, res:Response){
   const hairdresser = req.params.hairdId;
 
   try{
