@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { Client } from '../../models/Client';
 import { Hairdresser } from '../../models/Hairdresser';
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
+dotenv.config();
 import jwt from 'jsonwebtoken';
 
 
@@ -24,14 +26,15 @@ export async function login(req: Request, res:Response){
           if(equal){
 
             // CRIAR TOKEN JWT
+            const payload = {userId: clientExist._id};
+            const secret = process.env.JWT_ACCESS;
+            const token = jwt.sign(payload, secret!);
 
-
-
-            res.status(200).json(clientExist);
+            res.status(200).json(token);
           }else if(error) {
             console.log(error);
           }else{
-            res.status(500).json({error:'Wrong or does not exist email/user or password'});
+            res.status(401).json({error:'Wrong or does not exist email/user or password'});
           }
         });
       }catch(error){
@@ -46,14 +49,16 @@ export async function login(req: Request, res:Response){
 
 
             // CRIAR TOKEN JWT
+            const payload = {userId: hairdExist._id};
+            const secret = process.env.JWT_ACCESS;
+            const token = jwt.sign(payload, secret!);
 
+            res.status(200).json(token);
 
-
-            res.status(200).json(hairdExist);
           }else if(error) {
             console.log(error);
           }else{
-            res.status(500).json({error:'Wrong or does not exist email/user or password'});
+            res.status(401).json({error:'Wrong or does not exist email/user or password'});
           }
 
         });
