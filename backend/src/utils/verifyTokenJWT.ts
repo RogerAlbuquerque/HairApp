@@ -1,7 +1,11 @@
 import { Request, Response , NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
-
+interface TokenPayload{
+  userId:string;
+  iat:number;
+  exp:number;
+}
 
 export default function verifyTokenJWT(req: Request, res:Response, next:NextFunction){
   const tokenExist = req.headers.authorization;
@@ -13,7 +17,9 @@ export default function verifyTokenJWT(req: Request, res:Response, next:NextFunc
 
   try{
     const secret = process.env.JWT_ACCESS;
-    jwt.verify(token, secret!);
+    const {userId} = jwt.verify(token, secret!) as TokenPayload;
+
+    req.headers.userId = userId;
 
     next();
   }

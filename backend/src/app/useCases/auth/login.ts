@@ -31,12 +31,14 @@ export async function login(req: Request, res:Response){
             const token = jwt.sign(payload, secret!,{expiresIn:'7 days'});
 
             res.status(200).json(token);
+
           }else if(error) {
             console.log(error);
           }else{
             res.status(401).json({error:'Wrong or does not exist email/user or password'});
           }
         });
+
       }catch(error){
         console.log(error);
         res.status(500).json({error:'Internal Server Error!'});

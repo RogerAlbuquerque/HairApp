@@ -4,8 +4,7 @@ import { Hairdresser } from '../models/Hairdresser';
 
 
 export async function showMe(req: Request, res:Response){
-  const userId = req.params.id;
-
+  const userId = req.headers.userId;
   const hairdExist = await Hairdresser.findById(userId, '-hairdPassword');
   const clientExist = await Client.findById(userId, '-clientPassword');
 

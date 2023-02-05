@@ -30,7 +30,7 @@ export const router = Router();
 
 
 // ROTAS
-router.get('/me/:id',verifyTokenJWT, showMe);
+router.get('/me',verifyTokenJWT, showMe);
 
 //CLIENT
 // router.get('/client', showClient);
