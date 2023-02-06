@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { Client } from '../../models/Client';
-import { Hairdresser } from '../../models/Hairdresser';
 import bcrypt from 'bcryptjs';
 
 interface userInfo{
@@ -11,34 +10,43 @@ interface userInfo{
 
 export async function updateClientInfo(req: Request, res:Response){
 
-  const username = req.params.clientName.replace(/\s+/g, '-');
+  const clientId = req.headers.userId;
   const infos:userInfo = req.body;
   infos.clientName = infos.clientName?.replace(/\s+/g, '-');
 
 
-  const hairdExist = await Hairdresser.findOne({$or:[{ hairdName: infos.clientName},{email:infos.email}]});
-  const clientExist = await Client.findOne({$or:[{ clientName: infos.clientName},{email:infos.email}]});
+  const clientExist = await Client.findById(req.headers.userId);
 
   try{
-    if(hairdExist || clientExist){
-      res.status(500).json('Username or email is alredy in use');
+    if(!clientExist){
+      res.status(500).json('Client does not exist');
     }else{
+
       if(infos.clientPassword){
-        bcrypt.genSalt(10, (error, salt) => {
-          bcrypt.hash(infos.clientPassword!, salt, async (error, hash) => {
+        try{
+          bcrypt.genSalt(10, (error, salt) => {
+            bcrypt.hash(infos.clientPassword!, salt, async (error, hash) => {
 
-            infos.clientPassword= hash;
+              infos.clientPassword = hash;
 
-            await Client.findOneAndUpdate({clientName: username}, infos).then(()=>{
-              res.status(200).json(infos);
-            }).catch((err)=>{
-              console.log(err);
-              res.status(500).json({error:'Internal Server Error!'});
+              await Client.findByIdAndUpdate(clientId, infos).then(()=>{
+                res.status(200).json(infos);
+
+              }).catch((err)=>{
+                console.log(err);
+                res.status(500).json({error:'Internal Server Error!'});
+              });
+
             });
           });
-        });
+        }
+        catch(error){
+          console.log(error);
+          res.status(500).json({error:'Internal Server Error!'});
+        }
+
       }else{
-        await Client.findOneAndUpdate({clientName: username}, infos).then(()=>{
+        await Client.findByIdAndUpdate(clientId, infos).then(()=>{
           res.status(200).json(infos);
         }).catch(err => {
           console.log(err);
