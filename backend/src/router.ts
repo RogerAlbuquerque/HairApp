@@ -37,7 +37,7 @@ router.get('/me',verifyTokenJWT, showMe);
 
 router.post('/client/create', createClient);
 
-router.put('/client/:clientName/update',verifyTokenJWT, updateClientInfo);
+router.put('/client/update',verifyTokenJWT, updateClientInfo);
 router.put('/client/:clientId/addHairdresser',verifyTokenJWT, myHairdList);
 
 //HAIDRESSER
