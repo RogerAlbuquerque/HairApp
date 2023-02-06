@@ -28,6 +28,7 @@ export async function login(req: Request, res:Response){
             // CRIAR TOKEN JWT
             const payload = {userId: clientExist._id};
             const secret = process.env.JWT_ACCESS;
+
             const token = jwt.sign(payload, secret!,{expiresIn:'7 days'});
 
             res.status(200).json(token);
@@ -53,7 +54,8 @@ export async function login(req: Request, res:Response){
             // CRIAR TOKEN JWT
             const payload = {userId: hairdExist._id};
             const secret = process.env.JWT_ACCESS;
-            const token = jwt.sign(payload, secret!,{expiresIn:'7 days'});
+
+            const token = jwt.sign(payload, secret!);
 
             res.status(200).json(token);
 

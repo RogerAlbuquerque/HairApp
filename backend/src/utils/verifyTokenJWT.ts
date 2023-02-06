@@ -18,12 +18,12 @@ export default function verifyTokenJWT(req: Request, res:Response, next:NextFunc
   try{
     const secret = process.env.JWT_ACCESS;
     const {userId} = jwt.verify(token, secret!) as TokenPayload;
-
     req.headers.userId = userId;
 
     next();
   }
   catch(error){
     console.log(error);
+    return res.status(401).json({msg: 'Denied access'});
   }
 }
