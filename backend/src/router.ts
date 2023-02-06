@@ -38,15 +38,15 @@ router.get('/me',verifyTokenJWT, showMe);
 router.post('/client/create', createClient);
 
 router.put('/client/update',verifyTokenJWT, updateClientInfo);
-router.put('/client/:clientId/addHairdresser',verifyTokenJWT, myHairdList);
+router.put('/client/addHairdresser',verifyTokenJWT, myHairdList);
 
 //HAIDRESSER
 router.post('/hairdresser/create', createHairdresser);
 
-router.put('/hairdresser/:user',verifyTokenJWT, updateHairdresserInfo);
+router.put('/hairdresser/updateInfo',verifyTokenJWT, updateHairdresserInfo);
 
-router.get('/scheduling/:hairdId/myClients',verifyTokenJWT, showMySchedClients);
-router.delete('/scheduling/:haird/:schedId/delete',verifyTokenJWT, deleteScheduleClient);
+router.get('/scheduling/myClients',verifyTokenJWT, showMySchedClients);
+router.delete('/scheduling/:schedClientId/delete',verifyTokenJWT, deleteScheduleClient);
 // router.get('/hairdresser/all', showAllHairdresser);
 
 //SCHEDULE CLIENTS

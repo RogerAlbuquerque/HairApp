@@ -15,6 +15,8 @@ export async function showMe(req: Request, res:Response){
 
     }else if(!hairdExist && clientExist){
       res.status(200).json(clientExist);
+    }else if(!hairdExist && !clientExist){
+      res.status(501).json({error:'user does not exist'});
     }
 
   }catch(error){

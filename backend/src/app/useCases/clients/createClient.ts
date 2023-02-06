@@ -10,7 +10,6 @@ interface clientInfo{
 }
 export async function createClient(req: Request, res:Response){
   const clientData:clientInfo = req.body;
-  clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
 
   const hairdExist = await Hairdresser.findOne({$or:[{ hairdName: clientData.clientName},{email:clientData.email}]});
   const clientExist = await Client.findOne({$or:[{ clientName: clientData.clientName},{email:clientData.email}]});
@@ -27,7 +26,6 @@ export async function createClient(req: Request, res:Response){
           bcrypt.hash(clientData.clientPassword, salt, async (error, hash) => {
 
             clientData.clientPassword = hash;
-            clientData.clientName = clientData.clientName.replace(/\s+/g, '-');
 
             const client = await Client.create(clientData);
 
@@ -36,14 +34,14 @@ export async function createClient(req: Request, res:Response){
         });
       }catch(error){
         console.log(error);
-        res.status(201).json({error:'Internal Server Error!'});
+        res.status(501).json({error:'Internal Server Error!'});
       }
 
     }
 
   }catch(error){
     console.log(error);
-    res.status(201).json({error:'Internal Server Error!'});
+    res.status(501).json({error:'Internal Server Error!'});
 
   }
 }

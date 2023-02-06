@@ -4,7 +4,7 @@ import { SchedClient } from '../../models/SchedClient';
 
 interface scheduleInfo {
   hairdresserId: string;
-  clientId?: string;
+  clientId: string;
   day: 'SEG' | 'TER' | 'QUA' | 'QUI' | 'SEX' | 'SAB' | 'DOM';
   clientHour:{
     hour:number,
