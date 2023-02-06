@@ -5,8 +5,10 @@ import { Hairdresser } from '../models/Hairdresser';
 
 export async function showMe(req: Request, res:Response){
   const userId = req.headers.userId;
-  const hairdExist = await Hairdresser.findById(userId, '-hairdPassword');
-  const clientExist = await Client.findById(userId, '-clientPassword');
+  const hairdExist = await Hairdresser.findById(userId);
+  const clientExist = await Client.findById(userId).populate({path:'hairdressers',
+    select: '_id hairdName address email prices workDaysWeek workingTime'
+  });
 
 
   try{

@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 
 export async function login(req: Request, res:Response){
 
-  const user = req.body.user.replace(/\s+/g, '-');
+  const user = req.body.user;
   const pass = req.body.password;
   try{
 

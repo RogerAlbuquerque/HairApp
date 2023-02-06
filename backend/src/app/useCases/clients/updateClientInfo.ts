@@ -12,7 +12,6 @@ export async function updateClientInfo(req: Request, res:Response){
 
   const clientId = req.headers.userId;
   const infos:userInfo = req.body;
-  infos.clientName = infos.clientName?.replace(/\s+/g, '-');
 
 
   const clientExist = await Client.findById(req.headers.userId);

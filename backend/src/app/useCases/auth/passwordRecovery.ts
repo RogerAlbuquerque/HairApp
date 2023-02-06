@@ -12,7 +12,6 @@ export async function passwordRecovery(req: Request, res:Response){
 
   const now = new Date();
   now.setHours(now.getHours());
-  console.log(now);
 
   await Client.findOne({email:email, passwordResetToken:token, expireTimeToken:{$gt:now}}).then(async (clientData)=>{
     if(clientData){
@@ -48,7 +47,6 @@ export async function passwordRecovery(req: Request, res:Response){
           });
         }else {
           res.status(500).json({error:'token or email does not exist'});
-          console.log(token, email);
         }
       }).catch(err => {
         console.log(err);

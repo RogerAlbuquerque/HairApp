@@ -27,14 +27,13 @@ interface userInfo{
 
 export async function updateHairdresserInfo(req: Request, res:Response){
   const infos:userInfo = req.body;
-  infos.hairdName = infos.hairdName?.replace(/\s+/g, '-');
 
 
   const hairdExist = await Hairdresser.findById(req.headers.userId);
 
   try{
     if(!hairdExist){
-      res.status(500).json('User does not exist');
+      res.status(500).json({error:'User does not exist'});
     }else{
       if(infos.hairdPassword){
         bcrypt.genSalt(10, (error, salt) => {

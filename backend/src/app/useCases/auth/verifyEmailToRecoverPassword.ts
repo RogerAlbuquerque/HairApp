@@ -39,7 +39,7 @@ export async function verifyEmailToRecoverPassword(req: Request, res:Response){
     subject: 'Link para alteração de senha',
     html: `<h1> Link para recuperação de senha </h1>
 
-    http://localhost:3001/password_recovery/${token}/${clientEmail.email}
+    http://localhost:3001/passwordRecovery/${token}/${clientEmail.email}
     `};
 
 
