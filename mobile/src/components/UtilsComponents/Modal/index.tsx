@@ -31,7 +31,10 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
               width={220}
               padding={20}
               size={15}
-              onPress={()=>navigation.navigate('RegisterClient')}
+              onPress={()=>{
+                setModalValue();
+                navigation.navigate('RegisterClient')
+              }}
             />
             <Button
               name={'Como cabeleireiro'}
@@ -39,7 +42,10 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
               width={220}
               padding={20}
               size={15}
-              onPress={()=>navigation.navigate('SignIn')}
+              onPress={()=>{
+                setModalValue();
+                navigation.navigate('HairdRegister')
+              }}
             />
           </Buttons>
         </ModalBody>

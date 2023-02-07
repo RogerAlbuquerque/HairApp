@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Image, ImageBackground, TextInput } from "react-native"
+import { useNavigation } from "@react-navigation/native";
+import { propsStack } from '../../../../utils/routeProps';
+import { Image, ImageBackground} from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../../../components/UtilsComponents/Button";
 import { DaysWeek } from "../../../../components/ClientComponents/DaysOfWeek/style";
@@ -10,6 +12,9 @@ import { ProfileAndHour, InfoUserForms, Prices, WorkingDays, ProfileImage, Worki
 
 
 export default function HairdRegister(){
+
+  const navigation = useNavigation<propsStack>();
+
   const [openingTime, setOpeningTime] = useState(new Date());
   const [closingTime, setClosingTime] = useState(new Date());
   const [isOpenClocVisible, setIsOpenClockVisible] = useState(false);
@@ -153,9 +158,10 @@ export default function HairdRegister(){
       </WorkingDays>
 
       <Button
-        name="Atualizar"
+        name="Avançar"
         size={40}
         letterCollor={'#F6C33E'}
+        onPress={()=>navigation.navigate('CreditCardRegister')}
       />
 
     </ImageBackground>

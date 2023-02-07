@@ -23,6 +23,7 @@ export default function AppRoutes(){
         component={HairdConfig}
         options={{headerShown: false}}
       />
+
     </Navigator>
   );
 }

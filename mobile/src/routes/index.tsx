@@ -6,7 +6,7 @@ import HairdRoutes from './haird.routes';
 export default function Routes(){
   return(
     <NavigationContainer>
-      <ClientRoutes/>
+      <AuthRoutes/>
     </NavigationContainer>
   );
 }

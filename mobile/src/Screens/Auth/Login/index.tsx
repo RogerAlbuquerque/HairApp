@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Image, ImageBackground, StyleSheet} from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from "@react-navigation/native";
+import { propsStack } from '../../../utils/routeProps';
+import { api } from '../../../utils/api';
+
 import { Text } from '../../../utils/Text';
 import InputText from '../../../components/UtilsComponents/InputText';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/UtilsComponents/Modal';
-import { useNavigation } from "@react-navigation/native";
-import { propsStack } from '../../../utils/routeProps';
-import { api } from '../../../utils/api';
+
+import { ActivityIndicator, Image, ImageBackground, StyleSheet} from 'react-native';
+
 import {
   Button,
   Check,
@@ -25,6 +27,7 @@ import {
 export default function SignIn(){
   const [emailInput,setEmailInput]=useState('');
   const [passwordInput,setPasswordInput]=useState('');
+  const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
 
 
   const [isChecked,setChecked]=useState(false);
@@ -35,12 +38,23 @@ export default function SignIn(){
     setIsModalVisible(!isModalVisible);
   }
 
-   function loginUser(){
-     api.post('/login',{user:emailInput, password:passwordInput})
-     .then(res =>{
-      console.log(res.data)
-    })
-    .catch(error => console.log('Deu ruim ' + error))
+  function loginUser(){
+
+     try{
+      setIsAwaitingLoginReponse(true);
+      api.post('/login',{user:emailInput, password:passwordInput})
+        .then(res =>{
+          console.log(res.data)
+        })
+        .catch(error => console.log('Deu ruim ' + error));
+
+     }
+     catch(error){
+      console.log('Houve um erro =>  ' + error);
+     }
+     finally{
+      setIsAwaitingLoginReponse(false);
+     }
 
   }
   return (
@@ -52,10 +66,9 @@ export default function SignIn(){
         setModalValue={setModalValue}
       />
 
-          <ContainerLogo>
-
-            <Image source={require('../../../assets/imgs/logoo.png')} style={{width:340, height:380}}/>
-          </ContainerLogo>
+        <ContainerLogo>
+          <Image source={require('../../../assets/imgs/logoo.png')} style={{width:340, height:380}}/>
+        </ContainerLogo>
 
 
         <ContainerForm>
@@ -94,21 +107,28 @@ export default function SignIn(){
           </ForgotDad>
         </ContainerForm>
 
-        <Footer>
+        {!isAwaitingLoginReponse ?
+            <Footer>
+              <Button onPress={loginUser}>
+                <Text size={50} font={'Imbue'} weight={'Medium'} color={'#fff'}>Acessar</Text>
+              </Button>
 
-            <Button onPress={loginUser}>
-              <Text size={50} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Acessar</Text>
-            </Button>
+              <CreateAccount>
+              <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
+                  Não tem conta?
+                </Text>
+                <Create onPress={()=> setModalValue()}>
+                    <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
+                </Create>
+              </CreateAccount>
+            </Footer>
+          :
 
-          <CreateAccount>
-          <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
-              Não tem conta?
-            </Text>
-            <Create onPress={()=> setModalValue()}>
-                <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
-            </Create>
-          </CreateAccount>
-        </Footer>
+          <ActivityIndicator color="#fff" size="large"/>
+
+          }
+
+
 
 
 
