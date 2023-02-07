@@ -13,10 +13,6 @@ export async function login(req: Request, res:Response){
   const pass = req.body.password;
   try{
 
-    // console.log('Esse é o params: ', req.params.info);
-    // console.log('Esse é o infoUser: ', infoUser);
-
-
     const clientExist = await Client.findOne( {$or:[{clientName: user },{email:user}]});
     const hairdExist = await Hairdresser.findOne( {$or:[{hairdName: user },{email:user}]});
 
@@ -29,14 +25,14 @@ export async function login(req: Request, res:Response){
             const payload = {userId: clientExist._id};
             const secret = process.env.JWT_ACCESS;
 
-            const token = jwt.sign(payload, secret!,{expiresIn:'7 days'});
+            const token = jwt.sign(payload, secret!);
 
             res.status(200).json(token);
 
           }else if(error) {
             console.log(error);
           }else{
-            res.status(401).json({error:'Wrong or does not exist email/user or password'});
+            res.status(401).json({msg:'Wrong or does not exist email/user or password'});
           }
         });
 
@@ -62,7 +58,7 @@ export async function login(req: Request, res:Response){
           }else if(error) {
             console.log(error);
           }else{
-            res.status(401).json({error:'Wrong or does not exist email/user or password'});
+            res.status(401).json({msg:'Wrong or does not exist email/user or password'});
           }
 
         });
@@ -70,7 +66,7 @@ export async function login(req: Request, res:Response){
         console.log(error);
         res.status(500).json({error:'Internal Server Error!'});
       }
-    }else  res.status(500).json({error:'Wrong or does not exist email/user or password'});
+    }else  res.status(401).json({msg:'Wrong or does not exist email/user or password'});
 
   }catch(error){
     console.log(error);
