@@ -23,6 +23,8 @@ import {
   ForgotPassword,
   UserInfo
 } from './style';
+import { TypeUserInfo } from '../../../types/TypeClientInfo';
+import { TypeHairdInfo } from '../../../types/TypeHairdInfo';
 
 export default function SignIn(){
   const [emailInput,setEmailInput]=useState('');
@@ -34,23 +36,29 @@ export default function SignIn(){
   const [isModalVisible, setIsModalVisible] = useState(false);
   const navigation = useNavigation<propsStack>();
 
+  const [userInfo,setUserInfo]=useState< TypeHairdInfo | TypeUserInfo >();
+
   function setModalValue(){
     setIsModalVisible(!isModalVisible);
   }
 
-  function loginUser(){
+  function showUser(){
+    console.log(userInfo);
+  }
+
+  async function loginUser(){
 
      try{
       setIsAwaitingLoginReponse(true);
-      api.post('/login',{user:emailInput, password:passwordInput})
-        .then(res =>{
-          console.log(res.data)
-        })
-        .catch(error => console.log('Deu ruim ' + error));
+      const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
+      api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
+
+      const userInfoResponse = await api.get('/me');
+      setUserInfo(userInfoResponse.data);
 
      }
      catch(error){
-      console.log('Houve um erro =>  ' + error);
+      console.log('Error =>  ' + error);
      }
      finally{
       setIsAwaitingLoginReponse(false);
@@ -111,6 +119,10 @@ export default function SignIn(){
             <Footer>
               <Button onPress={loginUser}>
                 <Text size={50} font={'Imbue'} weight={'Medium'} color={'#fff'}>Acessar</Text>
+              </Button>
+
+              <Button onPress={showUser}>
+                <Text size={50} font={'Imbue'} weight={'Medium'} color={'#ff0000'}> mostrar dados</Text>
               </Button>
 
               <CreateAccount>
