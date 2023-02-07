@@ -1,16 +1,11 @@
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { propsNavigationStack } from '../utils/routeProps';
 
 import SignIn from '../Screens/Auth/Login';
 import VerifyEmail from '../Screens/Auth/VerifyEmail';
 import ChangePassword from '../Screens/Auth/ChangePassword';
 import RegisterClient from '../Screens/Auth/RegisterClient';
-import Home from '../Screens/Home'
-import SchedClient from '../Screens/SchedClient'
-import { propsNavigationStack } from '../utils/routeProps';
-import ClientListForHairdresser from '../Screens/ClientListForHairdresser';
-import HairdConfig from '../Screens/HairdConfig';
-import ClientConfig from '../Screens/ClientConfig';
 import HairdRegister from '../Screens/Auth/RegisterHairdresser/HairdRegister';
 import CreditCardRegister from '../Screens/Auth/RegisterHairdresser/CreditCardRegister';
 
@@ -56,42 +51,7 @@ export default function AppRoutes(){
         component={CreditCardRegister}
         options={{headerShown: false}}
       />
-      <Screen
-        name="Home"
-        component={Home}
-        options={{headerShown: false}}
-      />
 
-      <Screen
-        name="SchedClient"
-        component={SchedClient}
-        options={{headerShown: false}}
-      />
-
-      <Screen
-        name="ListOfClients"
-        component={ClientListForHairdresser}
-        options={{headerShown: false}}
-      />
-
-      <Screen
-        name="HairdConfig"
-        component={HairdConfig}
-        options={{headerShown: false}}
-      />
-
-      <Screen
-        name="ClientConfig"
-        component={ClientConfig}
-        options={{headerShown: false}}
-      />
-
-
-      {/* <Stack.Screen
-        name="registration"
-        component={registration}
-        options={{headerShown: false}}
-      /> */}
     </Navigator>
   );
 }

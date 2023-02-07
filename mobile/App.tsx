@@ -1,8 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import Routes from './src/routes/app.routes';
+import Routes from './src/routes';
 
 export default function App() {
 
