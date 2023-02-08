@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import { TypeClientInfo } from '../types/TypeClientInfo';
 import { TypeHairdInfo } from '../types/TypeHairdInfo';
+import AlertModal from '../components/UtilsComponents/AlertModal';
 
 interface userDataTypeContext{
   clientInfo:TypeClientInfo;
@@ -8,9 +9,9 @@ interface userDataTypeContext{
   hairdInfo:TypeHairdInfo;
   handleHairdInfoState:(userData:TypeHairdInfo)=>void;
   handleAlertModal:(title:string, bodyText:string, typeModal:'error' | 'success')=>void;
-  titleTextModal:string;
-  bodyTextModal:string;
-  typeModal:'error' | 'success' | '';
+  titleTextAlertModal:string;
+  bodyTextAlertModal:string;
+  typeAlertModal:'error' | 'success' | '';
 }
 
 
@@ -32,14 +33,16 @@ export default function UserDataContext({children}:any){
 
 
   //STATES FOR MODAL
-  const [titleTextModal,setTitleTextModal]=useState('');
-  const [bodyTextModal,setBodyTextModal]=useState('');
-  const [typeModal,setTypeModal]=useState<'error' | 'success' | ''>('');
+  const [isModalAlertVisible,setIsModalAlertVisible]=useState(false);
+  const [titleTextAlertModal,setTitleTextAlertModal]=useState('');
+  const [bodyTextAlertModal,setBodyTextAlertModal]=useState('');
+  const [typeAlertModal,setTypeAlertModal]=useState<'error' | 'success' | ''>('');
 
   function handleAlertModal(title:string, bodyText:string, typeModal:'error' | 'success'){
-    setTypeModal(typeModal);
-    setTitleTextModal(title);
-    setBodyTextModal(bodyText);
+    setIsModalAlertVisible(!isModalAlertVisible)
+    setTypeAlertModal(typeModal);
+    setTitleTextAlertModal(title);
+    setBodyTextAlertModal(bodyText);
   }
 
 
@@ -50,15 +53,22 @@ export default function UserDataContext({children}:any){
   return(
     <UserInfoContext.Provider value={{
       clientInfo,
-      handleClientInfoState,
       hairdInfo,
+      titleTextAlertModal,
+      bodyTextAlertModal,
+      typeAlertModal,
+      handleClientInfoState,
       handleHairdInfoState,
-      titleTextModal,
-      bodyTextModal,
-      typeModal,
       handleAlertModal
 
       }}>
+        <AlertModal
+          isModalVisible={isModalAlertVisible}
+          setModalValue={() => setIsModalAlertVisible(!isModalAlertVisible)}
+          title={titleTextAlertModal}
+          bodyText={bodyTextAlertModal}
+          typeModal={typeAlertModal}
+        />
         {children}
     </UserInfoContext.Provider>
 

@@ -1,85 +1,59 @@
 import React, {useContext, useState } from 'react';
+import { UserInfoContext } from '../../../context';
 import emailValidator from "email-validator";
 import {ImageBackground} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
-import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
+
 import InputText from '../../../components/UtilsComponents/InputText';
 import * as Animatable from 'react-native-animatable';
 import Checkbox from 'expo-checkbox';
 import { api } from '../../../utils/api';
-import AlertModal from '../../../components/UtilsComponents/AlertModal';
-import { UserInfoContext } from '../../../context';
 
+import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
 export default function Registration(){
 
-  const [isChecked,setChecked]=useState(false);
-  const [isModalVisible,setModalValue]=useState(false);
-
-  // const [titleTextModal,setTitleTextModal]=useState('');
-  // const [bodyTextModal,setBodyTextModal]=useState('');
-  // const [typeModal,setTypeModal]=useState<'error' | 'success' | ''>('');
-
-  const [userNameInput,setUserNameInput]=useState('');
-  const [emailInput,setEmailInput]=useState('');
-  const [passwordInput,setPasswordInput]=useState('');
-  const [confirmPasswordInput,setConfirmPasswordInput]=useState('');
-
-  const{titleTextModal,
-        bodyTextModal,
-        typeModal,
-        handleAlertModal
-      }=useContext(UserInfoContext);
-
-  function show(){
-    console.log(userNameInput)
-    console.log(emailInput)
-    console.log(passwordInput)
-    console.log(confirmPasswordInput)
-  }
+  const [isChecked,setChecked                         ]=useState(false);
+  const [userNameInput,setUserNameInput               ]=useState('');
+  const [emailInput,setEmailInput                     ]=useState('');
+  const [passwordInput,setPasswordInput               ]=useState('');
+  const [confirmPasswordInput,setConfirmPasswordInput ]=useState('');
+  const {handleAlertModal                             }=useContext(UserInfoContext);
 
   async function registerUser(){
 
     if(emailInput == '' || passwordInput == '' || userNameInput == '' || confirmPasswordInput == ''){
-      return (
-        setModalValue(!isModalVisible),
+      return(
         handleAlertModal('Alguns campos estão vazios', 'Todos os campos são obrigatórios serem preenchidos!', 'error')
         )
     }
     if(passwordInput.length < 8){
-      return (
-        setModalValue(!isModalVisible),
+      return(
         handleAlertModal('Senha muito fraca', 'Senha precisa ter no mínimo 8 digitos', 'error')
         )
     }
     if(!emailValidator.validate(emailInput)){
-      return (
-        setModalValue(!isModalVisible),
+      return(
         handleAlertModal('Email Inválido', 'Este não é o formato correto de um email', 'error')
         )
-
     }
 
     if(passwordInput != confirmPasswordInput ){
-      return (
-        setModalValue(!isModalVisible),
+      return(
         handleAlertModal('Senhas não são iguais', 'Os campos de senhas precisam ser exatamente iguais!', 'error')
         )
-
     }
 
     try{
 
      await api.post('/client/create',{clientName:userNameInput, email:emailInput, clientPassword:passwordInput});
-     return (
-        setModalValue(!isModalVisible),
+     return(
         handleAlertModal('Usuário criado com sucesso', 'Volte para a tela inicial e acesse sua conta', 'success')
         )
 
     }
     catch(error){
-      return (
-        setModalValue(!isModalVisible),
+      return(
         handleAlertModal('Email ou Usuário ja existem', 'Tente mudar algumas dessa informações', 'error')
         )
     }
@@ -88,25 +62,12 @@ export default function Registration(){
 
   }
 
-  // function handleAlertModal(title:string, bodyText:string, typeModal:'error' | 'success'){
-  //   setTypeModal(typeModal);
-  //   setModalValue(true);
-  //   setTitleTextModal(title);
-  //   setBodyTextModal(bodyText);
-  // }
 
   return (
 
     <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
     resizeMode="cover" style={{flex:1}}>
-      <AlertModal
-        isModalVisible={isModalVisible}
-        setModalValue={() => setModalValue(!isModalVisible)}
-        title={titleTextModal}
-        bodyText={bodyTextModal}
-        typeModal={typeModal}
-      />
-      <Container>
+      <Container behavior='position'>
 
           <ContainerLogo>
             <Animatable.Image
