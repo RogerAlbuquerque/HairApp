@@ -2,17 +2,28 @@ import { useState } from "react";
 import { Text } from "../../../utils/Text";
 import { Day, DaysWeek } from "./style";
 
-
-export default function DaysOfWorking(){
-  const [schedDay, setSchedDay] = useState({
-    SEG:false,
-    TER:false,
-    QUA:false,
-    QUI:false,
-    SEX:false,
-    SAB:false,
-    DOM:false,
-  })
+interface daysWorkingProps{
+  schedDay:{
+    SEG:boolean,
+    TER:boolean,
+    QUA:boolean,
+    QUI:boolean,
+    SEX:boolean,
+    SAB:boolean,
+    DOM:boolean,
+  }
+  setSchedDay:({})=>void
+}
+export default function DaysOfWorking({schedDay,setSchedDay}:daysWorkingProps){
+  // const [schedDay, setSchedDay] = useState({
+  //   SEG:false,
+  //   TER:false,
+  //   QUA:false,
+  //   QUI:false,
+  //   SEX:false,
+  //   SAB:false,
+  //   DOM:false,
+  // })
   return(
     <DaysWeek>
           <Day onPress={()=> setSchedDay({...schedDay, SEG:!schedDay.SEG})} style={{backgroundColor:schedDay.SEG ? '#3FC500' : 'white'}}  >

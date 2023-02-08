@@ -1,5 +1,8 @@
 import styled from 'styled-components/native';
 
+export const Container = styled.ScrollView`
+`;
+
 export const ProfileAndHour = styled.View`
 flex-direction: row;
 margin-bottom: 20px;
@@ -50,7 +53,7 @@ justify-content: center;
 background-color: white;
 `;
 
-export const InfoUserForms = styled.View`
+export const InfoUserForms = styled.KeyboardAvoidingView`
 `;
 
 export const Prices = styled.View`
@@ -88,6 +91,7 @@ export const WorkingDays = styled.View`
 margin-top: 20px;
 margin-bottom: 10px;
 `;
+
 
 
 
