@@ -6,9 +6,17 @@ import InputText from "../../components/UtilsComponents/InputText";
 import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
+import React, { useState, useContext } from 'react';
+import { UserInfoContext } from '../../context';
 
 export default function Home(){
   const navigation = useNavigation<propsStack>();
+  const {clientInfo,handleClientInfoState} = useContext(UserInfoContext);
+
+function show(){
+  console.log(clientInfo)
+}
+
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -34,6 +42,7 @@ export default function Home(){
           size={22}
           width={130}
           height={60}
+          onPress={show}
         />
       </SearchButton>
 

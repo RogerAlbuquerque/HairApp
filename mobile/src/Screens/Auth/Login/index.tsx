@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserInfoContext } from '../../../context';
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from '../../../utils/routeProps';
 import { api } from '../../../utils/api';
-
 import { Text } from '../../../utils/Text';
 import InputText from '../../../components/UtilsComponents/InputText';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/UtilsComponents/Modal';
-
 import { ActivityIndicator, Image, ImageBackground, StyleSheet} from 'react-native';
-
 import {
   Button,
   Check,
@@ -23,27 +21,22 @@ import {
   ForgotPassword,
   UserInfo
 } from './style';
-import { TypeUserInfo } from '../../../types/TypeClientInfo';
-import { TypeHairdInfo } from '../../../types/TypeHairdInfo';
 
 export default function SignIn(){
+
+  const {navigate} = useNavigation<propsStack>();
+  const {handleClientInfoState} = useContext(UserInfoContext);
+  const {handleHairdInfoState} = useContext(UserInfoContext);
   const [emailInput,setEmailInput]=useState('');
   const [passwordInput,setPasswordInput]=useState('');
   const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
-
-
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const navigation = useNavigation<propsStack>();
 
-  const [userInfo,setUserInfo]=useState< TypeHairdInfo | TypeUserInfo >();
+
 
   function setModalValue(){
     setIsModalVisible(!isModalVisible);
-  }
-
-  function showUser(){
-    console.log(userInfo);
   }
 
   async function loginUser(){
@@ -54,7 +47,8 @@ export default function SignIn(){
       api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
 
       const userInfoResponse = await api.get('/me');
-      setUserInfo(userInfoResponse.data);
+
+      userInfoResponse.data.clientName ? handleClientInfoState(userInfoResponse.data) : handleHairdInfoState(userInfoResponse.data);
 
      }
      catch(error){
@@ -65,6 +59,8 @@ export default function SignIn(){
      }
 
   }
+
+
   return (
     <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
       style={{flex: 1}}>
@@ -109,7 +105,7 @@ export default function SignIn(){
               <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>  Lembrar meu Usuario</Text>
 
             </Check>
-            <ForgotPassword onPress={()=>navigation.navigate('VerifyEmail')}>
+            <ForgotPassword onPress={()=>navigate('VerifyEmail')}>
               <Text size={15} font={'Imbue'} weight={'Bold'} color={'#fff'}>Esqueceu a senha?</Text>
             </ForgotPassword>
           </ForgotDad>
@@ -119,10 +115,6 @@ export default function SignIn(){
             <Footer>
               <Button onPress={loginUser}>
                 <Text size={50} font={'Imbue'} weight={'Medium'} color={'#fff'}>Acessar</Text>
-              </Button>
-
-              <Button onPress={showUser}>
-                <Text size={50} font={'Imbue'} weight={'Medium'} color={'#ff0000'}> mostrar dados</Text>
               </Button>
 
               <CreateAccount>

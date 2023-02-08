@@ -1,4 +1,4 @@
-export interface TypeUserInfo{
+export interface TypeClientInfo{
   clientName: string,
   email:string,
   clientPassword:string
