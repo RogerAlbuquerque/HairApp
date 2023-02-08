@@ -7,7 +7,7 @@ import { Text } from '../../../utils/Text';
 import InputText from '../../../components/UtilsComponents/InputText';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/UtilsComponents/Modal';
-import { ActivityIndicator, Image, ImageBackground, StyleSheet} from 'react-native';
+import { ActivityIndicator, Alert, Image, ImageBackground, StyleSheet} from 'react-native';
 import {
   Button,
   Check,
@@ -35,12 +35,12 @@ export default function SignIn(){
 
 
 
-  function setModalValue(){
-    setIsModalVisible(!isModalVisible);
-  }
 
   async function loginUser(){
 
+    if(emailInput == '' || passwordInput == ''){
+      Alert.alert('Email ou senha vazio', 'Campos obrigatórios!')
+    }
      try{
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
@@ -52,7 +52,7 @@ export default function SignIn(){
 
      }
      catch(error){
-      console.log('Error =>  ' + error);
+      Alert.alert('Email ou senha incorretos')
      }
      finally{
       setIsAwaitingLoginReponse(false);
@@ -67,7 +67,7 @@ export default function SignIn(){
     <Container behavior='position'>
       <ToRegisterModal
         isModalVisible={isModalVisible}
-        setModalValue={setModalValue}
+        setModalValue={() => setIsModalVisible(!isModalVisible)}
       />
 
         <ContainerLogo>
@@ -121,7 +121,7 @@ export default function SignIn(){
               <Text size={20} font={'Imbue'} weight={'Medium'} color={'#FFF'}>
                   Não tem conta?
                 </Text>
-                <Create onPress={()=> setModalValue()}>
+                <Create onPress={() => setIsModalVisible(!isModalVisible)}>
                     <Text size={20} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>cadastre-se</Text>
                 </Create>
               </CreateAccount>

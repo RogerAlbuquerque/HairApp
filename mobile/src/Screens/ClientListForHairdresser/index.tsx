@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import Button from '../../components/UtilsComponents/Button';
 import CancelClientModal from '../../components/HairdComponents/CancelClientModal';
-import ClientCardForHaders from '../../components/HairdComponents/ClientCardForHaders';
+import ClientCardForHaders from '../../components/HairdComponents/ClientCardForHaird';
 import HeaderComponent from '../../components/UtilsComponents/HeaderComponent';
 import {Header, ButtonsForTypeClients, LineContainer, Line, ClientList} from './style';
 import { useNavigation } from '@react-navigation/native';

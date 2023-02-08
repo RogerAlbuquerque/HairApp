@@ -31,6 +31,7 @@ export default function AuthModal({isModalVisible, setModalValue}:modalProps){
               width={220}
               padding={20}
               size={15}
+              marginBotton={42}
               onPress={()=>{
                 setModalValue();
                 navigation.navigate('RegisterClient')
