@@ -25,13 +25,13 @@ import {
 export default function SignIn(){
 
   const {navigate} = useNavigation<propsStack>();
-  const {handleClientInfoState} = useContext(UserInfoContext);
-  const {handleHairdInfoState} = useContext(UserInfoContext);
+
   const [emailInput,setEmailInput]=useState('');
   const [passwordInput,setPasswordInput]=useState('');
   const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const {handleClientInfoState, handleHairdInfoState, handleAlertModal} = useContext(UserInfoContext);
 
 
 
@@ -39,7 +39,7 @@ export default function SignIn(){
   async function loginUser(){
 
     if(emailInput == '' || passwordInput == ''){
-      Alert.alert('Email ou senha vazio', 'Campos obrigatórios!')
+      return handleAlertModal('Email ou senha vazios', 'Campos obrigatórios!', 'error')
     }
      try{
       setIsAwaitingLoginReponse(true);
@@ -52,8 +52,7 @@ export default function SignIn(){
 
      }
      catch(error){
-      Alert.alert('Email ou senha incorretos')
-      console.log(error)
+      return handleAlertModal('Email ou senha incorretos', 'Tente novamente', 'error')
      }
      finally{
       setIsAwaitingLoginReponse(false);
