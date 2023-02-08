@@ -48,7 +48,7 @@ export default function Registration(){
     }
 
     try{
-     await api.post('/client/create',{clientName:userNameInput, email:emailInput, clientPassword:userNameInput});
+     await api.post('/client/create',{clientName:userNameInput, email:emailInput, clientPassword:passwordInput});
 
      return handleAlertModal('Usuário criado com sucesso', 'Volte para a tela inicial e acesse sua conta', 'success')
 

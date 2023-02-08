@@ -53,6 +53,7 @@ export default function SignIn(){
      }
      catch(error){
       Alert.alert('Email ou senha incorretos')
+      console.log(error)
      }
      finally{
       setIsAwaitingLoginReponse(false);
