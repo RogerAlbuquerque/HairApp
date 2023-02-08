@@ -31,7 +31,6 @@ export default function UserDataContext({children}:any){
     setHairdInfoState(userData)
   }
 
-
   //STATES FOR MODAL
   const [isModalAlertVisible,setIsModalAlertVisible]=useState(false);
   const [titleTextAlertModal,setTitleTextAlertModal]=useState('');
@@ -44,11 +43,6 @@ export default function UserDataContext({children}:any){
     setTitleTextAlertModal(title);
     setBodyTextAlertModal(bodyText);
   }
-
-
-
-
-
 
   return(
     <UserInfoContext.Provider value={{

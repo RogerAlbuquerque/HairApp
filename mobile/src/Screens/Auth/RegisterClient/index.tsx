@@ -13,12 +13,12 @@ import { api } from '../../../utils/api';
 import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
 export default function Registration(){
 
-  const [isChecked,setChecked                         ]=useState(false);
-  const [userNameInput,setUserNameInput               ]=useState('');
-  const [emailInput,setEmailInput                     ]=useState('');
-  const [passwordInput,setPasswordInput               ]=useState('');
+  const [isChecked,setChecked]=useState(false);
+  const [userNameInput,setUserNameInput]=useState('');
+  const [emailInput,setEmailInput]=useState('');
+  const [passwordInput,setPasswordInput]=useState('');
   const [confirmPasswordInput,setConfirmPasswordInput ]=useState('');
-  const {handleAlertModal                             }=useContext(UserInfoContext);
+  const {handleAlertModal}=useContext(UserInfoContext);
 
   async function registerUser(){
 
