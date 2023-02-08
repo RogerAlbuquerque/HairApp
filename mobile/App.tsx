@@ -2,6 +2,8 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
 import Routes from './src/routes';
+import { useContext } from 'react';
+import UserDataContext, { UserInfoContext } from './src/context';
 
 export default function App() {
 
@@ -16,10 +18,10 @@ export default function App() {
     return null;
   }else{
   return (
-    <>
+   <UserDataContext>
       <StatusBar backgroundColor="#000" barStyle="light-content"/>
       <Routes/>
-    </>
+    </UserDataContext>
   );
 }
 }
