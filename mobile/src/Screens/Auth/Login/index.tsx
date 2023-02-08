@@ -25,16 +25,12 @@ import {
 export default function SignIn(){
 
   const {navigate} = useNavigation<propsStack>();
-
   const [emailInput,setEmailInput]=useState('');
   const [passwordInput,setPasswordInput]=useState('');
   const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const {handleClientInfoState, handleHairdInfoState, handleAlertModal} = useContext(UserInfoContext);
-
-
-
 
   async function loginUser(){
 
@@ -57,9 +53,7 @@ export default function SignIn(){
      finally{
       setIsAwaitingLoginReponse(false);
      }
-
   }
-
 
   return (
     <ImageBackground source={require('../../../assets/imgs/bkg.jpg')}
@@ -73,7 +67,6 @@ export default function SignIn(){
         <ContainerLogo>
           <Image source={require('../../../assets/imgs/logoo.png')} style={{width:340, height:380}}/>
         </ContainerLogo>
-
 
         <ContainerForm>
           <UserInfo>
@@ -127,15 +120,9 @@ export default function SignIn(){
               </CreateAccount>
             </Footer>
           :
-
           <ActivityIndicator color="#fff" size="large"/>
 
           }
-
-
-
-
-
     </Container>
     </ImageBackground>
   );

@@ -1,7 +1,7 @@
 import React, {useContext, useState } from 'react';
 import { UserInfoContext } from '../../../context';
 import emailValidator from "email-validator";
-import {ImageBackground} from 'react-native';
+import {ActivityIndicator, ImageBackground} from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from '../../../utils/Text';
 
@@ -13,6 +13,7 @@ import { api } from '../../../utils/api';
 import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
 export default function Registration(){
 
+  const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
   const [isChecked,setChecked]=useState(false);
   const [userNameInput,setUserNameInput]=useState('');
   const [emailInput,setEmailInput]=useState('');
@@ -20,44 +21,31 @@ export default function Registration(){
   const [confirmPasswordInput,setConfirmPasswordInput ]=useState('');
   const {handleAlertModal}=useContext(UserInfoContext);
 
-  async function registerUser(){
+  async function registerClient(){
 
     if(emailInput == '' || passwordInput == '' || userNameInput == '' || confirmPasswordInput == ''){
-      return(
-        handleAlertModal('Alguns campos estão vazios', 'Todos os campos são obrigatórios serem preenchidos!', 'error')
-        )
+      return handleAlertModal('Alguns campos estão vazios', 'Todos os campos são obrigatórios serem preenchidos!', 'error')
     }
     if(passwordInput.length < 8){
-      return(
-        handleAlertModal('Senha muito fraca', 'Senha precisa ter no mínimo 8 digitos', 'error')
-        )
+      return handleAlertModal('Senha muito fraca', 'Senha precisa ter no mínimo 8 digitos', 'error')
     }
     if(!emailValidator.validate(emailInput)){
-      return(
-        handleAlertModal('Email Inválido', 'Este não é o formato correto de um email', 'error')
-        )
+      return handleAlertModal('Email Inválido', 'Este não é o formato correto de um email', 'error')
     }
-
     if(passwordInput != confirmPasswordInput ){
-      return(
-        handleAlertModal('Senhas não são iguais', 'Os campos de senhas precisam ser exatamente iguais!', 'error')
-        )
+      return handleAlertModal('Senhas não são iguais', 'Os campos de senhas precisam ser exatamente iguais!', 'error')
     }
 
     try{
-
+    setIsAwaitingLoginReponse(true)
      await api.post('/client/create',{clientName:userNameInput, email:emailInput, clientPassword:passwordInput});
-     return(
-        handleAlertModal('Usuário criado com sucesso', 'Volte para a tela inicial e acesse sua conta', 'success')
-        )
-
+     return handleAlertModal('Usuário criado com sucesso', 'Volte para a tela inicial e acesse sua conta', 'success')
     }
     catch(error){
-      return(
-        handleAlertModal('Email ou Usuário ja existem', 'Tente mudar algumas dessa informações', 'error')
-        )
+      return handleAlertModal('Email ou Usuário ja existem', 'Tente mudar algumas dessa informações', 'error')
     }
     finally{
+      setIsAwaitingLoginReponse(false)
     }
 
   }
@@ -131,11 +119,17 @@ export default function Registration(){
             </Check>
           </ForgotDad>
 
+          {!isAwaitingLoginReponse ?
           <Footer>
-            <Button onPress={registerUser}>
+            <Button onPress={registerClient}>
               <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Cadastrar </Text>
             </Button>
           </Footer>
+          :
+          <ActivityIndicator color="#fff" size="large"/>
+        }
+
+
       </Container>
     </ImageBackground>
   );
