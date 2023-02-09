@@ -3,7 +3,7 @@ import { Text } from "../../../utils/Text";
 import { Day, DaysWeek } from "./style";
 
 interface daysWorkingProps{
-  schedDay:{
+  workDaysWeek:{
     SEG:boolean,
     TER:boolean,
     QUA:boolean,
@@ -12,9 +12,9 @@ interface daysWorkingProps{
     SAB:boolean,
     DOM:boolean,
   }
-  setSchedDay:(day:'SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM')=>void
+  setWorkDaysWeek:(day:'SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM')=>void
 }
-export default function DaysOfWorking({schedDay,setSchedDay}:daysWorkingProps){
+export default function DaysOfWorking({workDaysWeek,setWorkDaysWeek}:daysWorkingProps){
   // const [schedDay, setSchedDay] = useState({
   //   SEG:false,
   //   TER:false,
@@ -26,31 +26,31 @@ export default function DaysOfWorking({schedDay,setSchedDay}:daysWorkingProps){
   // })
   return(
     <DaysWeek>
-          <Day onPress={()=> setSchedDay('SEG')} style={{backgroundColor:schedDay.SEG ? '#3FC500' : 'white'}}  >
+          <Day onPress={()=> setWorkDaysWeek('SEG')} style={{backgroundColor:workDaysWeek.SEG ? '#3FC500' : 'white'}}  >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SEG</Text>
           </Day>
 
-          <Day onPress={()=> setSchedDay('TER')} style={{backgroundColor:schedDay.TER ? '#3FC500' : 'white'}} >
+          <Day onPress={()=> setWorkDaysWeek('TER')} style={{backgroundColor:workDaysWeek.TER ? '#3FC500' : 'white'}} >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>TER</Text>
           </Day>
 
-          <Day onPress={()=> setSchedDay('QUA')} style={{backgroundColor:schedDay.QUA ? '#3FC500' : 'white'}} >
+          <Day onPress={()=> setWorkDaysWeek('QUA')} style={{backgroundColor:workDaysWeek.QUA ? '#3FC500' : 'white'}} >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>QUA</Text>
           </Day>
 
-          <Day onPress={()=> setSchedDay('QUI')} style={{backgroundColor:schedDay.QUI ? '#3FC500' : 'white'}} >
+          <Day onPress={()=> setWorkDaysWeek('QUI')} style={{backgroundColor:workDaysWeek.QUI ? '#3FC500' : 'white'}} >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>QUI</Text>
           </Day>
 
-          <Day onPress={()=> setSchedDay('SEX')} style={{backgroundColor:schedDay.SEX ? '#3FC500' : 'white'}} >
+          <Day onPress={()=> setWorkDaysWeek('SEX')} style={{backgroundColor:workDaysWeek.SEX ? '#3FC500' : 'white'}} >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SEX</Text>
           </Day>
 
-          <Day onPress={()=> setSchedDay('SAB')} style={{backgroundColor:schedDay.SAB ? '#3FC500' : 'white'}} >
+          <Day onPress={()=> setWorkDaysWeek('SAB')} style={{backgroundColor:workDaysWeek.SAB ? '#3FC500' : 'white'}} >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>SAB</Text>
           </Day>
 
-          <Day onPress={()=> setSchedDay('DOM')} style={{backgroundColor:schedDay.DOM ? '#3FC500' : 'white'}} >
+          <Day onPress={()=> setWorkDaysWeek('DOM')} style={{backgroundColor:workDaysWeek.DOM ? '#3FC500' : 'white'}} >
             <Text size={14} font={'Poppins'} weight={'Bold'} color={'black'}>DOM</Text>
           </Day>
         </DaysWeek>

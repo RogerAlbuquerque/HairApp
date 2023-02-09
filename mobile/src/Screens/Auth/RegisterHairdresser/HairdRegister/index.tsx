@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserInfoContext } from '../../../../context';
 import { useNavigation } from "@react-navigation/native";
+import emailValidator from "email-validator";
 import { propsStack } from '../../../../utils/routeProps';
-import { Image, ImageBackground} from "react-native"
+import { ActivityIndicator, Image, ImageBackground} from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../../../components/UtilsComponents/Button";
 import DaysOfWorking from "../../../../components/HairdComponents/DaysOfworking";
@@ -27,24 +29,26 @@ import {
   InputPrice,
   Container
 } from "./style";
+import { api } from "../../../../utils/api";
 
 export default function HairdRegister(){
 
   const {navigate} = useNavigation<propsStack>();
 
-
+  const {handleAlertModal}=useContext(UserInfoContext);
+  const [isAwaitingRegisterReponse,setIsAwaitingRegisterReponse]=useState(false);
   const [isOpenClocVisible, setIsOpenClockVisible] = useState(false);
   const [isCloseClocVisible, setIsCloseClockVisible] = useState(false);
   const [openingTime, setOpeningTime] = useState(new Date());
   const [closingTime, setClosingTime] = useState(new Date());
   const [hairdName, setHairdName] = useState('');
-  const [saloonAddress, setSaloonAddress] = useState('');
-  const [hairdEmail, setHairdEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setHairdEmail] = useState('');
   const [hairdPassword, setHairdPassword] = useState('');
   const [hairdConfirmPassword, setHairdConfirmPassword] = useState('');
-  const [hairPrice, setHairPrice] = useState('');
-  const [beardPrice, setBeirdPrice] = useState('');
-  const [schedDay, setSchedDay] = useState({
+  const [hairPrice, setHairPrice] = useState<number>();
+  const [beardPrice, setBeirdPrice] = useState<number>();
+  const [workDaysWeek, setWorkDaysWeek] = useState({
     SEG:false,
     TER:false,
     QUA:false,
@@ -53,6 +57,7 @@ export default function HairdRegister(){
     SAB:false,
     DOM:false,
   })
+
 
 
 
@@ -74,23 +79,57 @@ export default function HairdRegister(){
   }
 
   function handleSchedDay(day:'SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM'){
-    setSchedDay({...schedDay, [day]:!schedDay[day]})
+    setWorkDaysWeek({...workDaysWeek, [day]:!workDaysWeek[day]})
   }
 
   function registerHairdresser(){
-    // console.log('Horarios: ',
-    //   openingTime.getHours().toLocaleString(), ':', openingTime.getMinutes().toLocaleString().padStart(2, '0'),
-    //   ' -> ',
-    //   closingTime.getHours().toLocaleString(), ':', closingTime.getMinutes().toLocaleString().padStart(2, '0')
-    // )
-    // console.log('Nome do cabeleireiro: ', hairdName)
-    // console.log('Endereço do salão: ', saloonAddress)
-    // console.log('Email: ', hairdEmail)
-    // console.log('Senha: ', hairdPassword)
-    // console.log('Confirmar senha: ', hairdConfirmPassword)
-    // console.log('Valor do corte: ', hairPrice)
-    console.log('Dias de trabalho: ')
-    console.log(schedDay)
+   if(  hairdName == '' || address == '' || email == '' || hairdPassword == '' || hairdConfirmPassword == '' || hairPrice == undefined || beardPrice == undefined){
+    return handleAlertModal('Alguns campos estão vazios', 'Todos os campos são obrigatórios!', 'error')
+   }
+   if(!emailValidator.validate(email)){
+    return handleAlertModal('Email Inválido', 'Este não é o formato correto de um email', 'error')
+   }
+   if(hairdPassword.length < 8){
+    return handleAlertModal('Senha muito fraca', 'Senha precisa ter no mínimo 8 digitos', 'error')
+   }
+   if(hairdPassword != hairdConfirmPassword){
+    return handleAlertModal('Senhas não são iguais', 'Os campos de senhas precisam ser exatamente iguais!', 'error')
+   }
+   if(workDaysWeek.SEG == false && workDaysWeek.TER == false && workDaysWeek.QUA == false &&
+    workDaysWeek.QUI == false && workDaysWeek.SEX == false && workDaysWeek.SAB == false && workDaysWeek.DOM == false
+    ){
+      return handleAlertModal('Nenhum dia de trabalho selecionado', 'É preciso selecionar pelo menos um dia de trabalho!', 'error')
+    }
+
+    try{
+      setIsAwaitingRegisterReponse(true)
+      api.post('/hairdresser/create', {
+        hairdName,
+        address,
+        email,
+        hairdPassword,
+        prices:{
+          hairPrice,
+          beardPrice,
+        },
+        workDaysWeek,
+        workingTime: {
+          open:{
+            hour: openingTime.getHours().toLocaleString(),
+            minute: openingTime.getMinutes().toLocaleString().padStart(2, '0')
+          },
+          close: {
+            hour: closingTime.getHours().toLocaleString(),
+            minute: closingTime.getMinutes().toLocaleString().padStart(2, '0')
+          }
+        }
+      })
+     return handleAlertModal('Usuário criado com sucesso', 'Volte para a tela inicial e acesse sua conta', 'success')
+    }catch(error){
+      return handleAlertModal('Email ou Usuário ja existem', 'Tente mudar algumas dessa informações', 'error')
+    }finally{
+      setIsAwaitingRegisterReponse(false)
+    }
 
   }
 
@@ -119,6 +158,9 @@ export default function HairdRegister(){
                   isVisible={isOpenClocVisible}
                   onConfirm={(date)=>setOpeningHourSaloon(date)}
                   onCancel={()=>setIsOpenClockVisible(!isOpenClocVisible)}
+                  minuteInterval={15}
+
+
                 />
 
                 <DateTimePicker
@@ -177,7 +219,7 @@ export default function HairdRegister(){
           </Text>
           <InputText
             font="Poppins-Bold"
-            onChange={(value)=>setSaloonAddress(value)}
+            onChange={(value)=>setAddress(value)}
           />
 
           <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>
@@ -216,7 +258,10 @@ export default function HairdRegister(){
               <InputPrice
                 keyboardType="numeric"
                 placeholder="20"
-                onChangeText={(value)=>setHairPrice(value)}
+                onChangeText={(value)=>{
+                  let price = parseInt(value)
+                  setHairPrice(price)
+                }}
 
               />
             </HairPrice>
@@ -230,7 +275,10 @@ export default function HairdRegister(){
                 keyboardType="numeric"
                 placeholder="20"
                 style={{marginLeft:2}}
-                onChangeText={(value)=>setBeirdPrice(value)}
+                onChangeText={(value)=>{
+                  let price = parseInt(value)
+                  setBeirdPrice(price)
+                }}
               />
             </BeardPrice>
           </BeardInfo>
@@ -239,18 +287,20 @@ export default function HairdRegister(){
         <WorkingDays>
           <Text size={15} font={'Poppins'} weight={'Bold'} color={'white'} >Dias que o salão funciona:</Text>
           <DaysOfWorking
-            schedDay={schedDay}
-            setSchedDay={handleSchedDay}
+            workDaysWeek={workDaysWeek}
+            setWorkDaysWeek={handleSchedDay}
           />
         </WorkingDays>
 
+       {isAwaitingRegisterReponse ? <ActivityIndicator color="#fff" size="large"/>
+        :
         <Button
           name="Avançar"
           size={40}
           letterCollor={'#F6C33E'}
           // onPress={()=>navigation.navigate('CreditCardRegister')}
           onPress={registerHairdresser}
-        />
+        />}
       </Container>
 
     </ImageBackground>

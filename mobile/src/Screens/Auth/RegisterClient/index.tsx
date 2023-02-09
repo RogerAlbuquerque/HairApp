@@ -13,7 +13,7 @@ import { api } from '../../../utils/api';
 import { Button, Check, Container, ContainerForm, ContainerLogo, Footer,  ForgotDad, Term} from './style';
 export default function Registration(){
 
-  const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
+  const [isAwaitingRegisterReponse,setIsAwaitingRegisterReponse]=useState(false);
   const [isChecked,setChecked]=useState(false);
   const [userNameInput,setUserNameInput]=useState('');
   const [emailInput,setEmailInput]=useState('');
@@ -37,7 +37,7 @@ export default function Registration(){
     }
 
     try{
-    setIsAwaitingLoginReponse(true)
+      setIsAwaitingRegisterReponse(true)
      await api.post('/client/create',{clientName:userNameInput, email:emailInput, clientPassword:passwordInput});
      return handleAlertModal('Usuário criado com sucesso', 'Volte para a tela inicial e acesse sua conta', 'success')
     }
@@ -45,7 +45,7 @@ export default function Registration(){
       return handleAlertModal('Email ou Usuário ja existem', 'Tente mudar algumas dessa informações', 'error')
     }
     finally{
-      setIsAwaitingLoginReponse(false)
+      setIsAwaitingRegisterReponse(false)
     }
 
   }
@@ -119,7 +119,7 @@ export default function Registration(){
             </Check>
           </ForgotDad>
 
-          {!isAwaitingLoginReponse ?
+          {!isAwaitingRegisterReponse ?
           <Footer>
             <Button onPress={registerClient}>
               <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Cadastrar </Text>
