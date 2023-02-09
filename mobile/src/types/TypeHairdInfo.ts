@@ -7,7 +7,15 @@ export interface TypeHairdInfo{
     hairPrice:number,
     beardPrice:number
   },
-  workDaysWeek: ['SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM'];
+  workDaysWeek: {
+      SEG:boolean,
+      TER:boolean,
+      QUA:boolean,
+      QUI:boolean,
+      SEX:boolean,
+      SAB:boolean,
+      DOM:boolean,
+  };
   workingTime:{
     open:{
       hour:number,
