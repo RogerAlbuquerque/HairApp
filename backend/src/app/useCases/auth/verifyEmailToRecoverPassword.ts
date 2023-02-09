@@ -37,9 +37,10 @@ export async function verifyEmailToRecoverPassword(req: Request, res:Response){
     from: 'cabeleireiroapp@gmail.com',
     to: clientEmail.email,
     subject: 'Link para alteração de senha',
-    html: `<h1> Link para recuperação de senha </h1>
-
-    http://localhost:3001/passwordRecovery/${token}/${clientEmail.email}
+    html: `<h1> Esse é o seu código para recuperar a senha: </h1>
+    ${token} <br>
+    <p>Copie e cole esse código na área "TOKEN" dentro da tela de recuperação de senha no app/</p>
+    <p>Depois é só colocar a sua nova senha no espaço correto.</p>
     `};
 
 

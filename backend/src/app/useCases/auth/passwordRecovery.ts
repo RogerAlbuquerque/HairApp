@@ -4,11 +4,10 @@ import { Client } from '../../models/Client';
 import bcrypt from 'bcryptjs';
 
 export async function passwordRecovery(req: Request, res:Response){
-  const {token, email} = req.params;
   const newPassword = req.body.newPassword;
+  const token = req.body.token;
+  const email = req.body.email;
 
-  // const clientExist = await Client.findOne({email:email, passwordResetToken:token});
-  // const hairdExist = await Hairdresser.findOne({email:email, passwordResetToken:token});
 
   const now = new Date();
   now.setHours(now.getHours());
@@ -46,7 +45,7 @@ export async function passwordRecovery(req: Request, res:Response){
             });
           });
         }else {
-          res.status(500).json({error:'token or email does not exist'});
+          res.status(401).json({error:'token or email does not exist'});
         }
       }).catch(err => {
         console.log(err);
