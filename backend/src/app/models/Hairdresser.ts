@@ -53,16 +53,20 @@ export const Hairdresser = model('Hairdresser', new Schema({
     }]
   },
 
-  workDaysWeek:[
-    {
-      type:String,
-      enum:['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB', 'DOM'],
-      required:true,
-      unique: false,
-      sparse:true
+  workDaysWeek:{
+    type:{
+      SEG:Boolean,
+      TER:Boolean,
+      QUA:Boolean,
+      QUI:Boolean,
+      SEX:Boolean,
+      SAB:Boolean,
+      DOM:Boolean,
+    },
+    required:true,
+    unique: false,
 
-    }
-  ],
+  },
 
   workingTime:{
     required:true,
