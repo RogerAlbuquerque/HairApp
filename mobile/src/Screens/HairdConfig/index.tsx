@@ -1,20 +1,45 @@
-import { useState } from "react";
-import { Image, ImageBackground, TextInput } from "react-native"
+import { useContext, useState } from "react";
+import { Image, ImageBackground } from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../components/UtilsComponents/Button";
 import DaysOfWorking from "../../components/HairdComponents/DaysOfworking";
 import InputText from "../../components/UtilsComponents/InputText";
 import { Text } from "../../utils/Text";
-import { ProfileAndHour, InfoUserForms, Prices, WorkingDays, ProfileImage, WorkingHours, PickHour, HourInput, MinuteInput, Schedules, OpeningHour,ClosingdHour, HairCutInfo, BeardInfo, HairPrice, BeardPrice, InputPrice} from "./style";
+import { UserInfoContext } from "../../context";
+import {
+  ProfileAndHour,
+  InfoUserForms,
+  Prices,
+  WorkingDays,
+  ProfileImage,
+  WorkingHours,
+  PickHour,
+  HourInput,
+  MinuteInput,
+  Schedules,
+  OpeningHour,
+  ClosingdHour,
+  HairCutInfo,
+  BeardInfo,
+  HairPrice,
+  BeardPrice,
+  InputPrice}
+from "./style";
+
 
 
 export default function HairdConfig(){
+  const {hairdInfo}=useContext(UserInfoContext);
   const [openingTime, setOpeningTime] = useState(new Date());
   const [closingTime, setClosingTime] = useState(new Date());
   const [isOpenClocVisible, setIsOpenClockVisible] = useState(false);
   const [isCloseClocVisible, setIsCloseClockVisible] = useState(false);
+  const [workDaysWeek, setWorkDaysWeek] = useState(hairdInfo.workDaysWeek)
 
 
+  function handleSchedDay(day:'SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM'){
+    setWorkDaysWeek({...workDaysWeek, [day]:!workDaysWeek[day]})
+  }
   const showOpeningClockDatePicker = () => {
     setIsOpenClockVisible(!isOpenClocVisible);
 
@@ -148,6 +173,8 @@ export default function HairdConfig(){
       <WorkingDays>
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'white'} >Dias que o salão funciona:</Text>
         <DaysOfWorking
+            workDaysWeek={workDaysWeek}
+            setWorkDaysWeek={handleSchedDay}
         />
       </WorkingDays>
 
