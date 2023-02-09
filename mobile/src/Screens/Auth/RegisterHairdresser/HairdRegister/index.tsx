@@ -73,18 +73,24 @@ export default function HairdRegister(){
     setClosingTime(date)
   }
 
+  function handleSchedDay(day:'SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM'){
+    setSchedDay({...schedDay, [day]:!schedDay[day]})
+  }
+
   function registerHairdresser(){
-    console.log('Horarios: ',
-      openingTime.getHours().toLocaleString(), ':', openingTime.getMinutes().toLocaleString().padStart(2, '0'),
-      ' -> ',
-      closingTime.getHours().toLocaleString(), ':', closingTime.getMinutes().toLocaleString().padStart(2, '0')
-    )
-    console.log('Nome do cabeleireiro: ', hairdName)
-    console.log('Endereço do salão: ', saloonAddress)
-    console.log('Email: ', hairdEmail)
-    console.log('Senha: ', hairdPassword)
-    console.log('Confirmar senha: ', hairdConfirmPassword)
-    console.log('Valor do corte: ', hairPrice)
+    // console.log('Horarios: ',
+    //   openingTime.getHours().toLocaleString(), ':', openingTime.getMinutes().toLocaleString().padStart(2, '0'),
+    //   ' -> ',
+    //   closingTime.getHours().toLocaleString(), ':', closingTime.getMinutes().toLocaleString().padStart(2, '0')
+    // )
+    // console.log('Nome do cabeleireiro: ', hairdName)
+    // console.log('Endereço do salão: ', saloonAddress)
+    // console.log('Email: ', hairdEmail)
+    // console.log('Senha: ', hairdPassword)
+    // console.log('Confirmar senha: ', hairdConfirmPassword)
+    // console.log('Valor do corte: ', hairPrice)
+    console.log('Dias de trabalho: ')
+    console.log(schedDay)
 
   }
 
@@ -234,7 +240,7 @@ export default function HairdRegister(){
           <Text size={15} font={'Poppins'} weight={'Bold'} color={'white'} >Dias que o salão funciona:</Text>
           <DaysOfWorking
             schedDay={schedDay}
-            setSchedDay={()=>setSchedDay({...schedDay})}
+            setSchedDay={handleSchedDay}
           />
         </WorkingDays>
 
