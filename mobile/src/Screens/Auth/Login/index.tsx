@@ -7,7 +7,7 @@ import { Text } from '../../../utils/Text';
 import InputText from '../../../components/UtilsComponents/InputText';
 import Checkbox from 'expo-checkbox';
 import ToRegisterModal from '../../../components/UtilsComponents/Modal';
-import { ActivityIndicator, Alert, Image, ImageBackground, StyleSheet} from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, StyleSheet} from 'react-native';
 import {
   Button,
   Check,

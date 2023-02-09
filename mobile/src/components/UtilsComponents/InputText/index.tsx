@@ -18,7 +18,6 @@ export default function InputText({placeholder,value,onChange,isPassword,isNumer
     <InputStyle
       placeholder={placeholder}
       value={value}
-      maxLength={60}
       autoCorrect={false}
       secureTextEntry={isPassword ? isPassword : false}
       keyboardType={isNumeric ? 'numeric' : 'default'}

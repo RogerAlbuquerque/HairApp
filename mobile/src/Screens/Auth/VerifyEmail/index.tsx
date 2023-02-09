@@ -8,31 +8,42 @@ import InputText from '../../../components/UtilsComponents/InputText';
 import * as Animatable from 'react-native-animatable';
 import { api } from '../../../utils/api';
 import { UserInfoContext } from '../../../context';
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../../utils/routeProps';
 
 export default function VerifyEmail(){
 
   const [email, setEmail] = useState('');
+  const {navigate} = useNavigation<propsStack>();
+
+
   const [isAwaitingReponse,setIsAwaitingReponse]=useState(false);
   const{handleAlertModal}=useContext(UserInfoContext)
 
-    async function verifyEmail(){
-      console.log(email)
-
-    if(email == '' || !emailValidator.validate(email)){
-      return handleAlertModal('Email vazio ou inválido', 'Indique um email válido que ira receber o link para alterar a senha!', 'error')
-    }
-
-      try{
-        setIsAwaitingReponse(true)
-        await api.post('/verifyEmail',{email})
-        return handleAlertModal('Mensagem enviada com sucesso', 'Verifique a caixa de entrada do seu email, e clique no link com seu código de recuperação de senha', 'success')
+    async function verifyEmail(email?:string){
+      if(email == '' || (email && !emailValidator.validate(email))){
+        return handleAlertModal('Email vazio ou inválido', 'Indique um email válido que ira receber o link para alterar a senha!', 'error')
       }
-      catch(error){
-        console.log(error)
-        return handleAlertModal('Erro: talvez esse email não tenha sido cadastrado', 'Verifique se o email está correto, e tente de novo', 'error')
+
+      if(email && email != ''){
+
+        try{
+          setIsAwaitingReponse(true)
+          await api.post('/verifyEmail',{email})
+          handleAlertModal('Mensagem enviada com sucesso', 'Copie o token (código) enviado para seu email para usa-lo na página seguinte. NÃO FECHE O APLICATIVO', 'success')
+          navigate('ChangePassword', {email})
+        }
+        catch(error){
+          console.log(error)
+          return handleAlertModal('Erro: talvez esse email não tenha sido cadastrado', 'Verifique se o email está correto, e tente de novo', 'error')
+        }
+        finally{
+          setIsAwaitingReponse(false)
+        }
       }
-      finally{
-        setIsAwaitingReponse(false)
+
+      if(!email){
+        navigate('ChangePassword',{})
       }
     }
 
@@ -69,12 +80,15 @@ export default function VerifyEmail(){
 
           <Footer>
             {!isAwaitingReponse ?
-            <Button onPress={verifyEmail}>
+            <Button onPress={() => verifyEmail(email)}>
               <Text size={45} font={'Imbue'} weight={'Medium'} color={'#F6C33E'}>Recuperar senha</Text>
             </Button>
             :
             <ActivityIndicator color="#fff" size="large"/>}
           </Footer>
+          <Button onPress={() => verifyEmail()}>
+            <Text size={15} font={'Imbue'} weight={'Medium'} color={'#FFF'}>Já tem o token? clique aqui</Text>
+          </Button>
       </Container>
     </ImageBackground>
   );

@@ -5,8 +5,7 @@ export type propsNavigationStack = {
   RegisterClient: undefined;
   VerifyEmail: undefined;
   ChangePassword:{
-    token: string;
-    email: string;
+   email?: string;
   }
   Home: undefined;
   SchedClient: undefined;
