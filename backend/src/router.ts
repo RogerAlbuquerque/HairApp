@@ -25,34 +25,29 @@ import { updateScheduling } from './app/useCases/SchedClients/updateScheduling';
 import { showMySchedClients } from './app/useCases/SchedClients/showMySchedClients';
 import { deleteScheduleClient } from './app/useCases/SchedClients/deleteScheduleClient';
 import verifyTokenJWT from './utils/verifyTokenJWT';
+import { myHairdListRemove } from './app/useCases/clients/myHairdListRemove';
 
 export const router = Router();
 
 
 // ROTAS
 router.get('/me',verifyTokenJWT, showMe);
-
 //CLIENT
 // router.get('/client', showClient);
 router.post('/client/create', createClient);
-
 router.put('/client/update',verifyTokenJWT, updateClientInfo);
 router.put('/client/addHairdresser',verifyTokenJWT, myHairdList);
+router.put('/client/removeHairdresser',verifyTokenJWT, myHairdListRemove);
 
 //HAIDRESSER
 router.post('/hairdresser/create', createHairdresser);
-
 router.put('/hairdresser/updateInfo',verifyTokenJWT, updateHairdresserInfo);
-
 router.get('/scheduling/myClients',verifyTokenJWT, showMySchedClients);
 router.delete('/scheduling/:schedClientId/delete',verifyTokenJWT, deleteScheduleClient);
 // router.get('/hairdresser/all', showAllHairdresser);
-
 //SCHEDULE CLIENTS
 router.post('/scheduling',verifyTokenJWT, scheduling);
 router.put('/scheduling/update',verifyTokenJWT, updateScheduling);
-
-
 //AUTHENTICATION
 router.post('/login', login);
 
