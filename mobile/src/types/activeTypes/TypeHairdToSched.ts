@@ -1,5 +1,6 @@
 export interface TypeHairdToSched{
   status?:'PENDING' | 'CONFIRMED' | 'CANCELED';
+  hairdId:string;
   hairdName:string,
   email:string
   address:string,

@@ -40,7 +40,6 @@ export default function SignIn(){
      try{
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
-      console.log(tokenResponse);
       if(tokenResponse){
         api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
         const userInfoResponse = await api.get('/me');

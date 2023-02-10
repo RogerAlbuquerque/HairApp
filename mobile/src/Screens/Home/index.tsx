@@ -12,20 +12,18 @@ import { api } from "../../utils/api";
 
 export default function Home(){
   const {navigate} = useNavigation<propsStack>();
-  const [isAwaitingSearchReponse,setIsAwaitingLoginReponse]=useState(false);
+  const [isAwaitingSearchReponse,setIsAwaitingSearchReponse]=useState(false);
   const [searchHairdresser, setSearchHairdresser] = useState('');
   const {clientInfo, handleClientInfoState,handleAlertModal} = useContext(UserInfoContext);
 
 
-  function show(){
-    console.log(api.defaults.headers.common['Authorization'])
-  }
+
 async function addHairdOnMyList(){
   if(searchHairdresser == ''){
     return handleAlertModal('É preciso passar o nome de um cabeleireiro','','error')
   }
   try{
-    setIsAwaitingLoginReponse(true)
+    setIsAwaitingSearchReponse(true)
     await api.put('/client/addHairdresser/',{hairdName:searchHairdresser})
     const clientUpdated = await api.get('/me')
     handleClientInfoState(clientUpdated.data)
@@ -35,7 +33,7 @@ async function addHairdOnMyList(){
     return handleAlertModal('Não foi encontrado cabeleireiro com esse nome',' Tente mudar algo no nome, ele precisa ser exatamente igual ao que o cabeleireiro cadastrou','error')
   }
   finally{
-    setIsAwaitingLoginReponse(false);
+    setIsAwaitingSearchReponse(false);
   }
 }
 
@@ -84,6 +82,7 @@ async function addHairdOnMyList(){
           keyExtractor={hairdId => hairdId._id}
           renderItem={({item}) =>(
             <HairdCard
+              hairdId={item._id}
               hairdName={item.hairdName!}
               workingTimeOpen={item.workingTime.open}
               workingTimeClose={item.workingTime.close}

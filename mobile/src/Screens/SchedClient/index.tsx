@@ -1,13 +1,13 @@
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import { useState } from 'react';
-import { Image, ImageBackground } from "react-native";
+import { useContext, useState } from 'react';
+import { ActivityIndicator, Image, ImageBackground } from "react-native";
 import Button from "../../components/UtilsComponents/Button";
 import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
 import { Text } from "../../utils/Text";
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
 
-import { TypeHairdToSched } from '../../types/TypeHairdToSched';
+import { TypeHairdToSched } from '../../types/activeTypes/TypeHairdToSched';
 import {
   Header,
   HairdInfo,
@@ -22,6 +22,8 @@ import {
   MinuteInput
 } from "./style";
 import DaysOfWeek from '../../components/ClientComponents/DaysOfWeek';
+import { api } from '../../utils/api';
+import { UserInfoContext } from '../../context';
 
 interface recoverProps{
   route:{
@@ -32,15 +34,14 @@ export default function SchedClient({route}:recoverProps){
 
   const navigation = useNavigation<propsStack>();
   const hairdData = route.params;
+  const {clientInfo,handleAlertModal} = useContext(UserInfoContext);
+  const [isAwaitingSchedReponse,setIsAwaitingSchedReponse]=useState(false);
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
 
   const [schedDay, setSchedDay] = useState('')
 
 
-    function teste(dia:string){
-      // setWorkingDays();
-    }
 
   // MANIPULATE DATAPICKER
   const openDatePicker = () => {
@@ -53,6 +54,28 @@ export default function SchedClient({route}:recoverProps){
     setDate(date)
   }
   // MANIPULATE DATAPICKER
+
+  async function schedTime(){
+
+    try{
+      setIsAwaitingSchedReponse(true)
+      await api.post('/scheduling', {
+        hairdresserId: route.params.hairdId,
+        clientId: clientInfo._id,
+        day: schedDay,
+        clientHour:{
+          hour:date.getHours().toLocaleString().padStart(2, '0'),
+          minute:date.getMinutes().toLocaleString().padStart(2, '0')
+        }
+      })
+      return handleAlertModal('Horário agendado com sucesso','Aguarda a confirmação do cabeleireiro, quando ele confirmar, o seu card ficará verde','success')
+    }catch(error){
+      console.log(error)
+      return handleAlertModal('Internal Server Error','Tente de novo, ou tente reiniciar o app','error')
+    }finally{
+      setIsAwaitingSchedReponse(false)
+    }
+  }
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -108,24 +131,29 @@ export default function SchedClient({route}:recoverProps){
           </PickHour>
         </Schedules>
 
-        <ButtonToSched style={{justifyContent:schedDay != '' ? 'space-between' : 'center' }}>
-          <Button
-            name='Marcar horário'
-            backColor="#5A5A5A"
-            size={22}
-            width={150}
-            height={90}
-          />
-          {schedDay != '' &&
-             <Button
-             name='Cancelar horário'
-             backColor="#C10000"
-             size={22}
-             width={150}
-             height={90}
-           />
-          }
-        </ButtonToSched>
+        {!isAwaitingSchedReponse ?
+          <ButtonToSched style={{justifyContent:schedDay != '' ? 'space-between' : 'center' }}>
+            <Button
+              name='Marcar horário'
+              backColor="#5A5A5A"
+              size={22}
+              width={150}
+              height={90}
+              onPress={schedTime}
+            />
+            {schedDay != '' &&
+              <Button
+              name='Cancelar horário'
+              backColor="#C10000"
+              size={22}
+              width={150}
+              height={90}
+            />
+            }
+          </ButtonToSched>
+          :
+          <ActivityIndicator color="#fff" size="large"/>
+        }
 
       </Container>
 
