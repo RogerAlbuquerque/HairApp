@@ -15,6 +15,7 @@ export const SearchButton = styled.View`
 
 export const LineContainer = styled.View`
   align-items: center;
+  margin-bottom: 15px;
 `;
 
 export const Line = styled.View`
@@ -24,12 +25,7 @@ export const Line = styled.View`
 `;
 
 
-export const HairdList = styled.View`
-  padding-top: 20px;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border: 1px solid red;
+export const HairdList = styled.ScrollView`
 `;
 
 

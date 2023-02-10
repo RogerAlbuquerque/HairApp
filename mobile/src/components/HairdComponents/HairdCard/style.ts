@@ -3,7 +3,9 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity`
   border-radius: 3px;
   align-items: center;
-  margin-bottom: 10px;
+  width: 45%;
+  margin-bottom: 20px;
+  margin-right: 30px;
 `;
 
 export const HairdImage = styled.View`

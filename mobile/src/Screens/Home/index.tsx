@@ -6,7 +6,7 @@ import InputText from "../../components/UtilsComponents/InputText";
 import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
-import React, { useState, useContext } from 'react';
+import React, {useContext } from 'react';
 import { UserInfoContext } from '../../context';
 import Separator from "./separator";
 
@@ -44,6 +44,7 @@ function show(){
           size={22}
           width={130}
           height={60}
+          marginBotton={25}
           onPress={show}
         />
       </SearchButton>
@@ -55,10 +56,9 @@ function show(){
       <HairdList>
         <FlatList
           data={clientInfo.hairdressers}
-          keyExtractor={hairdId => hairdId._id}
+          numColumns={2}
           // horizontal
-          contentContainerStyle={{width:'100%', flexDirection:'row',flexWrap:'wrap', alignItems:'center', marginRight:2 }}
-          showsVerticalScrollIndicator={true}
+          keyExtractor={hairdId => hairdId._id}
           renderItem={({item}) =>(
             <HairdCard
               hairdName={item.hairdName!}
