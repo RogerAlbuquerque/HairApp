@@ -64,14 +64,14 @@ export default function SchedClient({route}:recoverProps){
         clientId: clientInfo._id,
         day: schedDay,
         clientHour:{
-          hour:date.getHours().toLocaleString().padStart(2, '0'),
-          minute:date.getMinutes().toLocaleString().padStart(2, '0')
+          hour:parseInt(date.getHours().toLocaleString().padStart(2, '0')),
+          minute:parseInt(date.getMinutes().toLocaleString().padStart(2, '0'))
         }
       })
       return handleAlertModal('Horário agendado com sucesso','Aguarda a confirmação do cabeleireiro, quando ele confirmar, o seu card ficará verde','success')
     }catch(error){
       console.log(error)
-      return handleAlertModal('Internal Server Error','Tente de novo, ou tente reiniciar o app','error')
+      return handleAlertModal('Você ja está agendado','Você ja agendou horário aqui, não pode agendar mais de uma vez','error')
     }finally{
       setIsAwaitingSchedReponse(false)
     }
