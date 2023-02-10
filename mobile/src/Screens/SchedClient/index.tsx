@@ -6,6 +6,8 @@ import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
 import { Text } from "../../utils/Text";
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
+
+import { TypeHairdToSched } from '../../types/TypeHairdToSched';
 import {
   Header,
   HairdInfo,
@@ -21,9 +23,15 @@ import {
 } from "./style";
 import DaysOfWeek from '../../components/ClientComponents/DaysOfWeek';
 
-export default function SchedClient(){
+interface recoverProps{
+  route:{
+    params:TypeHairdToSched
+  }
+}
+export default function SchedClient({route}:recoverProps){
 
   const navigation = useNavigation<propsStack>();
+  const hairdData = route.params;
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
 
@@ -63,14 +71,14 @@ export default function SchedClient(){
 
           <HairdData>
             <Text size={14} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Nome:</Text>
-            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>Washington Ferreira</Text>
+            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>{hairdData.hairdName}</Text>
 
             <Text size={14} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Endereço: </Text>
-            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>Rua Dorgival pinheiro de sousa - nº 2240</Text>
+            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>{hairdData.address}</Text>
 
             <Text size={14} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Preços: </Text>
-            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>R$ 25,00 Cabelo</Text>
-            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>R$ 20,00 Barba</Text>
+            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>Cabelo: R${hairdData.hairPrice}</Text>
+            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>Barba:   R${hairdData.beardPrice}</Text>
           </HairdData>
         </HairdInfo>
 

@@ -8,7 +8,14 @@ export type propsNavigationStack = {
    email?: string;
   }
   Home: undefined;
-  SchedClient: undefined;
+  SchedClient: {
+    status?:'PENDING' | 'CONFIRMED' | 'CANCELED';
+    hairdName:string,
+    workingTimeOpen:any
+    workingTimeClose:any
+    hairPrice:any
+    beardPrice:any
+  };
   ListOfClients:undefined;
   HairdConfig:undefined
   ClientConfig:undefined

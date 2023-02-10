@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
+import { UserInfoContext } from '../../../context';
 import { Text } from '../../../utils/Text';
 import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
 interface HeaderComponentProps{
   onPressFunctionNavigate?:()=>void;
-  userName:string
 }
 
-export default function HeaderComponent({userName,onPressFunctionNavigate}:HeaderComponentProps){
+export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponentProps){
   const [isMenuVisible, setIsMenuVisible] = useState(false)
+  const {clientInfo} = useContext(UserInfoContext);
   return(
     <Container>
       <ContainerLogo>
@@ -33,7 +34,7 @@ export default function HeaderComponent({userName,onPressFunctionNavigate}:Heade
           </ProfileImage>
         </UserData>
         <UserName>
-          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>{userName}</Text>
+          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>{clientInfo.clientName}</Text>
         </UserName>
 
       </Config>

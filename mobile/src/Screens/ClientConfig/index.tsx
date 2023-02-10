@@ -2,6 +2,9 @@ import { Image, ImageBackground } from "react-native";
 import Button from "../../components/UtilsComponents/Button";
 import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
 import { Text } from "../../utils/Text";
+import InputText from '../../components/UtilsComponents/InputText';
+import { useContext } from "react";
+import { UserInfoContext } from "../../context";
 import {
   Header,
   ProfileImage,
@@ -10,9 +13,10 @@ import {
   InfoUserForms,
   UserInfo
 } from "./style";
-import InputText from '../../components/UtilsComponents/InputText';
+
 
 export default function ClientConfig(){
+  const {clientInfo} = useContext(UserInfoContext);
 
   // MANIPULATE DATAPICKER
   return(
@@ -31,10 +35,10 @@ export default function ClientConfig(){
 
           <ClientData>
             <Text size={20} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Nome:</Text>
-            <Text size={15} font={'Poppins'} weight={'Regular'} color={'#fff'}>Washington Ferreira</Text>
+            <Text size={15} font={'Poppins'} weight={'Regular'} color={'#fff'}>{clientInfo.clientName}</Text>
 
             <Text size={20} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Email: </Text>
-            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>fulano@gmail.com</Text>
+            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>{clientInfo.email}</Text>
           </ClientData>
         </ClientInfo>
 

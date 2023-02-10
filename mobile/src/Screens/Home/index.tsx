@@ -3,16 +3,15 @@ import Button from "../../components/UtilsComponents/Button";
 import HairdCard from "../../components/HairdComponents/HairdCard";
 import HeaderComponent from '../../components/UtilsComponents/HeaderComponent'
 import InputText from "../../components/UtilsComponents/InputText";
-import { Header, SearcHairdInput, SearchButton, HairdList,LineContainer, Line } from "./styles";
+import { Header, SearcHairdInput, SearchButton, LineContainer, Line } from "./styles";
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
 import React, {useContext } from 'react';
 import { UserInfoContext } from '../../context';
-import Separator from "./separator";
 
 export default function Home(){
-  const navigation = useNavigation<propsStack>();
-  const {clientInfo,handleClientInfoState} = useContext(UserInfoContext);
+  const {navigate} = useNavigation<propsStack>();
+  const {clientInfo} = useContext(UserInfoContext);
 
 function show(){
   console.log(clientInfo.hairdressers)
@@ -23,8 +22,7 @@ function show(){
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
       <Header>
         <HeaderComponent
-          onPressFunctionNavigate={ ()=>navigation.navigate('ClientConfig')}
-          userName={clientInfo.clientName!}
+          onPressFunctionNavigate={ ()=>navigate('ClientConfig')}
         />
       </Header>
       <SearcHairdInput>
@@ -53,11 +51,10 @@ function show(){
         <Line></Line>
       </LineContainer>
 
-      <HairdList>
         <FlatList
           data={clientInfo.hairdressers}
           numColumns={2}
-          // horizontal
+          showsVerticalScrollIndicator={false}
           keyExtractor={hairdId => hairdId._id}
           renderItem={({item}) =>(
             <HairdCard
@@ -66,23 +63,13 @@ function show(){
               workingTimeClose={item.workingTime.close}
               hairPrice={item.prices.hairPrice}
               beardPrice={item.prices.beardPrice}
+              email={item.email}
+              address={item.address}
               // status={item.status}
             />
 
           )}
         />
-
-        {/* <HairdCard
-          status={'PENDING'}
-        />
-        <HairdCard
-          status={'CONFIRMED'}
-        />
-        <HairdCard
-        />
-        <HairdCard
-        /> */}
-      </HairdList>
     </ImageBackground>
   );
 }

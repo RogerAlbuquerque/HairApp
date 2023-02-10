@@ -27,5 +27,4 @@ export interface TypeHairdInfo{
       minute:number
     }
   }
-
 }

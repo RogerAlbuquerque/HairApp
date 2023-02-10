@@ -41,7 +41,7 @@ export const Schedules = styled.View`
 flex: 1;
 justify-content: center;
 align-items: center;
-
+margin-top: 30px;
 `;
 
 

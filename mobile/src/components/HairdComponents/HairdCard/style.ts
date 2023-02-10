@@ -3,9 +3,9 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity`
   border-radius: 3px;
   align-items: center;
-  width: 45%;
+  width: 49%;
   margin-bottom: 20px;
-  margin-right: 30px;
+  margin-right: 10px;
 `;
 
 export const HairdImage = styled.View`
@@ -19,7 +19,7 @@ export const HairdName = styled.View`
   background-color: #fff;
   align-items: center;
   padding: 5px 0px;
-  width: 170px;
+  width: 100%;
 `;
 
 export const Info = styled.View`
@@ -29,6 +29,7 @@ export const Info = styled.View`
 
 export const InfosText = styled.View`
   flex-direction: row;
+  justify-content: center;
 `;
 
 export const CloseButton = styled.TouchableOpacity`
