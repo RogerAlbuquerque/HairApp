@@ -21,7 +21,7 @@ export async function myHairdListRemove(req: Request, res:Response){
             if(hairdIndex != -1){
               removeHaird.splice(hairdIndex,1);
               await Client.findByIdAndUpdate(req.headers.userId, {hairdressers:removeHaird});
-              res.status(401).json('removed: ' + hairdExist._id);
+              res.status(201).json('removed: ' + hairdExist._id);
             }
             else{
               res.status(401).json('Hairdresser Was not found on list of this client');

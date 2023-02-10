@@ -29,6 +29,7 @@ async function addHairdOnMyList(){
     await api.put('/client/addHairdresser/',{hairdName:searchHairdresser})
     const clientUpdated = await api.get('/me')
     handleClientInfoState(clientUpdated.data)
+    return handleAlertModal('Cabeleireiro adicionado a sua lista','','success')
   }
   catch(error){
     return handleAlertModal('Não foi encontrado cabeleireiro com esse nome',' Tente mudar algo no nome, ele precisa ser exatamente igual ao que o cabeleireiro cadastrou','error')
@@ -38,9 +39,6 @@ async function addHairdOnMyList(){
   }
 }
 
-  useEffect(()=>{
-
-  },[])
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -68,7 +66,7 @@ async function addHairdOnMyList(){
           width={130}
           height={60}
           marginBotton={25}
-          onPress={show}
+          onPress={addHairdOnMyList}
         />
       :
       <ActivityIndicator color="#fff" size="large"/>
