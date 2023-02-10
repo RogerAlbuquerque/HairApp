@@ -12,7 +12,9 @@ export async function myHairdList(req: Request, res:Response){
   if(hairdExist){
     const clientInfo = await Client.findById(req.headers.userId);
     const newHaird = clientInfo?.hairdressers;
-    newHaird?.push(hairdExist._id);
+    if(newHaird?.includes(hairdExist._id)){
+      res.status(401).json('Hairdresser does exist on list of this client');
+    }else newHaird?.push(hairdExist._id);
 
 
     await Client.findByIdAndUpdate(req.headers.userId, {hairdressers:newHaird});
