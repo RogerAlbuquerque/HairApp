@@ -40,10 +40,12 @@ export default function SignIn(){
      try{
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
-      api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
-      const userInfoResponse = await api.get('/me');
-
-      userInfoResponse.data.clientName ? handleClientInfoState(userInfoResponse.data) : handleHairdInfoState(userInfoResponse.data);
+      console.log(tokenResponse);
+      if(tokenResponse){
+        api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
+        const userInfoResponse = await api.get('/me');
+        userInfoResponse.data.clientName ? handleClientInfoState(userInfoResponse.data) : handleHairdInfoState(userInfoResponse.data);
+      }
 
      }
      catch(error){
@@ -51,7 +53,7 @@ export default function SignIn(){
      }
      finally{
       setIsAwaitingLoginReponse(false);
-      activeToken(true);
+      activeToken();
      }
   }
 

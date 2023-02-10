@@ -1,8 +1,10 @@
 import { createContext, useState } from 'react';
-import { TypeClientInfo } from '../types/TypeClientInfo';
-import { TypeHairdInfo } from '../types/TypeHairdInfo';
+import { TypeClientInfo } from '../types/activeTypes/TypeClientInfo';
+import { TypeHairdInfo } from '../types/activeTypes/TypeHairdInfo';
 import AlertModal from '../components/UtilsComponents/AlertModal';
 import { api } from '../utils/api';
+import { EmptyTypeClientInfo } from '../types/emptyTypes/EmptyTypeClientInfo';
+import { EmptyTypeHairdInfo } from '../types/emptyTypes/EmptyTypeHairdInfo';
 
 interface userDataTypeContext{
   clientInfo:TypeClientInfo;
@@ -15,7 +17,7 @@ interface userDataTypeContext{
   typeAlertModal:'error' | 'success' | '';
   tokenIsValid:boolean
   logout:()=>void;
-  activeToken:(x:boolean)=>void;
+  activeToken:()=>void;
 }
 
 
@@ -35,11 +37,13 @@ export default function UserDataContext({children}:any){
   function handleHairdInfoState(userData:TypeHairdInfo){
     setHairdInfoState(userData)
   }
-  function activeToken(x:boolean){
+  function activeToken(){
     setToken(true)
   }
   function logout(){
     delete api.defaults.headers.common['Authorization']
+    setClientInfoState({} as EmptyTypeClientInfo)
+    setHairdInfoState({} as EmptyTypeHairdInfo)
     setToken(false)
   }
 
