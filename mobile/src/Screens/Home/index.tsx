@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
 import React, { useState, useContext } from 'react';
 import { UserInfoContext } from '../../context';
+import Separator from "./separator";
 
 export default function Home(){
   const navigation = useNavigation<propsStack>();
@@ -52,10 +53,12 @@ function show(){
       </LineContainer>
 
       <HairdList>
-        {/* <FlatList
+        <FlatList
           data={clientInfo.hairdressers}
-          keyExtractor={hairdId => hairdId._id!}
-          showsVerticalScrollIndicator={false}
+          keyExtractor={hairdId => hairdId._id}
+          // horizontal
+          contentContainerStyle={{width:'100%', flexDirection:'row',flexWrap:'wrap', alignItems:'center', marginRight:2 }}
+          showsVerticalScrollIndicator={true}
           renderItem={({item}) =>(
             <HairdCard
               hairdName={item.hairdName!}
@@ -65,8 +68,9 @@ function show(){
               beardPrice={item.prices.beardPrice}
               // status={item.status}
             />
+
           )}
-        /> */}
+        />
 
         {/* <HairdCard
           status={'PENDING'}

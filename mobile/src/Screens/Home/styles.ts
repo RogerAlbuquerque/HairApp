@@ -29,6 +29,7 @@ export const HairdList = styled.View`
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
+  border: 1px solid red;
 `;
 
 
