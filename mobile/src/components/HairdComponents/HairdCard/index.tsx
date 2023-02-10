@@ -4,10 +4,14 @@ import { Text } from "../../../utils/Text";
 import { Container, HairdImage, HairdName, Info, ProfileImage,CloseButton,InfosText } from "./style";
 
 interface HairdCardProps{
-  status?:'PENDING' | 'CONFIRMED'
+  status?:'PENDING' | 'CONFIRMED' | 'CANCELED';
+  hairdName:string,
+  workingTimeOpen:any
+  workingTimeClose:any
+  hairPrice:any
+  beardPrice:any
 }
-
-export default function HairdCard({status}:HairdCardProps){
+export default function HairdCard({hairdName, workingTimeOpen,workingTimeClose,hairPrice, beardPrice,status}:HairdCardProps){
 
   const [colorCard, setColorCard] = useState ('');
   const [lineOfColorCard, setLineOfColorCard] = useState ('');
@@ -39,7 +43,7 @@ useEffect(()=>{
       </HairdImage>
 
       <HairdName style={{backgroundColor:lineOfColorCard}}>
-        <Text size={12} font={'Poppins'} weight={'Bold'} color={'black'}>Antônio Jairo Alves</Text>
+        <Text size={12} font={'Poppins'} weight={'Bold'} color={'black'}>{hairdName}</Text>
       </HairdName>
 
       {
@@ -48,7 +52,7 @@ useEffect(()=>{
           <Info>
             <InfosText style={{flexDirection:'column', alignItems:'center'}}>
               <Text size={11} font={'Poppins'} weight={'Bold'} color={'white'}>Esperando confirmação </Text>
-              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>12:00</Text>
+              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>{workingTimeOpen.hour}</Text>
             </InfosText>
           </Info>
           :
@@ -70,12 +74,12 @@ useEffect(()=>{
 
             <InfosText>
               <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>Cabelo: </Text>
-              <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>R$15</Text>
+              <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>R${hairPrice}</Text>
             </InfosText>
 
             <InfosText>
               <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>Barba: </Text>
-              <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>R$20</Text>
+              <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>R${beardPrice}</Text>
             </InfosText>
           </Info>
       }

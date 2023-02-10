@@ -41,7 +41,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
 
   prices:{
     required:true,
-    type:[{
+    type:{
       hairPrice:{
         type:Number,
         required:true,
@@ -50,7 +50,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
         type:Number,
         required:true,
       }
-    }]
+    }
   },
 
   workDaysWeek:{
@@ -70,8 +70,8 @@ export const Hairdresser = model('Hairdresser', new Schema({
 
   workingTime:{
     required:true,
-    type:[{
-      open:[
+    type:{
+      open:
         {
           hour:{
             type: String,
@@ -82,8 +82,8 @@ export const Hairdresser = model('Hairdresser', new Schema({
             required:true,
           }
         },
-      ],
-      close:[
+
+      close:
         {
           hour:{
             type: String,
@@ -94,8 +94,7 @@ export const Hairdresser = model('Hairdresser', new Schema({
             required:true,
           }
         },
-      ],
-    }]
+    }
   },
 
 }));

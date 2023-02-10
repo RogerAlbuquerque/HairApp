@@ -39,7 +39,7 @@ export const Client = model('Client', new Schema({
       type:Schema.Types.ObjectId,
       required:false,
       ref:'Hairdresser',
-    }]
+    }],
   }
 
 }));

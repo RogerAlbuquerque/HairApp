@@ -23,7 +23,7 @@ export const SchedClient = model('SchedClient', new Schema({
 
   clientHour:{
     required:true,
-    type:[{
+    type:{
       hour:{
         type: String,
         required:true,
@@ -32,7 +32,7 @@ export const SchedClient = model('SchedClient', new Schema({
         type: String,
         required:true,
       }
-    }]
+    }
   },
 
   status:{

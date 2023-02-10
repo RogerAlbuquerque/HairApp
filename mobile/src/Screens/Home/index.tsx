@@ -1,4 +1,4 @@
-import { ImageBackground } from "react-native";
+import { ImageBackground, FlatList } from "react-native";
 import Button from "../../components/UtilsComponents/Button";
 import HairdCard from "../../components/HairdComponents/HairdCard";
 import HeaderComponent from '../../components/UtilsComponents/HeaderComponent'
@@ -14,7 +14,7 @@ export default function Home(){
   const {clientInfo,handleClientInfoState} = useContext(UserInfoContext);
 
 function show(){
-  console.log(clientInfo)
+  console.log(clientInfo.hairdressers)
 }
 
   return(
@@ -23,6 +23,7 @@ function show(){
       <Header>
         <HeaderComponent
           onPressFunctionNavigate={ ()=>navigation.navigate('ClientConfig')}
+          userName={clientInfo.clientName!}
         />
       </Header>
       <SearcHairdInput>
@@ -51,9 +52,23 @@ function show(){
       </LineContainer>
 
       <HairdList>
-        <HairdCard
-        />
-        <HairdCard
+        {/* <FlatList
+          data={clientInfo.hairdressers}
+          keyExtractor={hairdId => hairdId._id!}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item}) =>(
+            <HairdCard
+              hairdName={item.hairdName!}
+              workingTimeOpen={item.workingTime.open}
+              workingTimeClose={item.workingTime.close}
+              hairPrice={item.prices.hairPrice}
+              beardPrice={item.prices.beardPrice}
+              // status={item.status}
+            />
+          )}
+        /> */}
+
+        {/* <HairdCard
           status={'PENDING'}
         />
         <HairdCard
@@ -62,7 +77,7 @@ function show(){
         <HairdCard
         />
         <HairdCard
-        />
+        /> */}
       </HairdList>
     </ImageBackground>
   );

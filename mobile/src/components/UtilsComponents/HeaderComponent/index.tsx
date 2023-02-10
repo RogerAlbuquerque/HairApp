@@ -4,10 +4,11 @@ import { Text } from '../../../utils/Text';
 import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
 interface HeaderComponentProps{
-  onPressFunctionNavigate?:()=>void
+  onPressFunctionNavigate?:()=>void;
+  userName:string
 }
 
-export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponentProps){
+export default function HeaderComponent({userName,onPressFunctionNavigate}:HeaderComponentProps){
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   return(
     <Container>
@@ -32,7 +33,7 @@ export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponen
           </ProfileImage>
         </UserData>
         <UserName>
-          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>Washington Ferreira</Text>
+          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>{userName}</Text>
         </UserName>
 
       </Config>

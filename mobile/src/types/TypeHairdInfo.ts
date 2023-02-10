@@ -1,4 +1,5 @@
 export interface TypeHairdInfo{
+  _id:string;
   hairdName: string,
   hairdPassword:string,
   email:string,
