@@ -30,7 +30,7 @@ export default function SignIn(){
   const [isAwaitingLoginReponse,setIsAwaitingLoginReponse]=useState(false);
   const [isChecked,setChecked]=useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const {handleClientInfoState, handleHairdInfoState, handleAlertModal} = useContext(UserInfoContext);
+  const {handleClientInfoState, handleHairdInfoState, handleAlertModal,activeToken} = useContext(UserInfoContext);
 
   async function loginUser(){
 
@@ -41,7 +41,7 @@ export default function SignIn(){
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
       api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
-
+      activeToken(true);
       const userInfoResponse = await api.get('/me');
 
       userInfoResponse.data.clientName ? handleClientInfoState(userInfoResponse.data) : handleHairdInfoState(userInfoResponse.data);

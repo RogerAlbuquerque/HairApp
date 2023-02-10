@@ -8,11 +8,10 @@ import HairdRoutes from './haird.routes';
 
 
 export default function Routes(){
-  const{clientInfo, hairdInfo}=useContext(UserInfoContext);
-
+  const{clientInfo, hairdInfo,tokenIsValid}=useContext(UserInfoContext);
   return(
       <NavigationContainer>
-        {clientInfo.clientName ? <ClientRoutes/>  : hairdInfo.hairdName ? <HairdRoutes/> : <AuthRoutes/>}
+        {(clientInfo.clientName && tokenIsValid ) ? <ClientRoutes/>  : (hairdInfo.hairdName && tokenIsValid )? <HairdRoutes/> : <AuthRoutes/>}
       </NavigationContainer>
   );
 }

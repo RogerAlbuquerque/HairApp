@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { UserInfoContext } from '../../../context';
+import { api } from '../../../utils/api';
 import { Text } from '../../../utils/Text';
 import { ContainerLogo, ProfileImage,Container, Config, Menu, UserData,UserName } from './style';
 
@@ -10,7 +11,7 @@ interface HeaderComponentProps{
 
 export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponentProps){
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const {clientInfo} = useContext(UserInfoContext);
+  const {clientInfo, logout} = useContext(UserInfoContext);
   return(
     <Container>
       <ContainerLogo>
@@ -24,7 +25,7 @@ export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponen
               <TouchableOpacity onPress={onPressFunctionNavigate}>
                 <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'} style={{paddingBottom:10}}>Alterar dados</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={logout}>
                 <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>Sair</Text>
               </TouchableOpacity>
           </Menu>
