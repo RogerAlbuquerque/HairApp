@@ -25,7 +25,7 @@ export type propsNavigationStack = {
       hour: number;
       minute: number;
       _id: string;
-    } | EmptyTypeSchedList
+    } | ''
   };
   ListOfClients:undefined;
   HairdConfig:undefined;

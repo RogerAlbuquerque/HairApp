@@ -67,22 +67,21 @@ async function removeHairdOfMyList(){
         <Text size={12} font={'Poppins'} weight={'Bold'} color={'black'}>{props.hairdName}</Text>
       </HairdName>
 
-      {
-        props.status == 'PENDING'?
+      {props.clientHour && props.status == 'PENDING'?
 
           <Info>
             <InfosText style={{flexDirection:'column', alignItems:'center'}}>
               <Text size={11} font={'Poppins'} weight={'Bold'} color={'white'}>Aguarde a confirmação </Text>
-              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}></Text>
+              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>{props.clientHour.hour}:{props.clientHour.minute}</Text>
             </InfosText>
           </Info>
           :
-        props.status == 'CONFIRMED' ?
+          props.clientHour && props.status == 'CONFIRMED' ?
 
         <Info>
           <InfosText style={{flexDirection:'column', alignItems:'center'}}>
             <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>Horário confirmado: </Text>
-            <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>12:00</Text>
+            <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>{props.clientHour.hour}:{props.clientHour.minute}</Text>
           </InfosText>
         </Info>
 

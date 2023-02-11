@@ -18,5 +18,5 @@ export interface TypeHairdToSched{
     hour: number;
     minute: number;
     _id:string
-  } | EmptyTypeSchedList
+  } | ''
 }

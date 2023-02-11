@@ -103,7 +103,7 @@ export default function Home(){
               email={item.email}
               address={item.address}
               status={item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
-              clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour : {} as EmptyTypeSchedList}
+              clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour : ''}
             />
 
           )}

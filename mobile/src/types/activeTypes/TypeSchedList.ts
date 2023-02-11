@@ -7,6 +7,6 @@ interface TypeSchedList {
     hour: number;
     minute: number;
     _id:string
-  } | EmptyTypeSchedList
+  } | ''
   status: 'PENDING' | 'CONFIRMED' | 'CANCELED' | '',
 }
