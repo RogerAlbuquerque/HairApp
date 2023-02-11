@@ -14,9 +14,11 @@ export interface TypeHairdToSched{
   }
   hairPrice:number;
   beardPrice:number;
-  clientHour?: {
+  clientHour: {
     hour: number;
     minute: number;
     _id:string
-  } | ''
+  } | '',
+  schedDay:string
+
 }

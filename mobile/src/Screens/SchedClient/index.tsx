@@ -1,5 +1,5 @@
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ActivityIndicator, Image, ImageBackground } from "react-native";
 import Button from "../../components/UtilsComponents/Button";
 import HeaderComponent from "../../components/UtilsComponents/HeaderComponent";
@@ -32,14 +32,32 @@ interface recoverProps{
 }
 export default function SchedClient({route}:recoverProps){
 
+  useEffect(()=>{
+    if(hairdData.clientHour)
+  {
+  date.setHours(hairdData.clientHour.hour).toLocaleString().padStart(2, '0')
+  date.setMinutes(hairdData.clientHour.minute).toLocaleString().padStart(2, '0')
+  console.log('SEGUNDO USEEFFECT')
+}
+},[])
   const navigation = useNavigation<propsStack>();
   const hairdData = route.params;
   const {clientInfo,handleAlertModal} = useContext(UserInfoContext);
-  const [isAwaitingSchedReponse,setIsAwaitingSchedReponse]=useState(false);
+  const [isAwaitingCreatingSched,setIsAwaitingCreatingSched]=useState(false);
+  const [isAwaitingUpdantingSched,setIsAwaitingUpdantingSched]=useState(false);
+  const [isAwaitingDeleteSched,setIsAwaitingDeleteSched]=useState(false);
+  const [dateIfClientSched, setDateIfClientSched] = useState(
+    // {
+    //   hour:,
+    //   minute:
+    // }
+    );
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
 
-  const [schedDay, setSchedDay] = useState('')
+  const [schedDay, setSchedDay] = useState( hairdData.schedDay)
+
+  const [dateTimePickerIsEqualSchedDate, setDateTimePickerIsEqualSchedDate] = useState(false);
 
 
 
@@ -56,9 +74,11 @@ export default function SchedClient({route}:recoverProps){
   // MANIPULATE DATAPICKER
 
   async function schedTime(){
-
+    if(schedDay){
+      return handleAlertModal('Você precisa selecionar o dia da semana e horário','','error')
+    }
     try{
-      setIsAwaitingSchedReponse(true)
+      setIsAwaitingCreatingSched(true)
       await api.post('/scheduling', {
         hairdresserId: route.params.hairdId,
         clientId: clientInfo._id,
@@ -71,11 +91,63 @@ export default function SchedClient({route}:recoverProps){
       return handleAlertModal('Horário agendado com sucesso','Aguarda a confirmação do cabeleireiro, quando ele confirmar, o seu card ficará verde','success')
     }catch(error){
       console.log(error)
-      return handleAlertModal('Você ja está agendado','Você ja agendou horário aqui, não pode agendar mais de uma vez','error')
+      return handleAlertModal('Você ja está agendado','Você ja agendou horário, não pode agendar mais de uma vez','error')
     }finally{
-      setIsAwaitingSchedReponse(false)
+      setIsAwaitingCreatingSched(false)
     }
   }
+
+  async function editSched(){
+    try{
+      setIsAwaitingUpdantingSched(true)
+    }catch(error){
+      console.log(error);
+    }
+    finally{
+      setIsAwaitingUpdantingSched(false)
+    }
+  }
+
+  async function deleteSched(){
+    try{
+      setIsAwaitingDeleteSched(true)
+
+    }catch(error){
+      console.log(error);
+    }
+    finally{
+      setIsAwaitingDeleteSched(false)
+    }
+  }
+
+  useEffect(()=>{
+
+    if(hairdData.clientHour){
+      if(
+        (hairdData.schedDay != schedDay)
+         ||
+        (hairdData.clientHour.hour !=  parseInt(date.getHours().toLocaleString().padStart(2, '0')))
+         ||
+        (hairdData.clientHour.minute !=parseInt(date.getMinutes().toLocaleString().padStart(2, '0')))
+      )
+    {
+      setDateTimePickerIsEqualSchedDate(false)
+    }
+    else {
+      setDateTimePickerIsEqualSchedDate(true)}}
+      console.log('PRIMEIRO USEEFFECT')
+
+  })
+
+
+  function show(){
+
+
+    console.log(date.getHours().toLocaleString().padStart(2, '0'));
+
+
+  }
+
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -131,33 +203,92 @@ export default function SchedClient({route}:recoverProps){
           </PickHour>
         </Schedules>
 
-        {!isAwaitingSchedReponse ?
-          <ButtonToSched style={{justifyContent:schedDay != '' ? 'space-between' : 'center' }}>
-            <Button
-              name='Marcar horário'
-              backColor="#5A5A5A"
-              size={22}
-              width={150}
-              height={90}
-              onPress={schedTime}
-            />
-            {schedDay != '' &&
-              <Button
-              name='Cancelar horário'
-              backColor="#C10000"
-              size={22}
-              width={150}
-              height={90}
-            />
+        {/* {!isAwaitingSchedReponse ? */}
+
+        {/* (hairdData.clientHour && (
+                                  hairdData.clientHour.hour !=  parseInt(date.getHours().toLocaleString().padStart(2, '0')) ||
+                                  hairdData.clientHour.minute !=parseInt(date.getMinutes().toLocaleString().padStart(2, '0'))
+                                )
+        ) */}
+
+          {hairdData.schedDay != '' && hairdData.clientHour
+            ?
+            <ButtonToSched style={{justifyContent: !dateTimePickerIsEqualSchedDate ? 'space-between' : 'center'}}>
+              {!dateTimePickerIsEqualSchedDate
+
+             &&
+              <>
+                {!isAwaitingUpdantingSched ?
+                  <Button
+                    name='Mudar horário'
+                    backColor="#5A5A5A"
+                    size={22}
+                    width={150}
+                    height={90}
+                    onPress={editSched}
+                  />
+                :
+                  <ActivityIndicator color="#fff" size="large"/>
+                }
+              </>
+
+              }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              {!isAwaitingDeleteSched ?
+                <Button
+                name='Cancelar horário'
+                backColor="#C10000"
+                size={22}
+                width={150}
+                height={90}
+                onPress={show}
+              />
+              :
+              <ActivityIndicator color="#fff" size="large"/>
             }
-          </ButtonToSched>
+
+            </ButtonToSched>
           :
-          <ActivityIndicator color="#fff" size="large"/>
+            <ButtonToSched style={{justifyContent:'center' }}>
+               {!isAwaitingCreatingSched ?
+               <Button
+                name='Marcar horário'
+                backColor="#5A5A5A"
+                size={22}
+                width={150}
+                height={90}
+                onPress={show}
+              />
+              :
+              <ActivityIndicator color="#fff" size="large"/>
+            }
+
+
+            </ButtonToSched>
         }
+
+          {/* :
+          <ActivityIndicator color="#fff" size="large"/>
+        } */}
 
       </Container>
 
     </ImageBackground>
+
   );
+
 
 }

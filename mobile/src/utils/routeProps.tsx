@@ -21,12 +21,14 @@ export type propsNavigationStack = {
     };
     hairPrice:number;
     beardPrice:number;
-    clientHour?: {
+    clientHour: {
       hour: number;
       minute: number;
       _id: string;
-    } | ''
+    }| '',
+    schedDay:string;
   };
+
   ListOfClients:undefined;
   HairdConfig:undefined;
   ClientConfig:undefined;

@@ -19,6 +19,11 @@ export default function Home(){
 
 
 
+   let clientHour2: {
+      hour: 0,
+      minute: 0,
+      _id:'1'
+  }
 
   async function addHairdOnMyList(){
     if(searchHairdresser == ''){
@@ -103,7 +108,8 @@ export default function Home(){
               email={item.email}
               address={item.address}
               status={item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
-              clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour : ''}
+              clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour :''}
+              schedDay={item._id == mySchedList[0].hairdresserId ? mySchedList[0].day : ''}
             />
 
           )}

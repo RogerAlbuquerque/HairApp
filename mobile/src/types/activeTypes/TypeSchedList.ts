@@ -3,10 +3,10 @@ interface TypeSchedList {
   hairdresserId: string,
   clientId: string,
   day: string,
-  clientHour?: {
+  clientHour: {
     hour: number;
     minute: number;
     _id:string
-  } | ''
+  } |'',
   status: 'PENDING' | 'CONFIRMED' | 'CANCELED' | '',
 }
