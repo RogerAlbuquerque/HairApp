@@ -1,5 +1,5 @@
 export interface TypeHairdToSched{
-  status?:'PENDING' | 'CONFIRMED' | 'CANCELED';
+  status:'PENDING' | 'CONFIRMED' | 'CANCELED' | '';
   hairdId:string;
   hairdName:string,
   email:string
@@ -12,6 +12,11 @@ export interface TypeHairdToSched{
     hour:number;
     minute:number;
   }
-  hairPrice:number
-  beardPrice:number
+  hairPrice:number;
+  beardPrice:number;
+  clientHour?: {
+    hour: number;
+    minute: number;
+    _id:string
+  } | EmptyTypeSchedList
 }

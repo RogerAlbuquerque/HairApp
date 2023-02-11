@@ -72,8 +72,8 @@ async function removeHairdOfMyList(){
 
           <Info>
             <InfosText style={{flexDirection:'column', alignItems:'center'}}>
-              <Text size={11} font={'Poppins'} weight={'Bold'} color={'white'}>Esperando confirmação </Text>
-              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>{props.workingTimeOpen.hour}</Text>
+              <Text size={11} font={'Poppins'} weight={'Bold'} color={'white'}>Aguarde a confirmação </Text>
+              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}></Text>
             </InfosText>
           </Info>
           :

@@ -40,7 +40,7 @@ export default function Home(){
   }
 
   async function showMySchedList(){
-    console.log(mySchedList[0].hairdresserId);
+    console.log(mySchedList[0]);
   }
   useEffect(()=>{
     api.get('/scheduling/me').then((response)=>{
@@ -102,7 +102,8 @@ export default function Home(){
               beardPrice={item.prices.beardPrice}
               email={item.email}
               address={item.address}
-              // status={item.status}
+              status={item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
+              clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour : {} as EmptyTypeSchedList}
             />
 
           )}
