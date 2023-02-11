@@ -14,28 +14,39 @@ export default function Home(){
   const {navigate} = useNavigation<propsStack>();
   const [isAwaitingSearchReponse,setIsAwaitingSearchReponse]=useState(false);
   const [searchHairdresser, setSearchHairdresser] = useState('');
+  const [mySchedList, setMySchedList] = useState([{} as TypeSchedList]);
   const {clientInfo, handleClientInfoState,handleAlertModal} = useContext(UserInfoContext);
 
 
 
-async function addHairdOnMyList(){
-  if(searchHairdresser == ''){
-    return handleAlertModal('É preciso passar o nome de um cabeleireiro','','error')
+
+  async function addHairdOnMyList(){
+    if(searchHairdresser == ''){
+      return handleAlertModal('É preciso passar o nome de um cabeleireiro','','error')
+    }
+    try{
+      setIsAwaitingSearchReponse(true)
+      await api.put('/client/addHairdresser/',{hairdName:searchHairdresser})
+      const clientUpdated = await api.get('/me')
+      handleClientInfoState(clientUpdated.data)
+      return handleAlertModal('Cabeleireiro adicionado a sua lista','','success')
+    }
+    catch(error){
+      return handleAlertModal('Não foi encontrado cabeleireiro com esse nome',' Tente mudar algo no nome, ele precisa ser exatamente igual ao que o cabeleireiro cadastrou','error')
+    }
+    finally{
+      setIsAwaitingSearchReponse(false);
+    }
   }
-  try{
-    setIsAwaitingSearchReponse(true)
-    await api.put('/client/addHairdresser/',{hairdName:searchHairdresser})
-    const clientUpdated = await api.get('/me')
-    handleClientInfoState(clientUpdated.data)
-    return handleAlertModal('Cabeleireiro adicionado a sua lista','','success')
+
+  async function showMySchedList(){
+    console.log(mySchedList[0].hairdresserId);
   }
-  catch(error){
-    return handleAlertModal('Não foi encontrado cabeleireiro com esse nome',' Tente mudar algo no nome, ele precisa ser exatamente igual ao que o cabeleireiro cadastrou','error')
-  }
-  finally{
-    setIsAwaitingSearchReponse(false);
-  }
-}
+  useEffect(()=>{
+    api.get('/scheduling/me').then((response)=>{
+      setMySchedList(response.data);
+    })
+  })
 
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
@@ -57,16 +68,17 @@ async function addHairdOnMyList(){
       </SearcHairdInput>
 
       <SearchButton>
-        {!isAwaitingSearchReponse ?<Button
-          name="Buscar"
-          backColor="#424242"
-          size={22}
-          width={130}
-          height={60}
-          marginBotton={25}
-          onPress={addHairdOnMyList}
-        />
-      :
+        {!isAwaitingSearchReponse ?
+          <Button
+            name="Buscar"
+            backColor="#424242"
+            size={22}
+            width={130}
+            height={60}
+            marginBotton={25}
+            onPress={showMySchedList}
+          />
+          :
       <ActivityIndicator color="#fff" size="large"/>
       }
       </SearchButton>

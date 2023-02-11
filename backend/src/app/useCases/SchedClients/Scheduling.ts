@@ -19,11 +19,11 @@ export async function scheduling(req: Request, res:Response){
 
   const hairdresserId = await Hairdresser.findById(userInfo.hairdresserId);
   const clientId = await Client.findById(userInfo.clientId);
-  const schedExist = await SchedClient.find({hairdresserId:userInfo.hairdresserId, clientId:userInfo.clientId});
+  const schedExist = await SchedClient.find({clientId:userInfo.clientId});
 
   try{
-    if(schedExist.length > 0){
-      res.status(401).json({msg:'You already scheduled with this hairdresser'});
+    if(schedExist.length > 0 ){
+      res.status(401).json({msg:'You already scheduled with some hairdresser, unique schedule is allowed'});
     }else if(hairdresserId && clientId){
       await SchedClient.create(userInfo);
       res.status(201).json(userInfo);

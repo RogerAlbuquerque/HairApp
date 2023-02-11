@@ -23,9 +23,11 @@ import { updateHairdresserInfo } from './app/useCases/hairdressers/updateHairdre
 import { scheduling } from './app/useCases/SchedClients/Scheduling';
 import { updateScheduling } from './app/useCases/SchedClients/updateScheduling';
 import { showMySchedClients } from './app/useCases/SchedClients/showMySchedClients';
-import { deleteScheduleClient } from './app/useCases/SchedClients/deleteScheduleClient';
+import { deleteScheduleClient } from './app/useCases/hairdressers/deleteScheduleClient';
 import verifyTokenJWT from './utils/verifyTokenJWT';
 import { myHairdListRemove } from './app/useCases/clients/myHairdListRemove';
+import { myScheduling } from './app/useCases/SchedClients/myScheduling';
+import { deleteMySchedule } from './app/useCases/clients/deleteMySchedules';
 
 export const router = Router();
 
@@ -38,6 +40,7 @@ router.post('/client/create', createClient);
 router.put('/client/update',verifyTokenJWT, updateClientInfo);
 router.put('/client/addHairdresser',verifyTokenJWT, myHairdList);
 router.put('/client/removeHairdresser',verifyTokenJWT, myHairdListRemove);
+router.delete('/scheduling/:schedHairdId/delete',verifyTokenJWT, deleteMySchedule);
 
 //HAIDRESSER
 router.post('/hairdresser/create', createHairdresser);
@@ -46,6 +49,7 @@ router.get('/scheduling/myClients',verifyTokenJWT, showMySchedClients);
 router.delete('/scheduling/:schedClientId/delete',verifyTokenJWT, deleteScheduleClient);
 // router.get('/hairdresser/all', showAllHairdresser);
 //SCHEDULE CLIENTS
+router.get('/scheduling/me',verifyTokenJWT, myScheduling);
 router.post('/scheduling',verifyTokenJWT, scheduling);
 router.put('/scheduling/update',verifyTokenJWT, updateScheduling);
 //AUTHENTICATION
