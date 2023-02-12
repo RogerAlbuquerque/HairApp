@@ -17,14 +17,6 @@ export default function Home(){
   const [mySchedList, setMySchedList] = useState([{} as TypeSchedList]);
   const {clientInfo, handleClientInfoState,handleAlertModal} = useContext(UserInfoContext);
 
-
-
-   let clientHour2: {
-      hour: 0,
-      minute: 0,
-      _id:'1'
-  }
-
   async function addHairdOnMyList(){
     if(searchHairdresser == ''){
       return handleAlertModal('É preciso passar o nome de um cabeleireiro','','error')
@@ -52,7 +44,6 @@ export default function Home(){
       setMySchedList(response.data);
     })
   })
-
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -111,7 +102,6 @@ export default function Home(){
               clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour :''}
               schedDay={item._id == mySchedList[0].hairdresserId ? mySchedList[0].day : ''}
             />
-
           )}
         />
     </ImageBackground>
