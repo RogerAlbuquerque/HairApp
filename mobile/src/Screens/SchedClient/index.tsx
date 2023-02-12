@@ -30,6 +30,15 @@ interface recoverProps{
     params:TypeHairdToSched
   }
 }
+interface schedClientInfoToUpdate {
+  _id: string;
+  day?: 'SEG' | 'TER' | 'QUA' | 'QUI' | 'SEX' | 'SAB' | 'DOM';
+  clientHour?:{
+    hour?:number,
+    minute?:number
+  };
+  status?:'PENDING' | 'CONFIRMED' | 'CANCELED';
+}
 export default function SchedClient({route}:recoverProps){
 
   useEffect(()=>{
@@ -91,7 +100,15 @@ export default function SchedClient({route}:recoverProps){
   async function editSched(){
     try{
       setIsAwaitingUpdantingSched(true)
-      api.put('/scheduling/update')
+      api.put('/scheduling/update',{
+        _id: clientInfo._id,
+        day: schedDay,
+        clientHour:{
+          hour:date.getHours().toLocaleString().padStart(2, '0'),
+          minute:date.getMinutes().toLocaleString().padStart(2, '0')
+        },
+      }
+      )
     }catch(error){
       console.log(error);
     }
