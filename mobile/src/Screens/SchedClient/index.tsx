@@ -74,7 +74,7 @@ export default function SchedClient({route}:recoverProps){
   // MANIPULATE DATAPICKER
 
   async function schedTime(){
-    if(schedDay){
+    if(!schedDay || !date){
       return handleAlertModal('Você precisa selecionar o dia da semana e horário','','error')
     }
     try{
@@ -84,8 +84,8 @@ export default function SchedClient({route}:recoverProps){
         clientId: clientInfo._id,
         day: schedDay,
         clientHour:{
-          hour:parseInt(date.getHours().toLocaleString().padStart(2, '0')),
-          minute:parseInt(date.getMinutes().toLocaleString().padStart(2, '0'))
+          hour:parseInt(date.getHours().toLocaleString().padStart(2, '0').padEnd(2, '0')),
+          minute:parseInt(date.getMinutes().toLocaleString().padStart(2, '0').padEnd(2, '0'))
         }
       })
       return handleAlertModal('Horário agendado com sucesso','Aguarda a confirmação do cabeleireiro, quando ele confirmar, o seu card ficará verde','success')
@@ -98,9 +98,10 @@ export default function SchedClient({route}:recoverProps){
   }
 
   async function editSched(){
+    console.log('RODOU AQUI');
     try{
       setIsAwaitingUpdantingSched(true)
-      api.put('/scheduling/update',{
+     await api.put('/scheduling/update',{
         _id: clientInfo._id,
         day: schedDay,
         clientHour:{
@@ -117,10 +118,14 @@ export default function SchedClient({route}:recoverProps){
     }
   }
 
+  function show(){
+    console.log(hairdData.hairdId)
+  }
   async function deleteSched(){
+    console.log('RODOU AQUI');
     try{
       setIsAwaitingDeleteSched(true)
-      api.delete(`/scheduling/${hairdData.hairdId}/delete`)
+      await api.delete(`/scheduling/${hairdData.hairdId}/delete`)
       return handleAlertModal('Horário desmarcado com sucesso','Você ja pode agendar horário com outro cabeleireiro, ou com o mesmo se quiser','success')
 
     }catch(error){
@@ -147,7 +152,7 @@ export default function SchedClient({route}:recoverProps){
     }
     else {
       setDateTimePickerIsEqualSchedDate(true)}}
-      console.log('PRIMEIRO USEEFFECT')
+
 
   })
 
@@ -183,7 +188,7 @@ export default function SchedClient({route}:recoverProps){
 
         <DaySelect>
           <DaysOfWeek
-            schedDay={schedDay}
+            schedDay={schedDay ? schedDay : ''}
             setSchedDay={setSchedDay}
           />
         </DaySelect>

@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import { TypeClientInfo } from '../types/activeTypes/TypeClientInfo';
 import { TypeHairdInfo } from '../types/activeTypes/TypeHairdInfo';
+import { TypeSchedList } from '../types/activeTypes/TypeSchedList';
 import AlertModal from '../components/UtilsComponents/AlertModal';
 import { api } from '../utils/api';
 import { EmptyTypeClientInfo } from '../types/emptyTypes/EmptyTypeClientInfo';
@@ -16,6 +17,8 @@ interface userDataTypeContext{
   bodyTextAlertModal:string;
   typeAlertModal:'error' | 'success' | '';
   tokenIsValid:boolean
+  mySchedList:TypeSchedList[]
+  handleMySchedList:(schedData:TypeSchedList[])=>void;
   logout:()=>void;
   activeToken:()=>void;
 }
@@ -28,10 +31,14 @@ export default function UserDataContext({children}:any){
   //STATES AND FUNCTION TO HANDLE LOGIN
   const [clientInfo,setClientInfoState]=useState<TypeClientInfo>({} as TypeClientInfo);
   const [hairdInfo,setHairdInfoState]=useState<TypeHairdInfo>({} as TypeHairdInfo);
+  const [mySchedList, setMySchedList] = useState([{} as TypeSchedList]);
   const [tokenIsValid, setToken] = useState(false)
 
   function handleClientInfoState(userData:TypeClientInfo){
     setClientInfoState(userData)
+  }
+  function handleMySchedList(schedData:TypeSchedList[]){
+    setMySchedList(schedData)
   }
 
   function handleHairdInfoState(userData:TypeHairdInfo){
@@ -67,6 +74,8 @@ export default function UserDataContext({children}:any){
       titleTextAlertModal,
       bodyTextAlertModal,
       typeAlertModal,
+      mySchedList,
+      handleMySchedList,
       handleClientInfoState,
       handleHairdInfoState,
       handleAlertModal,

@@ -5,7 +5,7 @@ import { SchedClient } from '../../models/SchedClient';
 export async function deleteMySchedule(req: Request, res:Response){
   try{
 
-    const Schedclient = await SchedClient.find().where('clientId').equals(req.headers.userId).findByIdAndDelete(req.params.schedHairdId);
+    const Schedclient = await SchedClient.findOneAndDelete({hairdresserId:req.params.schedHairdId, clientId:req.headers.userId});
     res.status(200).json(Schedclient);
 
   }catch(error){

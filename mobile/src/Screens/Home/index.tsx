@@ -14,8 +14,8 @@ export default function Home(){
   const {navigate} = useNavigation<propsStack>();
   const [isAwaitingSearchReponse,setIsAwaitingSearchReponse]=useState(false);
   const [searchHairdresser, setSearchHairdresser] = useState('');
-  const [mySchedList, setMySchedList] = useState([{} as TypeSchedList]);
-  const {clientInfo, handleClientInfoState,handleAlertModal} = useContext(UserInfoContext);
+  // const [mySchedList, setMySchedList] = useState([{} as TypeSchedList]);
+  const {clientInfo, handleClientInfoState,handleAlertModal,mySchedList} = useContext(UserInfoContext);
 
   async function addHairdOnMyList(){
     if(searchHairdresser == ''){
@@ -36,11 +36,12 @@ export default function Home(){
     }
   }
 
-  useEffect(()=>{
-    api.get('/scheduling/me').then((response)=>{
-      setMySchedList(response.data);
-    })
-  })
+  // useEffect(()=>{
+  //   api.get('/scheduling/me').then((response)=>{
+  //     handleMySchedList(response.data);
+  //   })
+  //   console.log('passou aqui')
+  // },[])
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -95,9 +96,9 @@ export default function Home(){
               beardPrice={item.prices.beardPrice}
               email={item.email}
               address={item.address}
-              status={item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
-              clientHour={item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour :''}
-              schedDay={item._id == mySchedList[0].hairdresserId ? mySchedList[0].day : ''}
+              status={mySchedList[0] && item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
+              clientHour={mySchedList[0] && item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour :''}
+              schedDay={mySchedList[0] && item._id == mySchedList[0].hairdresserId ? mySchedList[0].day : ''}
             />
           )}
         />

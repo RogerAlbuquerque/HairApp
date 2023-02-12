@@ -9,7 +9,7 @@ export type propsNavigationStack = {
   }
   Home: undefined;
   SchedClient: {
-    status:'PENDING' | 'CONFIRMED' | 'CANCELED' | '';
+    status?:'PENDING' | 'CONFIRMED' | 'CANCELED' | '';
     hairdName:string;
     workingTimeOpen:{
       hour:number;
@@ -21,12 +21,12 @@ export type propsNavigationStack = {
     };
     hairPrice:number;
     beardPrice:number;
-    clientHour: {
+    clientHour?: {
       hour: number;
       minute: number;
       _id: string;
     }| '',
-    schedDay:string;
+    schedDay?:string;
   };
 
   ListOfClients:undefined;

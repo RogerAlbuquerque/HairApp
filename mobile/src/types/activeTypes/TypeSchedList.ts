@@ -1,4 +1,4 @@
-interface TypeSchedList {
+export interface TypeSchedList {
   _id: string,
   hairdresserId: string,
   clientId: string,
@@ -9,4 +9,4 @@ interface TypeSchedList {
     _id:string
   } |'',
   status: 'PENDING' | 'CONFIRMED' | 'CANCELED' | '',
-}
+}[]
