@@ -36,9 +36,6 @@ export default function Home(){
     }
   }
 
-  async function showMySchedList(){
-    console.log(mySchedList[0]);
-  }
   useEffect(()=>{
     api.get('/scheduling/me').then((response)=>{
       setMySchedList(response.data);
@@ -72,7 +69,7 @@ export default function Home(){
             width={130}
             height={60}
             marginBotton={25}
-            onPress={showMySchedList}
+            onPress={addHairdOnMyList}
           />
           :
       <ActivityIndicator color="#fff" size="large"/>
