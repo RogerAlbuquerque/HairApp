@@ -34,31 +34,22 @@ export default function SchedClient({route}:recoverProps){
 
   useEffect(()=>{
     if(hairdData.clientHour)
-  {
-  date.setHours(hairdData.clientHour.hour).toLocaleString().padStart(2, '0')
-  date.setMinutes(hairdData.clientHour.minute).toLocaleString().padStart(2, '0')
-  console.log('SEGUNDO USEEFFECT')
-}
-},[])
+    {
+    date.setHours(hairdData.clientHour.hour).toLocaleString().padStart(2, '0')
+    date.setMinutes(hairdData.clientHour.minute).toLocaleString().padStart(2, '0')
+    }
+  },[])
+
   const navigation = useNavigation<propsStack>();
   const hairdData = route.params;
   const {clientInfo,handleAlertModal} = useContext(UserInfoContext);
   const [isAwaitingCreatingSched,setIsAwaitingCreatingSched]=useState(false);
   const [isAwaitingUpdantingSched,setIsAwaitingUpdantingSched]=useState(false);
   const [isAwaitingDeleteSched,setIsAwaitingDeleteSched]=useState(false);
-  const [dateIfClientSched, setDateIfClientSched] = useState(
-    // {
-    //   hour:,
-    //   minute:
-    // }
-    );
   const [date, setDate] = useState(new Date());
   const [isClocVisible, setIsClockVisible] = useState(false);
-
   const [schedDay, setSchedDay] = useState( hairdData.schedDay)
-
   const [dateTimePickerIsEqualSchedDate, setDateTimePickerIsEqualSchedDate] = useState(false);
-
 
 
   // MANIPULATE DATAPICKER
@@ -140,14 +131,6 @@ export default function SchedClient({route}:recoverProps){
   })
 
 
-  function show(){
-
-
-    console.log(date.getHours().toLocaleString().padStart(2, '0'));
-
-
-  }
-
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -203,20 +186,11 @@ export default function SchedClient({route}:recoverProps){
           </PickHour>
         </Schedules>
 
-        {/* {!isAwaitingSchedReponse ? */}
-
-        {/* (hairdData.clientHour && (
-                                  hairdData.clientHour.hour !=  parseInt(date.getHours().toLocaleString().padStart(2, '0')) ||
-                                  hairdData.clientHour.minute !=parseInt(date.getMinutes().toLocaleString().padStart(2, '0'))
-                                )
-        ) */}
 
           {hairdData.schedDay != '' && hairdData.clientHour
             ?
             <ButtonToSched style={{justifyContent: !dateTimePickerIsEqualSchedDate ? 'space-between' : 'center'}}>
-              {!dateTimePickerIsEqualSchedDate
-
-             &&
+              {!dateTimePickerIsEqualSchedDate &&
               <>
                 {!isAwaitingUpdantingSched ?
                   <Button
@@ -231,22 +205,7 @@ export default function SchedClient({route}:recoverProps){
                   <ActivityIndicator color="#fff" size="large"/>
                 }
               </>
-
               }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               {!isAwaitingDeleteSched ?
                 <Button
                 name='Cancelar horário'
@@ -254,12 +213,11 @@ export default function SchedClient({route}:recoverProps){
                 size={22}
                 width={150}
                 height={90}
-                onPress={show}
+                onPress={deleteSched}
               />
               :
               <ActivityIndicator color="#fff" size="large"/>
             }
-
             </ButtonToSched>
           :
             <ButtonToSched style={{justifyContent:'center' }}>
@@ -270,24 +228,15 @@ export default function SchedClient({route}:recoverProps){
                 size={22}
                 width={150}
                 height={90}
-                onPress={show}
+                onPress={schedTime}
               />
               :
               <ActivityIndicator color="#fff" size="large"/>
             }
-
-
             </ButtonToSched>
         }
-
-          {/* :
-          <ActivityIndicator color="#fff" size="large"/>
-        } */}
-
       </Container>
-
     </ImageBackground>
-
   );
 
 
