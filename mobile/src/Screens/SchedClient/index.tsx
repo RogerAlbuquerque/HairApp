@@ -91,6 +91,7 @@ export default function SchedClient({route}:recoverProps){
   async function editSched(){
     try{
       setIsAwaitingUpdantingSched(true)
+      api.put('/scheduling/update')
     }catch(error){
       console.log(error);
     }
@@ -102,9 +103,12 @@ export default function SchedClient({route}:recoverProps){
   async function deleteSched(){
     try{
       setIsAwaitingDeleteSched(true)
+      api.delete(`/scheduling/${hairdData.hairdId}/delete`)
+      return handleAlertModal('Horário desmarcado com sucesso','Você ja pode agendar horário com outro cabeleireiro, ou com o mesmo se quiser','success')
 
     }catch(error){
       console.log(error);
+      return handleAlertModal('Erro interno do servidor, ou talvez o cabeleireiro não tenha mais uma conta','Tente novamente!','error');
     }
     finally{
       setIsAwaitingDeleteSched(false)
