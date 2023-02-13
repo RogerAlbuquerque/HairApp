@@ -49,9 +49,9 @@ export default function SchedClient({route}:recoverProps){
     }
   },[])
 
-  const navigation = useNavigation<propsStack>();
+  const {navigate} = useNavigation<propsStack>();
   const hairdData = route.params;
-  const {clientInfo,handleAlertModal} = useContext(UserInfoContext);
+  const {clientInfo,handleAlertModal,handleMySchedList} = useContext(UserInfoContext);
   const [isAwaitingCreatingSched,setIsAwaitingCreatingSched]=useState(false);
   const [isAwaitingUpdantingSched,setIsAwaitingUpdantingSched]=useState(false);
   const [isAwaitingDeleteSched,setIsAwaitingDeleteSched]=useState(false);
@@ -88,6 +88,8 @@ export default function SchedClient({route}:recoverProps){
           minute:parseInt(date.getMinutes().toLocaleString().padStart(2, '0').padEnd(2, '0'))
         }
       })
+      await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+      navigate('Home')
       return handleAlertModal('Horário agendado com sucesso','Aguarda a confirmação do cabeleireiro, quando ele confirmar, o seu card ficará verde','success')
     }catch(error){
       console.log(error)
@@ -97,12 +99,17 @@ export default function SchedClient({route}:recoverProps){
     }
   }
 
+  function show(){
+    console.log('_ID -> ', clientInfo._id)
+    console.log('DAY -> ', schedDay)
+    console.log('DATE HOUR-> ', date.getHours().toLocaleString().padStart(2, '0'))
+    console.log('DATE MINUTE-> ', date.getMinutes().toLocaleString().padStart(2, '0'))
+
+  }
   async function editSched(){
-    console.log('RODOU AQUI');
     try{
       setIsAwaitingUpdantingSched(true)
      await api.put('/scheduling/update',{
-        _id: clientInfo._id,
         day: schedDay,
         clientHour:{
           hour:date.getHours().toLocaleString().padStart(2, '0'),
@@ -110,6 +117,9 @@ export default function SchedClient({route}:recoverProps){
         },
       }
       )
+      await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+      navigate('Home')
+      return handleAlertModal('Horário atualizado com sucesso','Aguarda a confirmação do cabeleireiro, quando ele confirmar, o seu card ficará verde','success')
     }catch(error){
       console.log(error);
     }
@@ -118,14 +128,13 @@ export default function SchedClient({route}:recoverProps){
     }
   }
 
-  function show(){
-    console.log(hairdData.hairdId)
-  }
+
   async function deleteSched(){
-    console.log('RODOU AQUI');
     try{
       setIsAwaitingDeleteSched(true)
       await api.delete(`/scheduling/${hairdData.hairdId}/delete`)
+      await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+      navigate('Home')
       return handleAlertModal('Horário desmarcado com sucesso','Você ja pode agendar horário com outro cabeleireiro, ou com o mesmo se quiser','success')
 
     }catch(error){
@@ -164,7 +173,7 @@ export default function SchedClient({route}:recoverProps){
       <Container>
         <Header>
           <HeaderComponent
-             onPressFunctionNavigate={ ()=>navigation.navigate('ClientConfig')}
+             onPressFunctionNavigate={ ()=>navigate('ClientConfig')}
           />
         </Header>
 

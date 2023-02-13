@@ -22,11 +22,11 @@ import { updateHairdresserInfo } from './app/useCases/hairdressers/updateHairdre
 //SCHEDULING
 import { scheduling } from './app/useCases/SchedClients/Scheduling';
 import { updateScheduling } from './app/useCases/SchedClients/updateScheduling';
-import { showMySchedClients } from './app/useCases/SchedClients/showMySchedClients';
+import { showMySchedClients } from './app/useCases/hairdressers/showMySchedClientsForHaird';
 import { deleteScheduleClient } from './app/useCases/hairdressers/deleteScheduleClient';
 import verifyTokenJWT from './utils/verifyTokenJWT';
 import { myHairdListRemove } from './app/useCases/clients/myHairdListRemove';
-import { myScheduling } from './app/useCases/SchedClients/myScheduling';
+import { myScheduling } from './app/useCases/clients/mySchedulingForClient';
 import { deleteMySchedule } from './app/useCases/clients/deleteMySchedules';
 
 export const router = Router();

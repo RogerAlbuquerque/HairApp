@@ -36,12 +36,6 @@ export default function Home(){
     }
   }
 
-  // useEffect(()=>{
-  //   api.get('/scheduling/me').then((response)=>{
-  //     handleMySchedList(response.data);
-  //   })
-  //   console.log('passou aqui')
-  // },[])
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -96,9 +90,9 @@ export default function Home(){
               beardPrice={item.prices.beardPrice}
               email={item.email}
               address={item.address}
-              status={mySchedList[0] && item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
-              clientHour={mySchedList[0] && item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour :''}
-              schedDay={mySchedList[0] && item._id == mySchedList[0].hairdresserId ? mySchedList[0].day : ''}
+              status={(mySchedList[0] && mySchedList) && item._id == mySchedList[0].hairdresserId ? mySchedList[0].status : ''}
+              clientHour={(mySchedList[0] && mySchedList) && item._id == mySchedList[0].hairdresserId ? mySchedList[0].clientHour :''}
+              schedDay={(mySchedList[0] && mySchedList) && item._id == mySchedList[0].hairdresserId ? mySchedList[0].day : ''}
             />
           )}
         />
