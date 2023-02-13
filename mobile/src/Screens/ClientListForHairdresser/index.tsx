@@ -17,21 +17,21 @@ export default function ClientListForHairdresser(){
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   function handleButtonsStatusClients(whichButton:string){
-    if(whichButton == 'PENDINGBUTTON'){
-      buttonConfirmedClient && setButtonConfirmedClient(false);
-      setButtonPendingClient(!buttonPendingClient)
 
-    }
-    else if(whichButton == 'CONFIRMEDBUTTON'){
-      buttonPendingClient && setButtonPendingClient(false)
-     setButtonConfirmedClient(!buttonConfirmedClient)
-    }
+      if(whichButton == 'PENDINGBUTTON'){
+        setButtonPendingClient(!buttonPendingClient)
+      }
+      if(whichButton == 'CONFIRMEDBUTTON'){
+        setButtonConfirmedClient(!buttonConfirmedClient)
+      }
   }
 
   function showModalToConfirmCancelClient(){
     setIsModalVisible(!isModalVisible);
   }
 
+  // $2a$10$A/TPZUvYQIfXX0/v6c8ecOuKtJ0b2hPmYBBGvl7M/7qG9gA11l6Ya
+  // $2a$10$YAJ14sb.H6UMR2QYDuvKEuTnscJfZ03McgE1VASvDPQs6J5DA.1l6
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -54,7 +54,7 @@ export default function ClientListForHairdresser(){
             size={12}
             width={160}
             height={40}
-            notActivate={buttonPendingClient}
+            notActivate={!buttonPendingClient}
             onPress={() => handleButtonsStatusClients('PENDINGBUTTON')}
           />
 
@@ -64,7 +64,7 @@ export default function ClientListForHairdresser(){
           size={12}
           width={160}
           height={40}
-          notActivate={buttonConfirmedClient}
+          notActivate={!buttonConfirmedClient}
           onPress={() => handleButtonsStatusClients('CONFIRMEDBUTTON')}
         />
         </ButtonsForTypeClients>

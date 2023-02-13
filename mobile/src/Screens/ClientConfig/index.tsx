@@ -26,20 +26,25 @@ export default function ClientConfig(){
   const [isAwaitingUpdatingReponse,setIsAwaitingUpdatingReponse]=useState(false);
 
   async function updateClientInfo(clientName:string, email:string, password:string){
-    let newPassword
+    const newPassword = password != '' ? password : clientInfo.clientPassword
     if((password != '') && (confirmPassword != password)){
       return handleAlertModal('As senhas são diferentes','As senhas precisam ser exatamente iguais','error')
     }
-    if(password == ''){
-      newPassword = clientInfo.clientPassword
+    if((password != '' && password.length < 8)){
+      return handleAlertModal('A senha é muito fraca','A senha precisa ter no mínimo 8 dígitos','error')
+    }
+    if(email == '' && clientName == '' && password == ''){
+      return handleAlertModal('Todos os campos estão limpos','É preciso preencher pelo menos umc ampo para atualizar','error')
     }
 
+
+    console.log(newPassword);
     try{
       setIsAwaitingUpdatingReponse(true)
       await api.put('/client/update',{
 
-      clientName: clientName,
-      email:email,
+      clientName: clientName != '' ?  clientName : clientInfo.clientName,
+      email:email != '' ? email : clientInfo.email ,
       clientPassword:newPassword
     })
     await api.get('/me').then(response => handleClientInfoState(response.data))
@@ -124,7 +129,12 @@ export default function ClientConfig(){
           name='Atualizar'
           size={40}
           letterCollor={'#F6C33E'}
-          onPress={() => updateClientInfo(name, email, password )}
+          onPress={() => {
+              if(password != ''){
+
+              }
+            updateClientInfo(name, email, password)
+          }}
           //
         />
         :

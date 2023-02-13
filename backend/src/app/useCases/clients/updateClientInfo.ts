@@ -22,26 +22,36 @@ export async function updateClientInfo(req: Request, res:Response){
     res.status(500).json('Client does not exist');
   }
   else{
-    try{
-      bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(infos.clientPassword!, salt, async (error, hash) => {
+    if(infos.clientPassword != clientExist.clientPassword){
+      try{
+        bcrypt.genSalt(10, (error, salt) => {
+          bcrypt.hash(infos.clientPassword!, salt, async (error, hash) => {
 
-          infos.clientPassword = hash;
+            infos.clientPassword = hash;
 
-          await Client.findByIdAndUpdate(clientId, infos).then(()=>{
-            res.status(200).json(infos);
+            await Client.findByIdAndUpdate(clientId, infos).then(()=>{
+              res.status(200).json(infos);
 
-          }).catch((err)=>{
-            console.log(err);
-            res.status(500).json({error:'Internal Server Error!'});
+            }).catch((err)=>{
+              console.log(err);
+              res.status(500).json({error:'Internal Server Error!'});
+            });
+
           });
-
         });
-      });
-    }
-    catch(error){
-      console.log(error);
-      res.status(500).json({error:'Internal Server Error!'});
+      }
+      catch(error){
+        console.log(error);
+        res.status(500).json({error:'Internal Server Error!'});
+      }
+    }else{
+      try{ await Client.findByIdAndUpdate(clientId, infos);
+        res.status(200).json(infos);
+      }
+      catch(error){
+        console.log(error);
+        res.status(500).json({error:'Internal Server Error!'});
+      }
     }
   }
 }
