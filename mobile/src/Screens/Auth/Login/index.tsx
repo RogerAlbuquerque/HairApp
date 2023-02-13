@@ -34,9 +34,9 @@ export default function SignIn(){
 
   async function loginUser(){
 
-    if(emailInput == '' || passwordInput == ''){
-      return handleAlertModal('Email ou senha vazios', 'Campos obrigatórios!', 'error')
-    }
+    // if(emailInput == '' || passwordInput == ''){
+    //   return handleAlertModal('Email ou senha vazios', 'Campos obrigatórios!', 'error')
+    // }
      try{
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});

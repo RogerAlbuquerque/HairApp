@@ -4,7 +4,7 @@ export const Header = styled.View`
 
 `;
 
-export const Container = styled.View`
+export const Container = styled.KeyboardAvoidingView`
 flex: 1;
 `;
 
