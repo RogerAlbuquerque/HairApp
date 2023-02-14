@@ -20,5 +20,4 @@ export interface TypeHairdToSched{
     _id:string
   } | '',
   schedDay?:string
-
 }

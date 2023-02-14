@@ -37,8 +37,6 @@ export default function ClientConfig(){
       return handleAlertModal('Todos os campos estão limpos','É preciso preencher pelo menos umc ampo para atualizar','error')
     }
 
-
-    console.log(newPassword);
     try{
       setIsAwaitingUpdatingReponse(true)
       await api.put('/client/update',{
@@ -58,11 +56,7 @@ export default function ClientConfig(){
     setIsAwaitingUpdatingReponse(false)
   }
   }
-  function show(){
-    console.log(name)
-    console.log(email)
-    console.log(password)
-  }
+
   // MANIPULATE DATAPICKER
   return(
     <ImageBackground source={require('../../assets/imgs/bkg.jpg')}

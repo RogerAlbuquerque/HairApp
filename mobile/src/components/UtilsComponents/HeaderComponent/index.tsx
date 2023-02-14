@@ -11,7 +11,7 @@ interface HeaderComponentProps{
 
 export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponentProps){
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const {clientInfo, logout} = useContext(UserInfoContext);
+  const {clientInfo,hairdInfo, logout} = useContext(UserInfoContext);
   return(
     <Container>
       <ContainerLogo>
@@ -35,7 +35,7 @@ export default function HeaderComponent({onPressFunctionNavigate}:HeaderComponen
           </ProfileImage>
         </UserData>
         <UserName>
-          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>{clientInfo.clientName}</Text>
+          <Text size={14} font={'Poppins'} weight={'Bold'} color={'#fff'}>{clientInfo.clientName || hairdInfo.hairdName}</Text>
         </UserName>
 
       </Config>
