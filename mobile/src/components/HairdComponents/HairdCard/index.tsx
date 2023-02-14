@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, Image } from "react-native";
 import { UserInfoContext } from "../../../context";
-import { TypeHairdToSched, TypeSchedClient } from "../../../types/activeTypes/TypeHairdToSched";
+import { TypeHairdToSched } from "../../../types/activeTypes/TypeHairdToSched";
 import { api } from "../../../utils/api";
 import { propsStack } from "../../../utils/routeProps";
 import { Text } from "../../../utils/Text";
