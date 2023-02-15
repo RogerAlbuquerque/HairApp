@@ -11,6 +11,7 @@ justify-content: space-between;
 
 export const LineContainer = styled.View`
   align-items: center;
+  margin: 40px 0px;
 `;
 
 export const Line = styled.View`

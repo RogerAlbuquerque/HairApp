@@ -10,17 +10,17 @@ export type propsNavigationStack = {
   Home: undefined;
   SchedClient: {
     status?:'PENDING' | 'CONFIRMED' | 'CANCELED' | '';
-    hairdName:string;
-    workingTimeOpen:{
+    userName:string;
+    workingTimeOpen?:{
       hour:number;
       minute:number;
     };
-    workingTimeClose:{
+    workingTimeClose?:{
       hour:number;
       minute:number;
     };
-    hairPrice:number;
-    beardPrice:number;
+    hairPrice?:number;
+    beardPrice?:number;
     clientHour?: {
       hour: number;
       minute: number;

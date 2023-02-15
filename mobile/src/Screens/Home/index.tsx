@@ -82,8 +82,8 @@ export default function Home(){
           keyExtractor={hairdId => hairdId._id}
           renderItem={({item}) =>(
             <HairdCard
-              hairdId={item._id}
-              hairdName={item.hairdName!}
+              userId={item._id}
+              userName={item.hairdName!}
               workingTimeOpen={item.workingTime.open}
               workingTimeClose={item.workingTime.close}
               hairPrice={item.prices.hairPrice}

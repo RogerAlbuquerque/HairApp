@@ -32,7 +32,7 @@ useEffect(()=>{
 async function removeHairdOfMyList(){
   try{
     setIsAwaitingRemoveHairdReponse(true)
-    await api.put('/client/removeHairdresser',{hairdName:props.hairdName});
+    await api.put('/client/removeHairdresser',{hairdName:props.userName});
     const clientUpdated = await api.get('/me')
     handleClientInfoState(clientUpdated.data)
     handleAlertModal('Cabeleireiro removido com sucesso da sua lista','','success')
@@ -64,7 +64,7 @@ async function removeHairdOfMyList(){
       </HairdImage>
 
       <HairdName style={{backgroundColor:lineOfColorCard}}>
-        <Text size={12} font={'Poppins'} weight={'Bold'} color={'black'}>{props.hairdName}</Text>
+        <Text size={12} font={'Poppins'} weight={'Bold'} color={'black'}>{props.userName}</Text>
       </HairdName>
 
       {props.clientHour && props.status == 'PENDING'?
@@ -90,7 +90,7 @@ async function removeHairdOfMyList(){
             <InfosText>
               <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>Aberto: </Text>
               <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>
-                {props.workingTimeOpen.hour}:{props.workingTimeOpen.minute} as {props.workingTimeClose.hour}:{props.workingTimeClose.minute}
+                {props.workingTimeOpen?.hour}:{props.workingTimeOpen?.minute} as {props.workingTimeClose?.hour}:{props.workingTimeClose?.minute}
               </Text>
             </InfosText>
 

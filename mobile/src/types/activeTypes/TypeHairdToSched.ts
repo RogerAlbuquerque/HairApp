@@ -1,19 +1,19 @@
 export interface TypeHairdToSched{
   status?:'PENDING' | 'CONFIRMED' | 'CANCELED' | '';
-  hairdId:string;
-  hairdName:string,
-  email:string
-  address:string,
-  workingTimeOpen:{
+  userId:string;
+  userName:string,
+  email?:string
+  address?:string,
+  workingTimeOpen?:{
     hour:number;
     minute:number;
   }
-  workingTimeClose:{
+  workingTimeClose?:{
     hour:number;
     minute:number;
   }
-  hairPrice:number;
-  beardPrice:number;
+  hairPrice?:number;
+  beardPrice?:number;
   clientHour?: {
     hour: number;
     minute: number;
