@@ -134,11 +134,9 @@ async function confirmSchedClient(){
         :
         props.clientHour && props.status == 'CANCELED' ?
         <Info>
-            <InfosText>
+            <InfosText style={{flexDirection:'column', alignItems:'center'}} >
               <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>HORÁRIO CANCELADO</Text>
-              {/* <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>
-                {props.workingTimeOpen?.hour}:{props.workingTimeOpen?.minute} as {props.workingTimeClose?.hour}:{props.workingTimeClose?.minute}
-              </Text> */}
+              <Text size={20} font={'Poppins'} weight={'Bold'} color={'white'}>{props.clientHour.hour}:{props.clientHour.minute}</Text>
             </InfosText>
           </Info>
 
