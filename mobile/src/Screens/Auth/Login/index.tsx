@@ -34,9 +34,9 @@ export default function SignIn(){
 
   async function loginUser(){
 
-    // if(emailInput == '' || passwordInput == ''){
-    //   return handleAlertModal('Email ou senha vazios', 'Campos obrigatórios!', 'error')
-    // }
+    if(emailInput == '' || passwordInput == ''){
+      return handleAlertModal('Email ou senha vazios', 'Campos obrigatórios!', 'error')
+    }
      try{
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
@@ -44,7 +44,6 @@ export default function SignIn(){
 
         api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
         const userInfoResponse = await api.get('/me');
-        // console.log(userInfoResponse.data);
         const schedInfo = await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
         console.log(schedInfo);
 
