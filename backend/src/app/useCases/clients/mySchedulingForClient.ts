@@ -14,6 +14,9 @@ export async function myScheduling(req: Request, res:Response){
     }else if(HairdData.length > 0){
       res.status(200).json(HairdData);
     }
+    else{
+      res.status(200).json('Lista vazia');
+    }
 
   }catch(error){
     console.log(error);

@@ -41,9 +41,12 @@ export default function SignIn(){
       setIsAwaitingLoginReponse(true);
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
       if(tokenResponse){
+
         api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
         const userInfoResponse = await api.get('/me');
-        await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+        // console.log(userInfoResponse.data);
+        const schedInfo = await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+        console.log(schedInfo);
 
         userInfoResponse.data.clientName ? handleClientInfoState(userInfoResponse.data) : handleHairdInfoState(userInfoResponse.data);
       }

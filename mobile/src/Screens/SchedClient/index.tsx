@@ -80,12 +80,12 @@ export default function SchedClient({route}:recoverProps){
     try{
       setIsAwaitingCreatingSched(true)
       await api.post('/scheduling', {
-        hairdresserId: route.params.hairdId,
+        hairdresserId: route.params.userId,
         clientId: clientInfo._id,
         day: schedDay,
         clientHour:{
-          hour:parseInt(date.getHours().toLocaleString().padStart(2, '0').padEnd(2, '0')),
-          minute:parseInt(date.getMinutes().toLocaleString().padStart(2, '0').padEnd(2, '0'))
+          hour:date.getHours().toLocaleString().padStart(2, '0'),
+          minute:date.getMinutes().toLocaleString().padStart(2, '0')
         }
       })
       await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
@@ -102,7 +102,7 @@ export default function SchedClient({route}:recoverProps){
   function show(){
     console.log('_ID -> ', clientInfo._id)
     console.log('DAY -> ', schedDay)
-    console.log('DATE HOUR-> ', date.getHours().toLocaleString().padStart(2, '0'))
+    console.log('DATE HOUR-> ', parseFloat(date.getHours().toLocaleString().padStart(2, '0')))
     console.log('DATE MINUTE-> ', date.getMinutes().toLocaleString().padStart(2, '0'))
 
   }
@@ -132,7 +132,7 @@ export default function SchedClient({route}:recoverProps){
   async function deleteSched(){
     try{
       setIsAwaitingDeleteSched(true)
-      await api.delete(`/scheduling/${hairdData.hairdId}/delete`)
+      await api.delete(`/scheduling/${hairdData.userId}/delete`)
       await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
       navigate('Home')
       return handleAlertModal('Horário desmarcado com sucesso','Você ja pode agendar horário com outro cabeleireiro, ou com o mesmo se quiser','success')
@@ -184,7 +184,7 @@ export default function SchedClient({route}:recoverProps){
 
           <HairdData>
             <Text size={14} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Nome:</Text>
-            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>{hairdData.hairdName}</Text>
+            <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>{hairdData.userName}</Text>
 
             <Text size={14} font={'Poppins'} weight={'Bold'}    color={'#F6C33E'}>Endereço: </Text>
             <Text size={14} font={'Poppins'} weight={'Regular'} color={'#fff'}>{hairdData.address}</Text>
