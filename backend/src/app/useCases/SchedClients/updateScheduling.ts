@@ -14,13 +14,12 @@ export async function updateScheduling(req: Request, res:Response){
 
   const userInfo:scheduleInfo = req.body;
 
-  const schedClientExist = await SchedClient.findOne({clientId:req.headers.userId});
-  // const schedClient = await Hairdresser.findById(userInfo.hairdresserId);
+  const schedClientExist = await SchedClient.findOne({clientId:req.params.clientId,hairdresserId:req.params.hairdId});
 
   if(schedClientExist){
     try{
 
-      await SchedClient.findOneAndUpdate({clientId:req.headers.userId }, userInfo );
+      await SchedClient.findOneAndUpdate({clientId:schedClientExist.clientId }, userInfo );
 
       res.status(200).json(userInfo);
 

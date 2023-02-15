@@ -1,7 +1,10 @@
 export interface TypeSchedList {
   _id: string,
   hairdresserId: string,
-  clientId: string
+  clientId: {
+    _id:string
+    clientName:string,
+  },
   day: string,
   clientHour: {
     hour: number;

@@ -6,15 +6,16 @@ import { TypeHairdToSched } from "../../../types/activeTypes/TypeHairdToSched";
 import { api } from "../../../utils/api";
 import { propsStack } from "../../../utils/routeProps";
 import { Text } from "../../../utils/Text";
-import { Container, HairdImage, HairdName, Info, ProfileImage,CloseButton,InfosText } from "./style";
+import { Container, HairdImage, HairdName, Info, ProfileImage,CloseButton,InfosText, AcceptButton } from "./style";
 
 
 export default function HairdCard(props:TypeHairdToSched){
   const [isAwaitingRemoveHairdReponse,setIsAwaitingRemoveHairdReponse]=useState(false);
+  const [isAwaitingAcceptReponse,setIsAwaitingAcceptReponse]=useState(false);
   const {navigate} = useNavigation<propsStack>();
   const [colorCard, setColorCard] = useState ('');
   const [lineOfColorCard, setLineOfColorCard] = useState ('');
-  const {handleAlertModal,handleClientInfoState} = useContext(UserInfoContext);
+  const {hairdInfo,tokenIsValid,clientInfo,handleAlertModal,handleClientInfoState,handleMySchedList} = useContext(UserInfoContext);
 
 useEffect(()=>{
   if(props.status == 'CONFIRMED'){
@@ -23,6 +24,9 @@ useEffect(()=>{
   }else if(props.status == 'PENDING'){
     setColorCard ('background-color: rgba(246, 195, 62 ,0.3)') ;
     setLineOfColorCard('#F6C33E')
+  }else if(props.status == 'CANCELED'){
+    setColorCard ('background-color: rgba(246, 0, 0 ,0.3)') ;
+    setLineOfColorCard('red')
   }else{
     setColorCard ('background-color:  rgba(0, 0, 0 ,0.4)') ;
     setLineOfColorCard('white')
@@ -46,17 +50,59 @@ async function removeHairdOfMyList(){
   }
 }
 
+async function removeClientOfSched(){
+  try{
+    setIsAwaitingRemoveHairdReponse(true)
+    await api.put(`/scheduling/update/${props.userId}/${hairdInfo._id}`, {status: 'CANCELED'})
+    await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+    handleAlertModal('Cliente Cancelado','','success')
+  }
+  catch(error){
+    console.log(error)
+    return handleAlertModal('Erro ao Cancelar cliente','Pode ser erro do servidor, tente novamente em alguns segundos','error')
+  }
+  finally{
+    setIsAwaitingRemoveHairdReponse(false);
+  }
+}
+
+
+async function confirmSchedClient(){
+  try{
+    setIsAwaitingAcceptReponse(true)
+    await api.put(`/scheduling/update/${props.userId}/${hairdInfo._id}`, {status: 'CONFIRMED'})
+    await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
+    handleAlertModal('Horário confirmado','','success')
+  }
+  catch(error){
+    console.log(error)
+    return handleAlertModal('Erro ao confirmar cliente','Pode ser erro do servidor, tente novamente em alguns segundos','error')
+  }
+  finally{
+    setIsAwaitingAcceptReponse(false);
+  }
+}
+
 
 
   return(
-    <Container style={{backgroundColor:colorCard}} onPress={()=>navigate('SchedClient', props)}>
-       <CloseButton onPress={removeHairdOfMyList}>
+    <Container style={{backgroundColor:colorCard}} onPress={()=>!hairdInfo.hairdName && navigate('SchedClient', props)}>
+       <CloseButton onPress={!hairdInfo.hairdName ? removeHairdOfMyList : removeClientOfSched }>
           {!isAwaitingRemoveHairdReponse ?
             <Text size={20} font={'Poppins'} weight={'Bold'} color={'red'}>X</Text>
             :
             <ActivityIndicator color="#fff" size="large"/>
           }
         </CloseButton>
+        { hairdInfo.hairdName && tokenIsValid &&
+          <AcceptButton onPress={confirmSchedClient}>
+          {!isAwaitingAcceptReponse ?
+              <Image source={require('../../../assets/imgs/acceptIcon.png')} style={{width:15, height:20}}/>
+            :
+            <ActivityIndicator color="#fff" size="large"/>
+          }
+        </AcceptButton>
+        }
       <HairdImage>
         <ProfileImage style={{justifyContent:'center'}} >
           <Image source={require('../../../assets/imgs/defaultImage.png')} style={{width:70, height:80}}/>
@@ -86,6 +132,17 @@ async function removeHairdOfMyList(){
         </Info>
 
         :
+        props.clientHour && props.status == 'CANCELED' ?
+        <Info>
+            <InfosText>
+              <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>HORÁRIO CANCELADO</Text>
+              {/* <Text size={12} font={'Poppins'} weight={'Regular'} color={'white'}>
+                {props.workingTimeOpen?.hour}:{props.workingTimeOpen?.minute} as {props.workingTimeClose?.hour}:{props.workingTimeClose?.minute}
+              </Text> */}
+            </InfosText>
+          </Info>
+
+          :
           <Info>
             <InfosText>
               <Text size={12} font={'Poppins'} weight={'Bold'} color={'white'}>Aberto: </Text>

@@ -1,7 +1,7 @@
 export interface TypeHairdToSched{
   status?:'PENDING' | 'CONFIRMED' | 'CANCELED' | '';
   userId:string;
-  userName:string,
+  userName:string ,
   email?:string
   address?:string,
   workingTimeOpen?:{

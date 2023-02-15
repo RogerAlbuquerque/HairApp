@@ -51,7 +51,7 @@ router.delete('/scheduling/:schedClientId/delete',verifyTokenJWT, deleteSchedule
 //SCHEDULE CLIENTS
 router.get('/scheduling/me',verifyTokenJWT, myScheduling);
 router.post('/scheduling',verifyTokenJWT, scheduling);
-router.put('/scheduling/update',verifyTokenJWT, updateScheduling);
+router.put('/scheduling/update/:clientId/:hairdId',verifyTokenJWT, updateScheduling);
 //AUTHENTICATION
 router.post('/login', login);
 

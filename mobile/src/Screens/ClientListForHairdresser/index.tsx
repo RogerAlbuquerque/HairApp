@@ -84,11 +84,12 @@ export default function ClientListForHairdresser(){
           keyExtractor={hairdId => hairdId._id}
           renderItem={({item}) =>(
             <HairdCard
-              userId={item._id}
+              userId={item.clientId._id}
               userName={item.clientId.clientName}
               clientHour={item.clientHour}
               status={item.status}
             />
+
           )}
         />
     </ImageBackground>

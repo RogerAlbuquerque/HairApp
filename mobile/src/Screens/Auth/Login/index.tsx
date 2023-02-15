@@ -44,8 +44,7 @@ export default function SignIn(){
 
         api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
         const userInfoResponse = await api.get('/me');
-        const schedInfo = await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
-        console.log(schedInfo);
+        await api.get('/scheduling/me').then((response)=>{handleMySchedList(response.data);})
 
         userInfoResponse.data.clientName ? handleClientInfoState(userInfoResponse.data) : handleHairdInfoState(userInfoResponse.data);
       }

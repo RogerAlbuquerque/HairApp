@@ -38,3 +38,10 @@ right: 0;
 padding: 0px 8px;
 
 `;
+
+export const AcceptButton = styled.TouchableOpacity`
+position: absolute;
+left: 0;
+padding: 8px;
+
+`;

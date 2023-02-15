@@ -4,8 +4,8 @@ import { SchedClient } from '../../models/SchedClient';
 
 export async function myScheduling(req: Request, res:Response){
 
-  const ClientData = await SchedClient.find().where('clientId').equals(req.headers.userId);
-  const HairdData = await SchedClient.find().where('hairdresserId').equals(req.headers.userId).populate('clientId', '-clientPassword -hairdressers');
+  const ClientData = await SchedClient.find().where('clientId').equals(req.headers.userId).populate({path:'clientId',select:'clientName _id'});
+  const HairdData = await SchedClient.find().where('hairdresserId').equals(req.headers.userId).populate({path:'clientId',select:'clientName _id'});
 
   console.log(ClientData);
   try{

@@ -109,7 +109,7 @@ export default function SchedClient({route}:recoverProps){
   async function editSched(){
     try{
       setIsAwaitingUpdantingSched(true)
-     await api.put('/scheduling/update',{
+     await api.put(`/scheduling/update/${hairdData.userId}/${clientInfo._id}`,{
         day: schedDay,
         clientHour:{
           hour:date.getHours().toLocaleString().padStart(2, '0'),
