@@ -65,13 +65,10 @@ export async function updateHairdresserInfo(req: Request, res:Response){
           res.status(500).json({error:'Internal Server Error!'});
         });
       }
-
     }
 
   }catch(error){
-
     console.log(error);
     res.status(500).json({error:'Internal Server Error!'});
-
   }
 }
