@@ -35,6 +35,15 @@ export default function ClientListForHairdresser(){
   }
 
 
+
+    let pendingClient= mySchedList.filter(client=> client.status == 'PENDING');
+    let confirmedClient= mySchedList.filter(client => client.status == 'CONFIRMED' );
+    let activeClients= mySchedList.filter(client => ((client.status == 'CONFIRMED') || (client.status == 'PENDING')) );
+
+    function show(){
+      console.log(pendingClient.length);
+    }
+
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}
     style={{flex: 1, paddingHorizontal:20}} resizeMode="cover">
@@ -51,34 +60,38 @@ export default function ClientListForHairdresser(){
       </Header>
 
       <ButtonsForTypeClients style={{justifyContent:'space-between'}}>
-          <Button
-            name='Clients pendentes'
-            backColor="#F6C33E"
-            size={12}
-            width={160}
-            height={40}
-            notActivate={!buttonPendingClient}
-            onPress={() => handleButtonsStatusClients('PENDINGBUTTON')}
-          />
+        <Button
+          name='Clients pendentes'
+          backColor="#F6C33E"
+          size={12}
+          width={160}
+          height={40}
+          notActivate={!buttonPendingClient}
+          onPress={() => handleButtonsStatusClients('PENDINGBUTTON')}
+        />
 
-          <Button
+        <Button
           name='Clientes confirmados'
           backColor="#3FC500"
           size={12}
           width={160}
           height={40}
           notActivate={!buttonConfirmedClient}
-          // onPress={() => handleButtonsStatusClients('CONFIRMEDBUTTON')}
-          onPress={() => {console.log(mySchedList)}}
+          onPress={() => handleButtonsStatusClients('CONFIRMEDBUTTON')}
+          // onPress={show}
         />
-        </ButtonsForTypeClients>
+      </ButtonsForTypeClients>
 
       <LineContainer>
         <Line></Line>
       </LineContainer>
 
-      <FlatList
-          data={mySchedList}
+        <FlatList
+          data={
+            buttonPendingClient && buttonConfirmedClient  ? activeClients     :
+            buttonPendingClient && !buttonConfirmedClient ? pendingClient   :
+            !buttonPendingClient && buttonConfirmedClient ? confirmedClient : mySchedList
+          }
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={hairdId => hairdId._id}
