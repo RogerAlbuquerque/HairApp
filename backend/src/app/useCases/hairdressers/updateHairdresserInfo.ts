@@ -35,22 +35,27 @@ export async function updateHairdresserInfo(req: Request, res:Response){
     if(!hairdExist){
       res.status(500).json({error:'User does not exist'});
     }else{
-      if(infos.hairdPassword){
-        bcrypt.genSalt(10, (error, salt) => {
-          bcrypt.hash(infos.hairdPassword!, salt, async (error, hash) => {
+      if(infos.hairdPassword != hairdExist.hairdPassword){
+        try{
+          bcrypt.genSalt(10, (error, salt) => {
+            bcrypt.hash(infos.hairdPassword!, salt, async (error, hash) => {
 
-            infos.hairdPassword= hash;
+              infos.hairdPassword= hash;
 
-            await Hairdresser.findByIdAndUpdate(req.headers.userId, infos).then(()=>{
-              res.status(200).json(infos);
-            }).catch((err)=>{
-              console.log(err);
-              res.status(500).json({error:'Internal Server Error!'});
+              await Hairdresser.findByIdAndUpdate(req.headers.userId, infos).then(()=>{
+                res.status(200).json(infos);
+              }).catch((err)=>{
+                console.log(err);
+                res.status(500).json({error:'Internal Server Error!'});
+              });
+
             });
-
           });
 
-        });
+        }catch(error){
+          console.log(error);
+          res.status(500).json({error:'Internal Server Error!'});
+        }
 
       }else{
         await Hairdresser.findByIdAndUpdate(req.headers.userId, infos).then(()=>{

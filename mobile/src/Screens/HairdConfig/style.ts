@@ -1,10 +1,15 @@
 import styled from 'styled-components/native';
 
+export const Container = styled.ScrollView`
+
+`;
+
 export const ProfileAndHour = styled.View`
 flex-direction: row;
 margin-bottom: 20px;
 /* flex: 1; */
 `;
+
 
 export const ProfileImage = styled.View`
 `;
