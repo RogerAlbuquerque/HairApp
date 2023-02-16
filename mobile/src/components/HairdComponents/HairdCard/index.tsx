@@ -94,7 +94,7 @@ async function confirmSchedClient(){
             <ActivityIndicator color="#fff" size="large"/>
           }
         </CloseButton>
-        { hairdInfo.hairdName && tokenIsValid &&
+        { hairdInfo.hairdName && tokenIsValid && props.status != 'CONFIRMED' &&
           <AcceptButton onPress={confirmSchedClient}>
           {!isAwaitingAcceptReponse ?
               <Image source={require('../../../assets/imgs/acceptIcon.png')} style={{width:15, height:20}}/>

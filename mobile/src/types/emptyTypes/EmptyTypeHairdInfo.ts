@@ -5,8 +5,8 @@ export interface EmptyTypeHairdInfo{
   email:'',
   address:'',
   prices:{
-    hairPrice:0,
-    beardPrice:0
+    hairPrice:'',
+    beardPrice:''
   },
   workDaysWeek: {
     SEG:false,

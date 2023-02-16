@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Image, ImageBackground } from "react-native"
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Button from "../../components/UtilsComponents/Button";
@@ -29,14 +29,28 @@ from "./style";
 
 
 export default function HairdConfig(){
+
   const {hairdInfo}=useContext(UserInfoContext);
-  const [openingTime, setOpeningTime] = useState(new Date());
-  const [closingTime, setClosingTime] = useState(new Date());
-  const [isOpenClocVisible, setIsOpenClockVisible] = useState(false);
-  const [isCloseClocVisible, setIsCloseClockVisible] = useState(false);
+  const [isOpenClocVisible, setIsOpenClockVisible] = useState(true);
+  const [isCloseClocVisible, setIsCloseClockVisible] = useState(true);
   const [workDaysWeek, setWorkDaysWeek] = useState(hairdInfo.workDaysWeek)
 
+  const [hairdName, setHairdName] = useState(hairdInfo.hairdName);
+  const [address, setAddress] = useState(hairdInfo.address);
+  const [email, setEmail] = useState(hairdInfo.email);
+  const [password, setPassword] = useState();
+  const [hairPrice, setHaiPrice] = useState(hairdInfo.prices.hairPrice);
+  const [BeardPriceState, setBeardPriceState] = useState(hairdInfo.prices.beardPrice);
 
+  const [openingTime, setOpeningTime] = useState(new Date());
+  const [closingTime, setClosingTime] = useState(new Date());
+
+
+  // SET DEFAULT TIME TO OPEN AND CLOSE
+ {
+
+ }
+ // SET DEFAULT TIME TO OPEN AND CLOSE
   function handleSchedDay(day:'SEG' | 'TER'| 'QUA'| 'QUI'| 'SEX'| 'SAB'| 'DOM'){
     setWorkDaysWeek({...workDaysWeek, [day]:!workDaysWeek[day]})
   }
@@ -58,11 +72,18 @@ export default function HairdConfig(){
 
   };
 
+function show(){
 
+}
 
-
-
-
+useEffect(()=>{
+  setIsOpenClockVisible(false)
+  setIsCloseClockVisible(false)
+  openingTime.setHours(hairdInfo.workingTime.open.hour).toLocaleString().padStart(2, '0')
+  openingTime.setMinutes(hairdInfo.workingTime.open.minute).toLocaleString().padStart(2, '0')
+  closingTime.setHours(hairdInfo.workingTime.close.hour).toLocaleString().padStart(2, '0')
+  closingTime.setMinutes(hairdInfo.workingTime.close.minute).toLocaleString().padStart(2, '0')
+},[])
   return(
     <ImageBackground source={require('../../assets/imgs/bkg.jpg')}
     style={{flex: 1, paddingHorizontal:20, paddingVertical:20}} resizeMode="cover">
@@ -99,11 +120,13 @@ export default function HairdConfig(){
                 <Text size={14} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Abre</Text>
                 <PickHour onPress={showOpeningClockDatePicker}>
                   <HourInput>
-                    <Text size={20} font={'Poppins'} weight={'Bold'} color={'black'}>{openingTime.getHours().toLocaleString().padStart(2, '0')}</Text>
+                    <Text size={20} font={'Poppins'} weight={'Bold'} color={'black'}>
+                      {openingTime.getHours().toLocaleString().padStart(2, '0')}</Text>
                   </HourInput>
                   <Text size={30} font={'Poppins'} weight={'Bold'} color={'white'}>:</Text>
                   <MinuteInput>
-                    <Text size={20} font={'Poppins'} weight={'Bold'} color={'black'}>{openingTime.getMinutes().toLocaleString().padStart(2, '0')}</Text>
+                    <Text size={20} font={'Poppins'} weight={'Bold'} color={'black'}>
+                      {openingTime.getMinutes().toLocaleString().padStart(2, '0')}</Text>
                   </MinuteInput>
                 </PickHour>
               </OpeningHour>
@@ -132,13 +155,14 @@ export default function HairdConfig(){
       <InfoUserForms>
 
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Nome do cabeleireiro ou salão</Text>
-        <InputText font="Poppins-Bold"/>
+        <InputText font="Poppins-Bold"
+        value={hairdName}/>
 
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Endereço do salão</Text>
-        <InputText font="Poppins-Bold"/>
+        <InputText font="Poppins-Bold" value={address}/>
 
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Email</Text>
-        <InputText font="Poppins-Bold"/>
+        <InputText font="Poppins-Bold" value={email}/>
 
         <Text size={15} font={'Poppins'} weight={'Bold'} color={'#F6C33E'} style={{textAlign:'center'}}>Alterar senha</Text>
         <InputText font="Poppins-Bold" isPassword={true}/>
@@ -152,7 +176,7 @@ export default function HairdConfig(){
           <HairPrice>
             <InputPrice
               keyboardType="numeric"
-              placeholder="20"
+              value={hairPrice.toString()}
             />
           </HairPrice>
         </HairCutInfo>
@@ -163,7 +187,7 @@ export default function HairdConfig(){
           <BeardPrice>
             <InputPrice
               keyboardType="numeric"
-              placeholder="20"
+              value={BeardPriceState.toString()}
               style={{marginLeft:2}}
             />
           </BeardPrice>
@@ -182,6 +206,7 @@ export default function HairdConfig(){
         name="Atualizar"
         size={40}
         letterCollor={'#F6C33E'}
+        onPress={show}
       />
 
     </ImageBackground>

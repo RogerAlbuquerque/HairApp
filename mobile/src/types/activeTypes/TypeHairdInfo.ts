@@ -5,8 +5,8 @@ export interface TypeHairdInfo{
   email:string,
   address:string,
   prices:{
-    hairPrice:number,
-    beardPrice:number
+    hairPrice:string,
+    beardPrice:string
   },
   workDaysWeek: {
       SEG:boolean,
