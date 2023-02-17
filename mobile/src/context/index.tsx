@@ -17,7 +17,7 @@ interface userDataTypeContext{
   bodyTextAlertModal:string;
   typeAlertModal:'error' | 'success' | '';
   tokenIsValid:boolean
-  mySchedList:TypeSchedList[],
+  mySchedList:TypeSchedList[] | 'Lista vazia',
   handleMySchedList:(schedData:TypeSchedList[])=>void;
   logout:()=>void;
   activeToken:()=>void;

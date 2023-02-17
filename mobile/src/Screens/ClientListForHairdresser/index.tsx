@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../utils/routeProps';
 import { UserInfoContext } from '../../context';
 import HairdCard from '../../components/HairdComponents/HairdCard';
+import { TypeSchedList } from '../../types/activeTypes/TypeSchedList';
 
 
 export default function ClientListForHairdresser(){
@@ -35,13 +36,17 @@ export default function ClientListForHairdresser(){
   }
 
 
+    let pendingClient = Array<TypeSchedList>() ;
+    let confirmedClient= Array<TypeSchedList>();
+    let activeClients= Array<TypeSchedList>();
 
-    let pendingClient= mySchedList.filter(client=> client.status == 'PENDING');
-    let confirmedClient= mySchedList.filter(client => client.status == 'CONFIRMED' );
-    let activeClients= mySchedList.filter(client => ((client.status == 'CONFIRMED') || (client.status == 'PENDING')) );
-
+    if (mySchedList != 'Lista vazia'){
+     pendingClient= mySchedList.filter(client=> client.status == 'PENDING');
+     confirmedClient= mySchedList.filter(client => client.status == 'CONFIRMED' );
+     activeClients= mySchedList.filter(client => ((client.status == 'CONFIRMED') || (client.status == 'PENDING')) );
+    }
     function show(){
-      console.log(pendingClient.length);
+      console.log(mySchedList);
     }
 
   return(
@@ -86,9 +91,10 @@ export default function ClientListForHairdresser(){
         <Line></Line>
       </LineContainer>
 
-        <FlatList
+       {mySchedList != 'Lista vazia' &&
+       <FlatList
           data={
-            buttonPendingClient && buttonConfirmedClient  ? activeClients     :
+            buttonPendingClient && buttonConfirmedClient  ? activeClients   :
             buttonPendingClient && !buttonConfirmedClient ? pendingClient   :
             !buttonPendingClient && buttonConfirmedClient ? confirmedClient : mySchedList
           }
@@ -104,7 +110,7 @@ export default function ClientListForHairdresser(){
             />
 
           )}
-        />
+        />}
     </ImageBackground>
   );
 }
