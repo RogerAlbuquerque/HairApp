@@ -20,5 +20,6 @@ It's an app for managing clients at a hairdresser and scheduling appointments fo
   <img width="200px" alt="Confirmed client list" src="./readmeImages/Lista de clientes confirrmados.png">
   <img width="200px" alt="pending client list" src="./readmeImages/Lista de clientes pendentes.png">
   <img width="200px" alt="login screen" src="./readmeImages/Login.png">
-  <img width="200px" alt="" src="./readmeImages/images.png">
+  <img width="200px" alt="" src="./readmeImages/Login PERGUNTA">
+  <img width="200px" alt="" src="./readmeImages/Lista de clientes Modal.png">
 </div>
