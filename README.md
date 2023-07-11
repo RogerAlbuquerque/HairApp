@@ -1,2 +1,2 @@
-# cabeleireiroApp
-App para cabeleireiros fazerem o gerenciamente de clientes
+# cabeleireiroApp/HairApp
+It's an app for managing clients at a hairdresser and scheduling appointments for a haircut.
