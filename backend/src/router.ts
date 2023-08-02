@@ -10,7 +10,7 @@ import { passwordRecovery } from './app/useCases/auth/passwordRecovery';
 
 //CLIENT
 import { createClient } from './app/useCases/clients/createClient';
-// import { showClient } from './app/useCases/inutils/Clients/showClients';
+import { showClient } from './app/useCases/inutils/Clients/showClients';
 import { updateClientInfo } from './app/useCases/clients/updateClientInfo';
 import { myHairdList } from './app/useCases/clients/myHairdListAdd';
 
@@ -35,7 +35,7 @@ export const router = Router();
 // ROTAS
 router.get('/me',verifyTokenJWT, showMe);
 //CLIENT
-// router.get('/client', showClient);
+router.get('/client', showClient);
 router.post('/client/create', createClient);
 router.put('/client/update',verifyTokenJWT, updateClientInfo);
 router.put('/client/addHairdresser',verifyTokenJWT, myHairdList);

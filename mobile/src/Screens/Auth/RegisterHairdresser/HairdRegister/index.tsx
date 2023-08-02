@@ -64,6 +64,7 @@ export default function HairdRegister(){
 
   function showOpeningClockDatePicker(){
     setIsOpenClockVisible(!isOpenClocVisible);
+    console.log("1111111111111111111111")
   };
   function showClosingClockDatePicker(){
     setIsCloseClockVisible(!isCloseClocVisible);

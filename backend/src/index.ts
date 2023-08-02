@@ -4,7 +4,7 @@ import {router} from './router';
 
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://127.0.0.1:27017')
+mongoose.connect('mongodb://localhost:27017/cabeleireiroApp')
   .then(()=>{
     const app = express();
     const port = 3001;
@@ -22,7 +22,7 @@ mongoose.connect('mongodb://127.0.0.1:27017')
     app.use(router);
 
 
-    app.listen(port, ()=> console.log('Server is running on locahost, in port ' + port));
+    app.listen(port, ()=> console.log('Server is running on localhost, in port ' + port));
   })
   .catch((error) => console.log('Error to connect on mongoDB: \n ', error));
 

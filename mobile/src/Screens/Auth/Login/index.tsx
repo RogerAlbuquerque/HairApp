@@ -21,6 +21,7 @@ import {
   ForgotPassword,
   UserInfo
 } from './style';
+import axios, { AxiosError } from 'axios';
 
 export default function SignIn(){
 
@@ -33,13 +34,17 @@ export default function SignIn(){
   const {handleClientInfoState, handleHairdInfoState, handleAlertModal,activeToken,handleMySchedList} = useContext(UserInfoContext);
 
   async function loginUser(){
+    
 
     if(emailInput == '' || passwordInput == ''){
       return handleAlertModal('Email ou senha vazios', 'Campos obrigatórios!', 'error')
     }
      try{
-      setIsAwaitingLoginReponse(true);
-      const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput});
+      setIsAwaitingLoginReponse(true);    
+      console.log(emailInput+" : "+passwordInput) 
+      const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput,});
+      console.log("BBBBBBBBBBBBB")
+      
       if(tokenResponse){
 
         api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data}`;
@@ -50,8 +55,10 @@ export default function SignIn(){
       }
 
      }
-     catch(error){
+     catch(error){ 
+      console.log(error)
       return handleAlertModal('Email ou senha incorretos', 'Tente novamente', 'error')
+     
      }
      finally{
       setIsAwaitingLoginReponse(false);
