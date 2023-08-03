@@ -45,9 +45,6 @@ export default function ClientListForHairdresser(){
      confirmedClient= mySchedList.filter(client => client.status == 'CONFIRMED' );
      activeClients= mySchedList.filter(client => ((client.status == 'CONFIRMED') || (client.status == 'PENDING')) );
     }
-    function show(){
-      console.log(mySchedList);
-    }
 
   return(
     <ImageBackground source={require('../../assets/imgs/backHome.png')}

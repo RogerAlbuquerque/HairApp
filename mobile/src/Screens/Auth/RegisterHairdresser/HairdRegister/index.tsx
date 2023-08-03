@@ -64,7 +64,6 @@ export default function HairdRegister(){
 
   function showOpeningClockDatePicker(){
     setIsOpenClockVisible(!isOpenClocVisible);
-    console.log("1111111111111111111111")
   };
   function showClosingClockDatePicker(){
     setIsCloseClockVisible(!isCloseClocVisible);
@@ -101,8 +100,7 @@ export default function HairdRegister(){
     ){
       return handleAlertModal('Nenhum dia de trabalho selecionado', 'É preciso selecionar pelo menos um dia de trabalho!', 'error')
     }
-    console.log("teste")
-
+    
     try{
       setIsAwaitingRegisterReponse(true)
       api.post('/hairdresser/create', {

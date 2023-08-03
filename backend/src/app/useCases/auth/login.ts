@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { Client } from '../../models/Client';
 import { Hairdresser } from '../../models/Hairdresser';
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 dotenv.config();
-import jwt from 'jsonwebtoken';
 
 
 export async function login(req: Request, res:Response){

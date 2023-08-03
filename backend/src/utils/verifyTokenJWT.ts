@@ -20,6 +20,8 @@ export default function verifyTokenJWT(req: Request, res:Response, next:NextFunc
     const {userId} = jwt.verify(token, secret!) as TokenPayload;
     req.headers.userId = userId;
 
+    console.log(userId)
+
     next();
   }
   catch(error){

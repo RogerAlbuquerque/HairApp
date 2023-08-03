@@ -7,7 +7,6 @@ export async function myScheduling(req: Request, res:Response){
   const ClientData = await SchedClient.find().where('clientId').equals(req.headers.userId).populate({path:'clientId',select:'clientName _id'});
   const HairdData = await SchedClient.find().where('hairdresserId').equals(req.headers.userId).populate({path:'clientId',select:'clientName _id'});
 
-  console.log(ClientData);
   try{
     if(ClientData.length > 0){
       res.status(200).json(ClientData);

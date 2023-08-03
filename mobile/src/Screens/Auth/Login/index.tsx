@@ -21,7 +21,6 @@ import {
   ForgotPassword,
   UserInfo
 } from './style';
-import axios, { AxiosError } from 'axios';
 
 export default function SignIn(){
 
@@ -41,7 +40,6 @@ export default function SignIn(){
     }
      try{
       setIsAwaitingLoginReponse(true);    
-      console.log(emailInput+" : "+passwordInput) 
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput,});
       
       if(tokenResponse){
