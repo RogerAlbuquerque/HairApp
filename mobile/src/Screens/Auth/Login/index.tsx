@@ -43,7 +43,6 @@ export default function SignIn(){
       setIsAwaitingLoginReponse(true);    
       console.log(emailInput+" : "+passwordInput) 
       const tokenResponse = await api.post('/login',{user:emailInput, password:passwordInput,});
-      console.log("BBBBBBBBBBBBB")
       
       if(tokenResponse){
 

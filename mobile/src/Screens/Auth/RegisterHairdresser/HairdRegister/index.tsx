@@ -101,6 +101,7 @@ export default function HairdRegister(){
     ){
       return handleAlertModal('Nenhum dia de trabalho selecionado', 'É preciso selecionar pelo menos um dia de trabalho!', 'error')
     }
+    console.log("teste")
 
     try{
       setIsAwaitingRegisterReponse(true)
