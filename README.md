@@ -1,5 +1,5 @@
 # HairApp
-It's an app for managing clients at a hairdresser and scheduling appointments for a haircut.
+It's an mobile app for managing clients at a hairdresser and scheduling appointments for a haircut.
 
 ### This project was made with some tools like:
 - Typescript
