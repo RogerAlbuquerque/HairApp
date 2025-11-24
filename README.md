@@ -1,7 +1,9 @@
 # HairApp
-It's an mobile app for managing clients at a hairdresser and scheduling appointments for a haircut.
+
+It's an mobile app for managing clients at a hairdresser and scheduling appointments for a haircut. 
 
 ### This project was made with some tools like:
+
 - Typescript
 - React Native
 - Expo
@@ -13,6 +15,7 @@ It's an mobile app for managing clients at a hairdresser and scheduling appointm
 - Axios
 
 # Some Screens
+
 <div>
   <img width="200px" alt="login screen" src="./readmeImages/Login.png">
   <img width="200px" alt="" src="./readmeImages/Login PERGUNTA.png">
