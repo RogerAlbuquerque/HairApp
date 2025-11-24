@@ -20,9 +20,9 @@ It's an mobile app for managing clients at a hairdresser and scheduling appointm
   <img width="200px" alt="login screen" src="./readmeImages/Login.png">
   <img width="200px" alt="" src="./readmeImages/LoginPERGUNTA.png">
   <img width="200px" alt="Home client screen without schedule" src="./readmeImages/Homesemhorariomarcado.png">
-  <img width="200px" alt="hairdresses without schedule client" src="./readmeImages/CardCabeleireirosemhorário.png">
-  <img width="200px" alt="Confirmed client list" src="./readmeImages/Listadeclientesconfirrmados.png">
+  <img width="200px" alt="hairdresses without schedule client" src="./readmeImages/CardCabeleireirosemhorario.png">
+  <img width="200px" alt="Confirmed client list" src="./readmeImages/Listadeclientesconfirmados.png">
   <img width="200px" alt="pending client list" src="./readmeImages/Listadeclientespendentes.png">
   <img width="200px" alt="" src="./readmeImages/ListadeclientesModal.png">
-  <img width="200px" alt="credit card menu image" src="./readmeImages/Cadastrarcartão.png">
+  <img width="200px" alt="credit card menu image" src="./readmeImages/Cadastrarcartao.png">
 </div>
