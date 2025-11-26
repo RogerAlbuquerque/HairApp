@@ -1,4 +1,6 @@
 # HairApp
+[Application Demo](https://www.linkedin.com/posts/roger-albuquerque_en-in-the-last-few-days-i-studied-a-lot-activity-7092567040489660416-wVz1/?utm_source=share&utm_medium=member_desktop)
+
 
 It's an mobile app for managing clients at a hairdresser and scheduling appointments for a haircut. 
 
